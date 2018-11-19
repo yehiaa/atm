@@ -1,0 +1,41 @@
+version: '3'
+services:
+    web:
+        container_name: atm-web
+        image: nginx:alpine
+        volumes:
+            - "./docker/etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+            - "./docker/etc/ssl:/etc/ssl"
+            - "./application:/var/www/html"
+        ports:
+            - "9091:80"
+        restart: always
+
+        depends_on:
+            - php
+            - mysqldb
+    php:
+        container_name: atm-php
+        build: docker/build/php-fpm
+        restart: always
+        volumes:
+            - "./docker/etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+            - "./application:/var/www/html"
+
+    mysqldb:
+        image: mysql:5.7
+        container_name: atm-mysqldb
+        restart: always
+        env_file:
+            - "./application/.env"
+        environment:
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+        ports:
+            - "8132:3306"
+        volumes:
+            - dbvolume:/var/lib/mysql
+volumes:
+  dbvolume:
