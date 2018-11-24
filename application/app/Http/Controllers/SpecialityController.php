@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Speciality;
 use Illuminate\Http\Request;
 
-class SpecialiyController extends Controller
+class SpecialityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class SpecialiyController extends Controller
      */
     public function index()
     {
-        //
+        $items = Speciality::all();
+        return view('specialities.index', compact('items'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SpecialiyController extends Controller
      */
     public function create()
     {
-        //
+        return view('specialities.create');
     }
 
     /**

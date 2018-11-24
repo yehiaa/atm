@@ -4,6 +4,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Hall::class, function (Faker $faker) {
     return [
-        'name' => $faker->name
+        'name' => 'Hall name ' . rand(1, 1000)
     ];
 });

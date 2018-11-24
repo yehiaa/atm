@@ -14,7 +14,8 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        return Trainer::all();
+        $items = Trainer::all();
+        return view('trainers.index', compact('items'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        //
+        return view('trainers.create');
     }
 
     /**

@@ -7,7 +7,7 @@ $factory->define(App\Course::class, function (Faker $faker) {
         'name' => $faker->name,
         'alternative_name' => $faker->name,
         'description' => $faker->paragraph,
-        'startDateTime' => $faker->dateTime,
-        'endDateTime' => $faker->dateTime
+        'start_datetime' => $faker->dateTime,
+        'end_datetime' => $faker->dateTime
     ];
 });

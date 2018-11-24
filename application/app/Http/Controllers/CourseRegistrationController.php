@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\CourseRegistration;
+use App\Nomination;
+use App\Trainee;
 use Illuminate\Http\Request;
 
 class CourseRegistrationController extends Controller
@@ -24,7 +27,10 @@ class CourseRegistrationController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::all();
+        $trainees = Trainee::all();
+        $nominations= Nomination::all();
+        return view('course_registration.create', compact('courses', 'trainees', 'nominations'));
     }
 
     /**

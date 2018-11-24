@@ -14,7 +14,9 @@ class HallController extends Controller
      */
     public function index()
     {
-        //
+        $items = Hall::all();
+        return view('halls.index', compact('items'));
+
     }
 
     /**
@@ -24,7 +26,7 @@ class HallController extends Controller
      */
     public function create()
     {
-        //
+        return view('halls.create');
     }
 
     /**

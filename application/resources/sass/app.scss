@@ -11,4 +11,11 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+} 
+$fa-font-path: "../webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+@import "~fullcalendar/dist/fullcalendar.css";
+
+@import 'admin_template/sb-admin.scss';

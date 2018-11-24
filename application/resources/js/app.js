@@ -6,8 +6,21 @@
  */
 
 require('./bootstrap');
+// require('./datatables.net-bs4/js/dataTables.bootstrap4.min.js');
 
-window.Vue = require('vue');
+window.$ = window.jQuery = require('jquery');
+
+require( 'fullcalendar');
+require( 'fullcalendar-scheduler');
+
+
+// window.dt = require( 'datatables.net-bs4' )( window, $ );
+
+// require( 'jszip' );
+require( 'datatables.net' );
+require( 'datatables.net-bs4' );
+
+// window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -17,7 +30,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -31,6 +44,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });

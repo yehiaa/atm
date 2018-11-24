@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Trainee;
 use App\TraineeAttendance;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class TraineeAttendanceController extends Controller
      */
     public function index()
     {
-        //
+        $items = Trainee::all();
+        return view('trainees.index', compact('items'));
     }
 
     /**
@@ -24,7 +26,7 @@ class TraineeAttendanceController extends Controller
      */
     public function create()
     {
-        //
+        return view('trainees.create');
     }
 
     /**

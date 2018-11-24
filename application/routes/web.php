@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,4 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/trainers', 'TrainerController@index')->name('trainers_index');
+Route::get('/calendar', 'CalendarController@index')->name('calendar');
+Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
+//Route::get('/trainers', 'TrainerController@index')->name('trainers_index');
+Route::resource('/users', 'UserController');
+Route::resource('/halls', 'HallController');
+Route::resource('/courses', 'CourseController');
+Route::resource('/lectures', 'LectureController');
+Route::resource('/trainers', 'TrainerController');
+Route::resource('/trainees', 'TraineeController');
+Route::resource('/nominations', 'NominationController');
+Route::resource('/specialties', 'SpecialityController');

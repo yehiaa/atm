@@ -14,7 +14,8 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        //
+        $items = Trainee::all();
+        return view('trainees.index', compact('items'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TraineeController extends Controller
      */
     public function create()
     {
-        //
+        return view('trainees.create');
     }
 
     /**

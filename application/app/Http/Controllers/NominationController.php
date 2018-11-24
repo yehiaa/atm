@@ -14,7 +14,8 @@ class NominationController extends Controller
      */
     public function index()
     {
-        //
+        $items = Nomination::all();
+        return view('nominations.index', compact('items'));
     }
 
     /**
@@ -24,7 +25,7 @@ class NominationController extends Controller
      */
     public function create()
     {
-        //
+        return view('nominations.create');
     }
 
     /**
