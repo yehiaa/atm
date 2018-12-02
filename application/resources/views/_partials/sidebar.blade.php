@@ -53,6 +53,12 @@
     </div>
   </li>
 
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url('/evaluation') }}">
+      <i class="fas fa-fw fa-check"></i>
+      <span>Evaluation</span></a>
+  </li>
+
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-fw fa-folder"></i>
