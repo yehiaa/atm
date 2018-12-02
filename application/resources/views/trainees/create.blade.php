@@ -21,6 +21,25 @@
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="name" class="form-control here" type="text">
         </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input name="gender" class="form-check-input" value="m" type="radio">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input name="gender" class="form-check-input" value="f" type="radio">
+                        Female
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control here" type="text">
@@ -73,6 +92,22 @@
                     @foreach($specialities as $speciality)
                         <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
                     @endforeach
+                </select>
+                <span id="selectHelpBlock" class="form-text text-muted">Specialities</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="refereedFrom">How did you know about us?</label>
+            <div>
+                <select id="refereedFrom" name="refereedFrom"
+                        class="form-control"
+                        aria-describedby="selectHelpBlock" >
+                    <option value="onSite">OnSite</option>
+                    <option value="byPhone">ByPhone</option>
+                    <option value="delegated">Delegated</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="whatsApp">WhatsApp</option>
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted">Specialities</span>
             </div>
