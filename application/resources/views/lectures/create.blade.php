@@ -12,8 +12,9 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Lectures <a href="{{ route('halls.create') }}">Add new</a></h1>
+    <h1>Lecture</h1>
     <hr>
+    @include('_partials.flash-messages')
 
 
 @endsection

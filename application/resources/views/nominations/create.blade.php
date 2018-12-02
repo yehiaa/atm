@@ -12,8 +12,9 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Nominations <a href="{{ route('nominations.create') }}">Add new</a></h1>
+    <h1>Nomination</h1>
     <hr>
+    @include('_partials.flash-messages')
 
     <form>
         <div class="form-group">

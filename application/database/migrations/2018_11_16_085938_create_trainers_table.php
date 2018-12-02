@@ -20,8 +20,16 @@ class CreateTrainersTable extends Migration
             $table->string('phone')->unique();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
+
+            $table->string('identity')->unique();
+            $table->enum('identity_type', ['passport','national']);
+
             $table->unsignedInteger('speciality_id');
             $table->foreign('speciality_id')->references('id')->on('specialties');
+
+            $table->string('bank_name')->nullable();
+            $table->string('bank_account_number')->nullable();
+            $table->text('experiences')->nullable();
 
             $table->timestamps();
         });

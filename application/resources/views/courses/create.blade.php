@@ -12,8 +12,10 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Courses <a href="{{ route('halls.create') }}">Add new</a></h1>
+    <h1>Course</h1>
     <hr>
+
+    @include('_partials.flash-messages')
 
     <form>
         <div class="form-group">

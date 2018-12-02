@@ -16,6 +16,8 @@
     <h1>Courses Registration</h1>
     <hr>
 
+    @include('_partials.flash-messages')
+
     <form>
         <div class="form-group">
             <label for="select">Course</label>

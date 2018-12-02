@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Speciality;
 use App\Trainer;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        return view('trainers.create');
+        $specialities = Speciality::all();
+        return view('trainers.create', compact('specialities'));
     }
 
     /**

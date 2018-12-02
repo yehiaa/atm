@@ -24,15 +24,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Bootstrap core CSS-->
-    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <!-- Page level plugin CSS-->
-    <!-- <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet"> -->
-
-    <!-- Custom styles for this template-->
-    <!-- <link href="css/sb-admin.css" rel="stylesheet"> -->
-
   </head>
 
   <body id="page-top">
@@ -51,7 +42,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
+              <a href="/">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Blank Page</li>
           </ol>

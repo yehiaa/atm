@@ -14,6 +14,36 @@
     <!-- Page Content -->
     <h1>Halls <a href="{{ route('halls.create') }}">Add new</a></h1>
     <hr>
+    @include('_partials.flash-messages')
+
+
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control here" required="required" type="text">
+        </div>
+        <div class="form-group">
+            <label>Is active</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input name="is_active" class="form-check-input" value="1" aria-describedby="is_activeHelpBlock" type="checkbox">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input name="is_active" class="form-check-input" value="0" aria-describedby="is_activeHelpBlock" type="checkbox">
+                        No
+                    </label>
+                </div>
+                <span id="is_activeHelpBlock" class="form-text text-muted">this is help text</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
 
 
 @endsection
