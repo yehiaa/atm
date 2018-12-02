@@ -97,6 +97,12 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            <label for="attachments">Attachments</label>
+            <input type="file" id="attachments[]" name="attachments[]" class="form-control" multiple />
+        </div>
+
         <div class="form-group">
             <label for="refereedFrom">How did you know about us?</label>
             <div>
