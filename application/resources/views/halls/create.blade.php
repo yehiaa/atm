@@ -17,7 +17,8 @@
     @include('_partials.flash-messages')
 
 
-    <form>
+    <form method="post" action="{{ route('halls.store') }}">
+        @csrf
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" class="form-control here" required="required" type="text">

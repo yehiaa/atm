@@ -11,6 +11,7 @@
     <!-- Page Content -->
     <h1>Trainees <a href="{{ route('trainees.create') }}">Add new</a></h1>
     <hr>
+    @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
     <table id="example" class="display" style="width:100%">
         <thead>

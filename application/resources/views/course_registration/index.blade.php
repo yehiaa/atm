@@ -10,6 +10,7 @@
 
     <!-- Page Content -->
     <h1>Courses <a href="{{ route('courses.create') }}">Add new</a></h1>
+    @include('_partials.flash-messages')
     <hr>
     {{--<p> the training halls</p>--}}
     <table id="example" class="display" style="width:100%">

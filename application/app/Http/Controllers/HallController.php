@@ -37,7 +37,9 @@ class HallController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name'=>'required']);
+        Hall::create($request->all());
+        return redirect(route('halls.index'))->withSuccess('created successfully');
     }
 
     /**
