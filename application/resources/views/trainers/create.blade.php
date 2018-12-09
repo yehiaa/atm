@@ -16,7 +16,8 @@
     <hr>
     @include('_partials.flash-messages')
 
-    <form>
+    <form method="post" action="{{ route('trainers.store') }}">
+        @csrf
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="name" class="form-control here" type="text">

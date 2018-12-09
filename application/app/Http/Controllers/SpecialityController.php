@@ -36,7 +36,11 @@ class SpecialityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name'=>'required']);
+
+        Speciality::create($request->all());
+
+        return redirect(route('specialties.index'))->withSuccess('created successfully');
     }
 
     /**

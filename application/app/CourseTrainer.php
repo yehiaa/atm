@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class CourseTrainer extends Pivot
 {
-    //
+    protected $fillable = [];
 }

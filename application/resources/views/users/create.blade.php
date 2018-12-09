@@ -16,6 +16,26 @@
     <hr>
     @include('_partials.flash-messages')
 
+    <form method="post" action="{{ route('users.store') }}">
+        @csrf
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="name" class="form-control here" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" class="form-control here" type="text">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" class="form-control here" type="password">
+        </div>
+
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
 
 @endsection
 

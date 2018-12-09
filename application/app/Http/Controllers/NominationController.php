@@ -36,7 +36,11 @@ class NominationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name'=>'required']);
+
+        Nomination::create($request->all());
+
+        return redirect(route('nominations.index'))->withSuccess('created successfully');
     }
 
     /**

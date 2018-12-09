@@ -16,15 +16,21 @@ class CreateTraineesTable extends Migration
         Schema::create('trainees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('gender');
             $table->string('email')->unique();
             $table->string('phone')->unique();
 
             $table->string('identity')->unique();
             $table->enum('identity_type', ['passport','national']);
 
+            $table->unsignedInteger('speciality_id');
+            $table->foreign('speciality_id')->references('id')->on('specialties');
+
             $table->string('country')->nullable();
             $table->string('city')->nullable();
-            $table->string('experiences')->nullable();
+
+            $table->string('refereedFrom')->nullable();
+
             $table->timestamps();
         });
     }

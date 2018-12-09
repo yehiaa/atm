@@ -17,7 +17,6 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Active</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -25,7 +24,7 @@
         @foreach($items as $item)
         <tr>
             <td>{{ $item->name }}</td>
-            <td>{{ $item->is_active ? 'Yes': 'No' }}</td>
+
             <td>
                 <a class="btn btn-primary" href="#" role="button">Edit</a>
                 <button class="btn btn-danger">Delete</button>
@@ -37,7 +36,6 @@
         <tfoot>
         <tr>
             <th>Name</th>
-            <th>Active</th>
             <th>Actions</th>
         </tr>
         </tfoot>

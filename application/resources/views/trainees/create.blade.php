@@ -16,7 +16,8 @@
     <hr>
     @include('_partials.flash-messages')
 
-    <form>
+    <form method="post" action="{{ route('trainees.store') }}">
+        @csrf
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="name" class="form-control here" type="text">
@@ -79,14 +80,9 @@
         </div>
 
         <div class="form-group">
-            <label for="experiences">Experiences</label>
-            <textarea id="experiences" name="experiences" class="form-control"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="specialities">Specialities</label>
+            <label for="speciality_id">Specialities</label>
             <div>
-                <select id="specialities" name="specialities"
+                <select id="speciality_id" name="speciality_id"
                         class="form-control"
                         aria-describedby="selectHelpBlock" >
                     @foreach($specialities as $speciality)
@@ -101,6 +97,7 @@
         <div class="form-group">
             <label for="attachments">Attachments</label>
             <input type="file" id="attachments[]" name="attachments[]" class="form-control" multiple />
+            <span class="form-text text-muted">to be done</span>
         </div>
 
         <div class="form-group">

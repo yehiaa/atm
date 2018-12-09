@@ -16,4 +16,6 @@ class CourseRegistration extends Pivot
 //    attendance also goes in trainer_attendance .....
 //    created by createdAt , attendanceDatetime
 
+    protected $fillable = [];
+
 }

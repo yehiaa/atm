@@ -38,7 +38,13 @@ class TraineeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:5', 'email'=> 'email',
+            'gender'=>'required',
+            'phone' => 'min:11', 'identity'=> 'required',
+            'identity_type'=> 'required', 'speciality_id' => 'required']);
+        Trainee::create($request->all());
+        return redirect(route('trainees.index'))->withSuccess('created successfully');
     }
 
     /**
