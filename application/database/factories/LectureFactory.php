@@ -6,8 +6,8 @@ $factory->define(App\Lecture::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'notes' => $faker->paragraph,
-        'startDateTime' => $faker->dateTime,
-        'endDateTime' => $faker->dateTime,
+        'start_datetime' => $faker->dateTime,
+        'end_datetime' => $faker->dateTime,
         'course_id' => $faker->numberBetween(1,10),
     ];
 });

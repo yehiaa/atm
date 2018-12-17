@@ -27,6 +27,7 @@
     "dependencies": {
         "fullcalendar": "^3.9.0",
         "fullcalendar-scheduler": "^1.9.4",
+        "jquery-datetimepicker": "^2.5.20",
         "select2": "^4.0.6-rc.1"
     }
 }

@@ -9,7 +9,7 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Lectures <a href="{{ route('courses.create') }}">Add new</a></h1>
+    <h1>Lectures <a href="{{ route('lectures.create') }}">Add new</a></h1>
     <hr>
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}

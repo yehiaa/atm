@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -36,7 +37,24 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name'=>'required',
+            'alternative_name'=>'required',
+            'start_datetime'=>'required', 'end_datetime'=>'required']);
+        dump($request->get('start_datetime'));
+
+//        exit();
+//        Carbon::createFromFormat('Y/mm/dd HH:MM', $request->get('start_datetime'))->toAtomString();
+
+//        exit(Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toAtomString());
+
+        $data = ['name' => $request->get('name'),
+            'alternative_name' => $request->get('alternative_name'),
+            'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
+            'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
+            'description' => $request->get('description')];
+
+        Course::create($data);
+        return redirect(route('courses.index'))->withSuccess('created successfully');
     }
 
     /**
@@ -47,7 +65,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('courses.show', compact('course'));
     }
 
     /**

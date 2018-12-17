@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\Hall;
 use App\Lecture;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LectureController extends Controller
@@ -23,9 +26,10 @@ class LectureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('lectures.create');
+        $halls = Hall::all();
+        return view('lectures.create', compact('course', 'halls'));
     }
 
     /**
@@ -34,9 +38,23 @@ class LectureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
-        //
+//        return $course;
+        $request->validate(['name'=>'required',
+            'start_datetime'=>'required',
+            'end_datetime'=>'required',
+            'hall_id'=>'required']);
+
+        $data = ['name' => $request->get('name'),
+            'course_id' => $course->id,
+            'hall_id' => $request->get('hall_id'),
+            'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
+            'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
+            'notes' => $request->get('notes')];
+
+        Lecture::create($data);
+        return redirect(route('courses.show', ['id'=>$course->id]))->withSuccess('created successfully');
     }
 
     /**
@@ -45,7 +63,7 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function show(Lecture $lecture)
+    public function show(Course $course, Lecture $lecture)
     {
         //
     }
@@ -56,7 +74,7 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lecture $lecture)
+    public function edit(Course $course, Lecture $lecture)
     {
         //
     }
@@ -68,7 +86,7 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lecture $lecture)
+    public function update(Request $request, Course $course, Lecture $lecture)
     {
         //
     }
@@ -79,7 +97,7 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lecture $lecture)
+    public function destroy(Course $course, Lecture $lecture)
     {
         //
     }

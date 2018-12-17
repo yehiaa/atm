@@ -19,6 +19,7 @@ require( 'fullcalendar-scheduler');
 // require( 'jszip' );
 require( 'datatables.net' );
 require( 'datatables.net-bs4' );
+require( 'jquery-datetimepicker/build/jquery.datetimepicker.full.min.js' );
 
 // window.Vue = require('vue');
 

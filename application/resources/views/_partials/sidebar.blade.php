@@ -33,7 +33,7 @@
 
       <h6 class="dropdown-header">Courses:</h6>
       <a class="dropdown-item" href="{{ url('/courses') }}">Courses</a>
-      <a class="dropdown-item" href="{{ url('/lectures') }}">Lectures</a>
+{{--      <a class="dropdown-item" href="{{ url('/lectures') }}">Lectures</a>--}}
       <div class="dropdown-divider"></div>
     </div>
   </li>

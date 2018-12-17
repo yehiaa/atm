@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable = [];
+    protected $dates = ['start_datetime', 'end_datetime'];
+    protected $fillable =   ['name', 'alternative_name', 'start_datetime', 'end_datetime', 'description'];
+
+    public function lectures ()
+    {
+        return $this->hasMany('App\Lecture');
+    }
+
+    public function trainers ()
+    {
+        return $this->belongsToMany('App\Trainer');
+    }
 }

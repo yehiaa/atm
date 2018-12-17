@@ -29,7 +29,7 @@ Route::get('/course-registration', 'CourseRegistrationController@create')->name(
 Route::resource('/users', 'UserController');
 Route::resource('/halls', 'HallController');
 Route::resource('/courses', 'CourseController');
-Route::resource('/lectures', 'LectureController');
+Route::resource('/courses.lectures', 'LectureController');
 Route::resource('/trainers', 'TrainerController');
 Route::resource('/trainees', 'TraineeController');
 Route::resource('/nominations', 'NominationController');

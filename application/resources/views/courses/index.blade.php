@@ -12,6 +12,7 @@
     <h1>Courses <a href="{{ route('courses.create') }}">Add new</a></h1>
     <hr>
     {{--<p> the training halls</p>--}}
+    @include('_partials.flash-messages')
     <table id="example" class="display" style="width:100%">
         <thead>
         <tr>
@@ -32,8 +33,18 @@
             <td>{{ $item->start_datetime }}</td>
             <td>{{ $item->end_datetime }}</td>
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Show</a>
+                        <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Add lecture</a>
+                        <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Add trainer</a>
+                        <button class="dropdown-item">Delete</button>
+                    </div>
+                </div>
+                {{--<a class="btn btn-primary" href="#" role="button">Show</a>--}}
             </td>
         </tr>
         @endforeach
