@@ -40,13 +40,7 @@ class CourseController extends Controller
         $request->validate(['name'=>'required',
             'alternative_name'=>'required',
             'start_datetime'=>'required', 'end_datetime'=>'required']);
-        dump($request->get('start_datetime'));
-
-//        exit();
-//        Carbon::createFromFormat('Y/mm/dd HH:MM', $request->get('start_datetime'))->toAtomString();
-
-//        exit(Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toAtomString());
-
+        
         $data = ['name' => $request->get('name'),
             'alternative_name' => $request->get('alternative_name'),
             'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
