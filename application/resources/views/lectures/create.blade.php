@@ -6,13 +6,13 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('courses.lectures.index', ['course_id' => $course->id]) }}">Lectures</a>
+            <a href="{{ route('courses.show', ['course_id' => $course->id]) }}">{{ $course->name }}</a>
         </li>
-        <li class="breadcrumb-item active">Create new</li>
+        <li class="breadcrumb-item active">Create new lecture</li>
     </ol>
 
     <!-- Page Content -->
-    <h1>Lecture</h1>
+    <h1>Lecture ({{ $course->name }})</h1>
     <hr>
     @include('_partials.flash-messages')
 

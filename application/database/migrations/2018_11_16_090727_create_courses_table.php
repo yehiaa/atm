@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('alternative_name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
 

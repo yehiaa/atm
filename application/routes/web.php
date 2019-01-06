@@ -30,6 +30,7 @@ Route::resource('/users', 'UserController');
 Route::resource('/halls', 'HallController');
 Route::resource('/courses', 'CourseController');
 Route::resource('/courses.lectures', 'LectureController');
+Route::resource('/courses.trainers', 'CourseTrainerController');
 Route::resource('/trainers', 'TrainerController');
 Route::resource('/trainees', 'TraineeController');
 Route::resource('/nominations', 'NominationController');

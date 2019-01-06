@@ -65,6 +65,7 @@
                                 <td>{{ str_limit($lecture->notes, 30) }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="#" role="button">Edit</a>
+                                    <a class="btn btn-dark" href="#" role="button">Checkin trainers</a>
                                     <a class="btn btn-dark" href="#" role="button">Checkin trainees</a>
                                     <button class="btn btn-danger">Delete</button>
                                 </td>
@@ -120,8 +121,7 @@
                                 <td>{{ $trainer->country }}</td>
                                 <td>{{ $trainer->city }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="#" role="button">Edit</a>
-                                    <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger">Remove</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -130,7 +130,7 @@
                         <tfoot>
                         </tfoot>
                     </table>
-                    <a href="#" class="card-link">Add new</a>
+                    <a href="{{ route('courses.trainers.create', ['course_id'=>$course->id]) }}" class="card-link">Add new</a>
                 </div>
             </div>
         </div>

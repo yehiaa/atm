@@ -18,7 +18,7 @@ class CreateLecturesTable extends Migration
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('hall_id');
             $table->string('name');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
 
