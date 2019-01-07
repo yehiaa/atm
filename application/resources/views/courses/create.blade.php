@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="alternative_name">Alternative name</label>
-            <input id="alternative_name" name="alternative_name" autocomplete="off" placeholder="alternative name" value="{{ old('alternative_name') }}" class="form-control" aria-describedby="nameHelpBlock" required="required" type="text">
+            <input id="alternative_name" name="alternative_name" autocomplete="off" placeholder="alternative name" value="{{ old('alternative_name') }}" class="form-control" aria-describedby="nameHelpBlock" type="text">
             <span id="nameHelpBlock" class="form-text text-muted">Alternative name</span>
         </div>
 
