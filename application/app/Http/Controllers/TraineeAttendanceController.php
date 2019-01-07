@@ -7,6 +7,7 @@ use App\Lecture;
 use App\TraineeAttendance;
 use App\CourseRegistration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TraineeAttendanceController extends Controller
 {
@@ -18,8 +19,9 @@ class TraineeAttendanceController extends Controller
     public function index(Lecture $lecture)
     {
         $courseTraineeIds = CourseRegistration::where('course_id', $lecture->course_id)->pluck('trainee_id')->toArray();
-        $trainees = Trainee::whereIn('id', $courseTraineeIds);
         $traineesAttendance = TraineeAttendance::where('lecture_id', $lecture->id)->get();
+//        dump($traineesAttendance->pluck('trainer_id')->toArray());
+        $trainees = Trainee::whereIn('id', $courseTraineeIds)->whereNotIn('id', $traineesAttendance->pluck('trainee_id')->toArray() )->get();
         return view('trainees_attendance.create', compact('trainees', 'lecture', 'traineesAttendance'));
     }
 
@@ -35,12 +37,23 @@ class TraineeAttendanceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param Lecture $lecture
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Lecture $lecture)
     {
-        exit('xxxxxxxx');
+        if (TraineeAttendance::where('lecture_id', $lecture->id)->where('trainee_id', $request->get('trainee_id'))->count() > 0)
+        {
+            return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withErrors('trainee already attended');
+        }
+        $traineeAttendance = TraineeAttendance::create([
+            'lecture_id' => $lecture->id,
+            'created_by' => auth()->user()->id,
+            'attended_at' => (new \DateTime())->format('Y-m-d H:i:s'),
+            'trainee_id' => $request->get('trainee_id')]);
+
+        return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withSuccess('created successfully');
     }
 
     /**

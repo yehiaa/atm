@@ -6,6 +6,7 @@ use App\Course;
 use App\CourseRegistration;
 use App\Nomination;
 use App\Trainee;
+use App\User;
 use Illuminate\Http\Request;
 
 class CourseRegistrationController extends Controller
@@ -41,7 +42,13 @@ class CourseRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->merge(['created_by'=> auth()->user()->id]);
+        $request->merge(['payment_by'=> auth()->user()->id]);
+        $request->merge(['payment_at'=> (new \DateTIme())->format('Y-m-d H:i:s')]);
+//        $request->merge(['created_by'=> auth()->user()->id]);
+        $courseRegistration = CourseRegistration::create($request->all());
+
+        return redirect(route('course_registration.create'))->withSuccess('created successfully');
     }
 
     /**

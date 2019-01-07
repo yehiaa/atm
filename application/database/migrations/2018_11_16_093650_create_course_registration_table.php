@@ -25,6 +25,7 @@ class CreateCourseRegistrationTable extends Migration
             $table->string('status')->nullable();
             $table->string('notes')->nullable();
             $table->integer('payment_amount')->default(0);
+
             $table->smallInteger('payment_type')->nullable(); //cash , visa , nomination
             $table->unsignedInteger('nomination_id')->nullable();
             $table->string('nomination_reference')->nullable();

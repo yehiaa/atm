@@ -39,8 +39,8 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Show</a>
-                        <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Add lecture</a>
-                        <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Add trainer</a>
+                        <a class="dropdown-item" href="{{ route('courses.lectures.create', ['course_id'=>$item->id]) }}">Add lecture</a>
+                        <a class="dropdown-item" href="{{ route('courses.trainers.create', ['course_id'=>$item->id]) }}">Add trainer</a>
                         <button class="dropdown-item">Delete</button>
                     </div>
                 </div>

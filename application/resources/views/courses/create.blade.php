@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="percentage_to_pass">Percentage to pass</label>
             <input id="percentage_to_pass" name="percentage_to_pass" autocomplete="off" placeholder="percentage_to_pass" value="{{ old('percentage_to_pass') }}" class="form-control" aria-describedby="nameHelpBlock" required="required" type="number">
-            <span id="nameHelpBlock" class="form-text text-muted">Attendance percentage to pass from 0 to 100 %</span>
+            <span id="nameHelpBlock" class="form-text text-muted">Attendance percentage to pass from 1 to 100 %</span>
         </div>
 
         <div class="form-group">

@@ -18,11 +18,12 @@
 
     @include('_partials.flash-messages')
 
-    <form>
+    <form method="post" action="{{ route('course_registration.create') }}">
+        @csrf
         <div class="form-group">
-            <label for="select">Course</label>
+            <label for="course_id">Course</label>
             <div>
-                <select id="select" name="select" class="form-control" aria-describedby="selectHelpBlock" required="required">
+                <select id="course_id" name="course_id" class="form-control" aria-describedby="selectHelpBlock" required="required">
                     @foreach($courses as $course)
                         <option value="{{ $course->id }}">{{ $course->name }}</option>
                         @endforeach
@@ -34,9 +35,9 @@
 
 
         <div class="form-group">
-            <label for="select">Trainee / Registrant</label>
+            <label for="trainee_id">Trainee / Registrant</label>
             <div>
-                <select id="select" name="select" class="form-control" aria-describedby="selectHelpBlock" required="required">
+                <select id="trainee_id" name="trainee_id" class="form-control" aria-describedby="selectHelpBlock" required="required">
                     @foreach($trainees as $trainee)
                         <option value="{{ $trainee->id }}">{{ $trainee->name }}</option>
                     @endforeach
@@ -50,18 +51,18 @@
             <div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="cash">
+                    <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="1">
                     Cash</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="visa">
+                    <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="2">
                     Visa</label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="nomination">
+                        <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="3">
                         Nomination</label>
                 </div>
 
