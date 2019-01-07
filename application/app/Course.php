@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $dates = ['start_datetime', 'end_datetime'];
-    protected $fillable =   ['name', 'alternative_name', 'start_datetime', 'end_datetime', 'description'];
+    protected $fillable =   ['name', 'alternative_name', 'price', 'percentage_to_pass', 'start_datetime', 'end_datetime', 'description'];
 
     public function lectures ()
     {

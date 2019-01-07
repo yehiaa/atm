@@ -38,11 +38,15 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate(['name'=>'required',
-            'alternative_name'=>'required',
+//            'alternative_name'=>'required',
+            'percentage_to_pass'=>'required|integer|max:100|min:0',
+            'price'=>'required|integer|min:0',
             'start_datetime'=>'required', 'end_datetime'=>'required']);
         
         $data = ['name' => $request->get('name'),
             'alternative_name' => $request->get('alternative_name'),
+            'price' => $request->get('price'),
+            'percentage_to_pass' => $request->get('percentage_to_pass'),
             'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
             'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
             'description' => $request->get('description')];
