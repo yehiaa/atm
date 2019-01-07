@@ -7,7 +7,6 @@ use App\Lecture;
 use App\TraineeAttendance;
 use App\CourseRegistration;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TraineeAttendanceController extends Controller
 {
@@ -20,7 +19,6 @@ class TraineeAttendanceController extends Controller
     {
         $courseTraineeIds = CourseRegistration::where('course_id', $lecture->course_id)->pluck('trainee_id')->toArray();
         $traineesAttendance = TraineeAttendance::where('lecture_id', $lecture->id)->get();
-//        dump($traineesAttendance->pluck('trainer_id')->toArray());
         $trainees = Trainee::whereIn('id', $courseTraineeIds)->whereNotIn('id', $traineesAttendance->pluck('trainee_id')->toArray() )->get();
         return view('trainees_attendance.create', compact('trainees', 'lecture', 'traineesAttendance'));
     }

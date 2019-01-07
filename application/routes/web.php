@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
     Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
+    Route::post('/course-registration', 'CourseRegistrationController@store')->name('course_registration.store');
     //Route::get('/trainers', 'TrainerController@index')->name('trainers_index');
     Route::resource('/users', 'UserController');
     Route::resource('/halls', 'HallController');

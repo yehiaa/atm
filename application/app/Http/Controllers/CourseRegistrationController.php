@@ -42,6 +42,10 @@ class CourseRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        $count = CourseRegistration::where('trainee_id', $request->get('trainee_id'))->where('course_id', $request->get('course_id'))->count();
+        if ($count > 0){
+            return redirect(route('course_registration.create'))->withErrors('trainee already registered');
+        }
         $request->merge(['created_by'=> auth()->user()->id]);
         $request->merge(['payment_by'=> auth()->user()->id]);
         $request->merge(['payment_at'=> (new \DateTIme())->format('Y-m-d H:i:s')]);

@@ -39,8 +39,8 @@ class TrainerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|min:5', 'email'=> 'email',
-            'phone' => 'min:11', 'identity'=> 'required',
+            'name'=>'required|min:5|unique:trainers', 'email'=> 'email|unique:trainers',
+            'phone' => 'min:11|unique:trainers', 'identity'=> 'required|unique:trainers',
             'identity_type'=> 'required', 'speciality_id' => 'required']);
         Trainer::create($request->all());
         return redirect(route('trainers.index'))->withSuccess('created successfully');
