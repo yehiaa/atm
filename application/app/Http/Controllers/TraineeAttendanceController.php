@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Trainee;
+use App\Lecture;
 use App\TraineeAttendance;
+use App\CourseRegistration;
 use Illuminate\Http\Request;
 
 class TraineeAttendanceController extends Controller
@@ -13,10 +15,12 @@ class TraineeAttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Lecture $lecture)
     {
-        $items = Trainee::all();
-        return view('trainees.index', compact('items'));
+        $courseTraineeIds = CourseRegistration::where('course_id', $lecture->course_id)->pluck('trainee_id')->toArray();
+        $trainees = Trainee::whereIn('id', $courseTraineeIds);
+        $traineesAttendance = TraineeAttendance::where('lecture_id', $lecture->id)->get();
+        return view('trainees_attendance.create', compact('trainees', 'lecture', 'traineesAttendance'));
     }
 
     /**
@@ -26,7 +30,6 @@ class TraineeAttendanceController extends Controller
      */
     public function create()
     {
-        return view('trainees.create');
     }
 
     /**
@@ -37,7 +40,7 @@ class TraineeAttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        exit('xxxxxxxx');
     }
 
     /**

@@ -18,20 +18,26 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('/evaluation', 'EvaluationController@index');
+    Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/evaluation', 'EvaluationController@index');
-Route::get('/logout', 'Auth\LoginController@logout');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/calendar', 'CalendarController@index')->name('calendar');
+    Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
+    //Route::get('/trainers', 'TrainerController@index')->name('trainers_index');
+    Route::resource('/users', 'UserController');
+    Route::resource('/halls', 'HallController');
+    Route::resource('/courses', 'CourseController');
+    Route::resource('/courses.lectures', 'LectureController');
+    Route::resource('/courses.trainers', 'CourseTrainerController');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/calendar', 'CalendarController@index')->name('calendar');
-Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
-//Route::get('/trainers', 'TrainerController@index')->name('trainers_index');
-Route::resource('/users', 'UserController');
-Route::resource('/halls', 'HallController');
-Route::resource('/courses', 'CourseController');
-Route::resource('/courses.lectures', 'LectureController');
-Route::resource('/courses.trainers', 'CourseTrainerController');
-Route::resource('/trainers', 'TrainerController');
-Route::resource('/trainees', 'TraineeController');
-Route::resource('/nominations', 'NominationController');
-Route::resource('/specialties', 'SpecialityController');
+    Route::resource('/lectures.trainers-attendance', 'TrainerAttendanceController');
+    Route::resource('/lectures.trainees-attendance', 'TraineeAttendanceController');
+
+    Route::resource('/trainers', 'TrainerController');
+    Route::resource('/trainees', 'TraineeController');
+    Route::resource('/nominations', 'NominationController');
+    Route::resource('/specialties', 'SpecialityController');
+});

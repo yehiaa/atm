@@ -65,8 +65,8 @@
                                 <td>{{ str_limit($lecture->notes, 30) }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="#" role="button">Edit</a>
-                                    <a class="btn btn-dark" href="#" role="button">Checkin trainers</a>
-                                    <a class="btn btn-dark" href="#" role="button">Checkin trainees</a>
+                                    <a class="btn btn-dark" href="{{ route('lectures.trainers-attendance.index', [$lecture->id]) }}" role="button">Trainers attendance</a>
+                                    <a class="btn btn-dark" href="{{ route('lectures.trainees-attendance.index', [$lecture->id]) }}" role="button">Trainees attendance</a>
                                     <button class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>

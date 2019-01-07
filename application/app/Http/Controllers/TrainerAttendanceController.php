@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Lecture;
+use App\Trainer;
 use App\TrainerAttendance;
+use App\CourseTrainer;
 use Illuminate\Http\Request;
 
 class TrainerAttendanceController extends Controller
@@ -12,9 +15,12 @@ class TrainerAttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Lecture $lecture)
     {
-        //
+        $courseTrainersIds = CourseTrainer::where('course_id', $lecture->course_id)->pluck('trainer_id')->toArray();
+        $trainers = Trainer::whereIn('id', $courseTrainersIds)->get();
+        $trainersAttendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
+        return view('trainers_attendance.create', compact('trainers', 'lecture', 'trainersAttendance'));
     }
 
     /**
