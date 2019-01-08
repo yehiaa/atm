@@ -18,4 +18,10 @@ class Course extends Model
     {
         return $this->belongsToMany('App\Trainer');
     }
+
+
+    public function registrations()
+    {
+        return $this->hasMany('App\CourseRegistration');
+    }
 }

@@ -20,7 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => 'auth'], function()
 {
-    Route::get('/evaluation', 'EvaluationController@index');
+    Route::get('/evaluation', 'EvaluationController@index')->name('evaluations.index');
+    Route::get('/evaluation/{course}/create', 'EvaluationController@create')->name('evaluations.create');
     Route::get('/logout', 'Auth\LoginController@logout');
 
     Route::get('/home', 'HomeController@index')->name('home');

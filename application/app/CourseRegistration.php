@@ -24,4 +24,8 @@ class CourseRegistration extends Pivot
         'payment_type', 'nomination_id',
         'nomination_reference'];
 
+    public function trainee()
+    {
+        return $this->belongsTo('App\Trainee');
+    }
 }

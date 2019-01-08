@@ -66,7 +66,8 @@ class TraineeController extends Controller
      */
     public function edit(Trainee $trainee)
     {
-        //
+        $specialities = Speciality::all();
+        return view('trainees.edit', compact('trainee', 'specialities'));
     }
 
     /**
@@ -78,7 +79,14 @@ class TraineeController extends Controller
      */
     public function update(Request $request, Trainee $trainee)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:5', 'email'=> 'email|unique:trainees,email,'.$trainee->id,
+            'gender'=>'required',
+            'phone' => 'min:11|unique:trainees,phone,'.$trainee->id, 'identity'=> 'required|unique:trainees,identity,'.$trainee->id,
+            'identity_type'=> 'required', 'speciality_id' => 'required']);
+
+        $trainee->update($request->all());
+        return redirect(route('trainees.index'))->withSuccess('updated successfully');
     }
 
     /**

@@ -37,7 +37,7 @@
             <td>{{ $item->country }}</td>
             <td>{{ $item->city }}</td>
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
+                <a class="btn btn-primary" href="{{ route('trainees.edit', $item->id) }}" role="button">Edit</a>
                 <button class="btn btn-danger">Delete</button>
             </td>
         </tr>
