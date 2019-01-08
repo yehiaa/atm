@@ -49,6 +49,16 @@ class CourseRegistrationController extends Controller
         $request->merge(['created_by'=> auth()->user()->id]);
         $request->merge(['payment_by'=> auth()->user()->id]);
         $request->merge(['payment_at'=> (new \DateTIme())->format('Y-m-d H:i:s')]);
+
+
+        $request->validate(['course_id'=>'required',
+                            'trainee_id'=>'required',
+                            'payment_type'=>'required']);
+
+        if ($request->get('payment_type') == CourseRegistration::PAYMENT_TYPE_NOMINATION )
+        {
+            $request->validate(['nomination_id'=>'required', 'nomination_reference'=>'required']);
+        }
 //        $request->merge(['created_by'=> auth()->user()->id]);
         $courseRegistration = CourseRegistration::create($request->all());
 

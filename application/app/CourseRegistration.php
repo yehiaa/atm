@@ -16,6 +16,9 @@ class CourseRegistration extends Pivot
 //    attendance also goes in trainer_attendance .....
 //    created by createdAt , attendanceDatetime
 
+    const PAYMENT_TYPE_CASH = 1;
+    const PAYMENT_TYPE_VISA = 2;
+    const PAYMENT_TYPE_NOMINATION = 3;
     protected $fillable = [
         'course_id', 'trainee_id',
         'created_by', 'payment_by',

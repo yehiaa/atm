@@ -12,7 +12,7 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Lecture ({{ $lecture->name }})</h1>
+    <h1>Lecture ({{ $lecture->name }}) Trainers attendance</h1>
     <hr>
     @include('_partials.flash-messages')
 
@@ -31,7 +31,7 @@
                         <option value="{{ $trainer->id }}">{{ $trainer->name }}</option>
                     @endforeach
                 </select>
-                <span id="selectHelpBlock" class="form-text text-muted">Trainer</span>
+                <span id="selectHelpBlock" class="form-text text-muted">Only assigned trainers</span>
             </div>
         </div>
 
@@ -42,13 +42,52 @@
 
     <hr>
 
-    {{ dump($trainersAttendance) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <h4 class="card-title">Attended Trainers ({{ $trainersAttendance->count() }})</h4>
+                    <table  class="display" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Identity</th>
+                            <th>Identity type</th>
+                            <th>Country</th>
+                            <th>City</th>
+                            {{--<th>Actions</th>--}}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($trainersAttendance as $trainerAttendance)
+                            <tr>
+                                <td>{{ $trainerAttendance->trainer->name }}</td>
+                                <td>{{ $trainerAttendance->trainer->email }}</td>
+                                <td>{{ $trainerAttendance->trainer->phone }}</td>
+                                <td>{{ $trainerAttendance->trainer->identity }}</td>
+                                <td>{{ $trainerAttendance->trainer->identity_type }}</td>
+                                <td>{{ $trainerAttendance->trainer->country }}</td>
+                                <td>{{ $trainerAttendance->trainer->city }}</td>
+                                {{--<td>--}}
+                                {{--<button class="btn btn-danger">Remove</button>--}}
+                                {{--</td>--}}
+                            </tr>
+                        @endforeach
+
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 @endsection
 
 @section('js')
-    <script>
-        $('.datetime').datetimepicker();
-    </script>
 @endsection

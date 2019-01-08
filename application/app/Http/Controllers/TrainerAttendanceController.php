@@ -39,9 +39,19 @@ class TrainerAttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Lecture $lecture)
     {
-        //
+        if (TrainerAttendance::where('lecture_id', $lecture->id)->where('trainer_id', $request->get('trainer_id'))->count() > 0)
+        {
+            return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withErrors('trainer already attended');
+        }
+        $traineeAttendance = TrainerAttendance::create([
+            'lecture_id' => $lecture->id,
+            'created_by' => auth()->user()->id,
+            'attended_at' => (new \DateTime())->format('Y-m-d H:i:s'),
+            'trainer_id' => $request->get('trainer_id')]);
+
+        return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withSuccess('created successfully');
     }
 
     /**
