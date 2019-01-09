@@ -25,7 +25,7 @@
             <div>
                 <select id="course_id" name="course_id" class="form-control" aria-describedby="selectHelpBlock" required="required">
                     @foreach($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                        <option value="{{ $course->id }}" @if(old('course_id') == $course->id) selected @endif >{{ $course->name }}</option>
                         @endforeach
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted">select the course</span>
@@ -39,7 +39,7 @@
             <div>
                 <select id="trainee_id" name="trainee_id" class="form-control" aria-describedby="selectHelpBlock" required="required">
                     @foreach($trainees as $trainee)
-                        <option value="{{ $trainee->id }}">{{ $trainee->name }}</option>
+                        <option @if(old('trainee_id') == $trainee->id) selected @endif value="{{ $trainee->id }}">{{ $trainee->name }}</option>
                     @endforeach
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted">Trainee</span>
@@ -51,18 +51,18 @@
             <div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="1">
+                    <input class="form-check-input" type="radio" name="payment_type" @if(old('payment_type') == '1') checked @endif id="payment_type" value="1">
                     Cash</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="2">
+                    <input class="form-check-input" type="radio" name="payment_type" @if(old('payment_type') == '2') checked @endif id="payment_type" value="2">
                     Visa</label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="payment_type" id="payment_type" value="3">
+                        <input class="form-check-input" type="radio" name="payment_type" id="payment_type" @if(old('payment_type') == '3') checked @endif value="3">
                         Nomination</label>
                 </div>
 
@@ -70,20 +70,21 @@
         </div>
 
         <div class="form-group">
-            <label for="select">Nominations</label>
+            <label for="nomination_id">Nominations</label>
             <div>
-                <select id="select" name="select" class="form-control" aria-describedby="selectHelpBlock">
+                <select id="nomination_id" name="nomination_id" class="form-control" aria-describedby="selectHelpBlock">
                     @foreach($nominations as $nomination)
-                        <option value="{{ $nomination->id }}">{{ $nomination->name }}</option>
+                        <option value=""></option>
+                        <option value="{{ $nomination->id }}" @if(old('nomination_id') == $nomination->id) selected @endif >{{ $nomination->name }}</option>
                     @endforeach
                 </select>
-                <span id="selectHelpBlock" class="form-text text-muted">Trainee</span>
+                <span id="selectHelpBlock" class="form-text text-muted">Nomination should be selected if the payment type is nomination</span>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="text">Reference code / number</label>
-            <input id="text" name="text" autocomplete="off" class="form-control" type="text">
+            <label for="nomination_reference">Reference code / number</label>
+            <input id="nomination_reference" name="nomination_reference" value="{{ old('nomination_reference') }}" autocomplete="off" class="form-control" type="text">
         </div>
 
         <div class="form-group">
