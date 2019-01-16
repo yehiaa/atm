@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Nomination;
+use App\Affiliation;
 use Illuminate\Http\Request;
 
-class NominationController extends Controller
+class AffiliationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class NominationController extends Controller
      */
     public function index()
     {
-        $items = Nomination::all();
-        return view('nominations.index', compact('items'));
+        $items = Affiliation::all();
+        return view('affiliations.index', compact('items'));
     }
 
     /**
@@ -25,7 +25,7 @@ class NominationController extends Controller
      */
     public function create()
     {
-        return view('nominations.create');
+        return view('affiliations.create');
     }
 
     /**
@@ -38,18 +38,18 @@ class NominationController extends Controller
     {
         $request->validate(['name'=>'required']);
 
-        Nomination::create($request->all());
+        Affiliation::create($request->all());
 
-        return redirect(route('nominations.index'))->withSuccess('created successfully');
+        return redirect(route('affiliations.index'))->withSuccess('created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Nomination  $nomination
+     * @param  \App\Affiliation  $nomination
      * @return \Illuminate\Http\Response
      */
-    public function show(Nomination $nomination)
+    public function show(Affiliation $nomination)
     {
         //
     }
@@ -57,10 +57,10 @@ class NominationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Nomination  $nomination
+     * @param  \App\Affiliation  $nomination
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nomination $nomination)
+    public function edit(Affiliation $nomination)
     {
         //
     }
@@ -69,10 +69,10 @@ class NominationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Nomination  $nomination
+     * @param  \App\Affiliation  $nomination
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nomination $nomination)
+    public function update(Request $request, Affiliation $nomination)
     {
         //
     }
@@ -80,10 +80,10 @@ class NominationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Nomination  $nomination
+     * @param  \App\Affiliation  $nomination
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nomination $nomination)
+    public function destroy(Affiliation $nomination)
     {
         //
     }

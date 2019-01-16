@@ -21,7 +21,7 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="Name" class="form-control here" aria-describedby="nameHelpBlock" required="required" type="text">
-            <span id="nameHelpBlock" class="form-text text-muted">nomination name</span>
+            <span id="nameHelpBlock" class="form-text text-muted">affiliation name</span>
         </div>
         {{--<div class="form-group">--}}
             {{--<label>Is active?</label>--}}
