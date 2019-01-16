@@ -17,8 +17,20 @@
 @section('js')
     <script>
         $('#calendar').fullCalendar({
+            // now: '2018-04-07',
+            // editable: true,
+            // aspectRatio: 1.8,
+            // scrollTime: '00:00',
+            header: {
+                left: 'today prev,next',
+                center: 'title',
+                right: 'agendaDay,agendaWeek,month'
+            },
+            defaultView: 'month',
+            navLinks: true,
+            resourceAreaWidth: '20%',
+            resourceLabelText: 'Halls',
             schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-            defaultView: 'agendaDay',
             resourceColumns: [
                 {
                     text: function(resource) {
