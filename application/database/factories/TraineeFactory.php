@@ -7,6 +7,7 @@ $factory->define(App\Trainee::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->email,
         'phone' => $faker->phoneNumber,
+        'gender' => $faker->randomElement(['m', 'f']),
         'country' => $faker->country,
         'city' => $faker->city,
         'identity' => $faker->uuid,
