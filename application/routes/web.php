@@ -40,6 +40,6 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::resource('/trainers', 'TrainerController');
     Route::resource('/trainees', 'TraineeController');
-    Route::resource('/nominations', 'NominationController');
+    Route::resource('/affiliations', 'AffiliationController');
     Route::resource('/specialties', 'SpecialityController');
 });

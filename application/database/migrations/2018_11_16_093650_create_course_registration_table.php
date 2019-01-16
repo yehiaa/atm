@@ -25,15 +25,16 @@ class CreateCourseRegistrationTable extends Migration
             $table->string('status')->nullable();
             $table->string('notes')->nullable();
             $table->integer('payment_amount')->default(0);
+            $table->boolean('is_paid')->default(false);
 
             $table->smallInteger('payment_type')->nullable(); //cash , visa , nomination
-            $table->unsignedInteger('nomination_id')->nullable();
-            $table->string('nomination_reference')->nullable();
+            $table->unsignedInteger('affiliation_id')->nullable();
+            $table->string('reference')->nullable();
 
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('trainee_id')->references('id')->on('trainees');
 
-            $table->foreign('nomination_id')->references('id')->on('nominations');
+            $table->foreign('affiliation_id')->references('id')->on('affiliations');
 
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('payment_by')->references('id')->on('users');

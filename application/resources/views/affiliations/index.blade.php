@@ -5,11 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
-        <li class="breadcrumb-item active">Nominations</li>
+        <li class="breadcrumb-item active">Affiliations</li>
     </ol>
 
     <!-- Page Content -->
-    <h1>Nominations <a href="{{ route('nominations.create') }}">Add new</a></h1>
+    <h1>Affiliations <a href="{{ route('affiliations.create') }}">Add new</a></h1>
     <hr>
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}

@@ -31,11 +31,13 @@
             <span id="nameHelpBlock" class="form-text text-muted">Alternative name</span>
         </div>
 
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input id="price" name="price" autocomplete="off" placeholder="price" value="{{ old('price') }}" class="form-control" aria-describedby="nameHelpBlock" required="required" type="number">
-            <span id="nameHelpBlock" class="form-text text-muted">Price</span>
-        </div>
+        {{--<div class="form-group">--}}
+            {{--<label for="price">Price</label>--}}
+            {{--<input id="price" name="price" autocomplete="off" placeholder="price" value="{{ old('price') }}" class="form-control" aria-describedby="nameHelpBlock" required="required" type="number">--}}
+            {{--<span id="nameHelpBlock" class="form-text text-muted">Price</span>--}}
+        {{--</div>--}}
+
+        <input id="price" name="price"  value="0" type="hidden">
 
         <div class="form-group">
             <label for="percentage_to_pass">Percentage to pass</label>

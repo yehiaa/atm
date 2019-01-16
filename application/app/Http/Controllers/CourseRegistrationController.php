@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\CourseRegistration;
-use App\Nomination;
+use App\Affiliation;
 use App\Trainee;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,8 +30,8 @@ class CourseRegistrationController extends Controller
     {
         $courses = Course::all();
         $trainees = Trainee::all();
-        $nominations= Nomination::all();
-        return view('course_registration.create', compact('courses', 'trainees', 'nominations'));
+        $affiliations = Affiliation::all();
+        return view('course_registration.create', compact('courses', 'trainees', 'affiliations'));
     }
 
     /**
@@ -44,7 +44,8 @@ class CourseRegistrationController extends Controller
     {
         $count = CourseRegistration::where('trainee_id', $request->get('trainee_id'))->where('course_id', $request->get('course_id'))->count();
         if ($count > 0){
-            return redirect(route('course_registration.create'))->withErrors('trainee already registered');
+            return redirect(route('course_registration.create'))
+                ->withErrors('trainee already registered')->withInput();
         }
         $request->merge(['created_by'=> auth()->user()->id]);
         $request->merge(['payment_by'=> auth()->user()->id]);
@@ -53,13 +54,15 @@ class CourseRegistrationController extends Controller
 
         $request->validate(['course_id'=>'required',
                             'trainee_id'=>'required',
-                            'payment_type'=>'required']);
+                            'payment_type'=>'required',
+                            'affiliation_id'=>'required',
+                            'reference'=>'required']);
 
-        if ($request->get('payment_type') == CourseRegistration::PAYMENT_TYPE_NOMINATION )
-        {
-            $request->validate(['nomination_id'=>'required', 'nomination_reference'=>'required']);
-        }
-//        $request->merge(['created_by'=> auth()->user()->id]);
+//        if ($request->get('payment_type') == CourseRegistration::PAYMENT_TYPE_AFFILIATION )
+//        {
+//            $request->validate(['affiliation_id'=>'required', 'nomination_reference'=>'required']);
+//        }
+
         $courseRegistration = CourseRegistration::create($request->all());
 
         return redirect(route('course_registration.create'))->withSuccess('created successfully');

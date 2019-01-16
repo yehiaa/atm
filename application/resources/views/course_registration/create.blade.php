@@ -48,43 +48,48 @@
 
         <div class="form-group">
             <label>Payment type</label>
-            <div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="payment_type" @if(old('payment_type') == '1') checked @endif id="payment_type" value="1">
-                    Cash</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="payment_type" @if(old('payment_type') == '2') checked @endif id="payment_type" value="2">
-                    Visa</label>
-                </div>
+                {{--<div class="form-check form-check-inline">--}}
+                    {{--<label class="form-check-label">--}}
+                    {{--<input class="form-check-input" type="radio" name="payment_type" @if(old('payment_type') == '1') checked @endif id="payment_type" value="1">--}}
+                    {{--Cash</label>--}}
+                {{--</div>--}}
+                {{--<div class="form-check form-check-inline">--}}
+                    {{--<label class="form-check-label">--}}
+                    {{--<input class="form-check-input" type="radio" name="payment_type" @if(old('payment_type') == '2') checked @endif id="payment_type" value="2">--}}
+                    {{--Visa</label>--}}
+                {{--</div>--}}
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="payment_type" id="payment_type" @if(old('payment_type') == '3') checked @endif value="3">
-                        Nomination</label>
+                        <input class="form-check-input" type="radio" name="payment_type" id="payment_type" checked value="3">
+                        Affiliation</label>
                 </div>
-
-            </div>
         </div>
 
         <div class="form-group">
-            <label for="nomination_id">Nominations</label>
+            <label for="affiliation_id">Affiliation</label>
             <div>
-                <select id="nomination_id" name="nomination_id" class="form-control" aria-describedby="selectHelpBlock">
-                    @foreach($nominations as $nomination)
-                        <option value=""></option>
-                        <option value="{{ $nomination->id }}" @if(old('nomination_id') == $nomination->id) selected @endif >{{ $nomination->name }}</option>
+                <select id="affiliation_id" name="affiliation_id" class="form-control" aria-describedby="selectHelpBlock" required>
+                    <option value=""></option>
+                    @foreach($affiliations as $affiliation)
+                        <option value="{{ $affiliation->id }}" @if(old('affiliation_id') == $affiliation->id) selected @endif >{{ $affiliation->name }}</option>
                     @endforeach
                 </select>
-                <span id="selectHelpBlock" class="form-text text-muted">Nomination should be selected if the payment type is nomination</span>
+                <span id="selectHelpBlock" class="form-text text-muted">Affiliation</span>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="nomination_reference">Reference code / number</label>
-            <input id="nomination_reference" name="nomination_reference" value="{{ old('nomination_reference') }}" autocomplete="off" class="form-control" type="text">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" @if(old('is_paid') == 1) checked @endif name="is_paid" id="is_paid" value="1">
+                    Is paid ? </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="reference">Reference code / number</label>
+            <input id="reference" name="reference" value="{{ old('reference') }}" autocomplete="off" class="form-control" type="text">
         </div>
 
         <div class="form-group">

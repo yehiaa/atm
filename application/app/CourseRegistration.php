@@ -18,17 +18,22 @@ class CourseRegistration extends Pivot
 
     const PAYMENT_TYPE_CASH = 1;
     const PAYMENT_TYPE_VISA = 2;
-    const PAYMENT_TYPE_NOMINATION = 3;
+    const PAYMENT_TYPE_AFFILIATION = 3;
     protected $fillable = [
         'course_id', 'trainee_id',
         'created_by', 'payment_by',
         'payment_at', 'status',
         'notes', 'payment_amount',
-        'payment_type', 'nomination_id',
-        'nomination_reference'];
+        'payment_type', 'affiliation_id',
+        'reference'];
 
     public function trainee()
     {
         return $this->belongsTo('App\Trainee');
+    }
+
+    public function affiliation()
+    {
+        return $this->belongsTo('App\Affiliation');
     }
 }

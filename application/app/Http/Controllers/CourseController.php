@@ -38,7 +38,6 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate(['name'=>'required',
-//            'alternative_name'=>'required',
             'percentage_to_pass'=>'required|integer|max:100|min:0',
             'price'=>'required|integer|min:0',
             'start_datetime'=>'required', 'end_datetime'=>'required']);

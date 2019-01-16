@@ -28,7 +28,7 @@
       <h6 class="dropdown-header">Data Definitions:</h6>
       <a class="dropdown-item" href="{{ url('/halls') }}">Halls</a>
       <a class="dropdown-item" href="{{ url('/specialties') }}">Specialties</a>
-      <a class="dropdown-item" href="{{ url('/nominations') }}">Nominations</a>
+      <a class="dropdown-item" href="{{ url('affiliations') }}">Affiliations</a>
       <div class="dropdown-divider"></div>
 
       <h6 class="dropdown-header">Courses:</h6>
