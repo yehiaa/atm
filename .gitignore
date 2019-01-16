@@ -1,0 +1,16 @@
+application/node_modules
+application/public/hot
+application/public/storage
+application/storage/*.key
+application/vendor
+application/.idea
+application/.vscode
+application/nbproject
+application/.vagrant
+application/Homestead.json
+application/Homestead.yaml
+application/npm-debug.log
+application/yarn-error.log
+application/.env
+application/.phpunit.result.cache
+.idea
