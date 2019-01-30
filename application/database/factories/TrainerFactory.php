@@ -11,7 +11,8 @@ $factory->define(App\Trainer::class, function (Faker $faker) {
         'identity_type' => $faker->randomElement(['passport','national']),
         'country' => $faker->country,
         'city' => $faker->city,
-        'speciality_id' => $faker->numberBetween(1,10)
+        'speciality_id' => $faker->numberBetween(1,10),
+
     ];
 });
 

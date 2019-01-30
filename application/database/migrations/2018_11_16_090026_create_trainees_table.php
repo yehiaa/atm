@@ -29,6 +29,8 @@ class CreateTraineesTable extends Migration
             $table->string('country')->nullable();
             $table->string('city')->nullable();
 
+            $table->string('government')->nullable();
+
             $table->string('refereedFrom')->nullable();
 
             $table->timestamps();

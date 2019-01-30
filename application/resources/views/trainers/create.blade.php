@@ -51,6 +51,21 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input type="hidden" name="is_cooperate"  value="0">
+                    <input class="form-check-input" type="checkbox" @if(old('is_cooperate') == 1) checked @endif name="is_cooperate" id="is_cooperate" value="1">
+                    Is cooperate ? </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="affiliate_university">Affiliate university</label>
+            <input id="affiliate_university" name="affiliate_university" class="form-control here" type="text">
+        </div>
+
         <div class="form-group">
             <label for="country">Country</label>
             <input id="country" name="country" class="form-control here" type="text">
@@ -62,6 +77,10 @@
         <div class="form-group">
             <label for="bank_name">Bank name</label>
             <input id="bank_name" name="bank_name" class="form-control here" type="text">
+        </div>
+        <div class="form-group">
+            <label for="bank_branch">Bank branch</label>
+            <input id="bank_branch" name="bank_branch" class="form-control here" type="text">
         </div>
         <div class="form-group">
             <label for="bank_account_number">Bank acc number</label>

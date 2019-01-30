@@ -18,6 +18,7 @@ class CreateTrainersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('phone')->unique();
+
             $table->string('country')->nullable();
             $table->string('city')->nullable();
 
@@ -27,9 +28,14 @@ class CreateTrainersTable extends Migration
             $table->unsignedInteger('speciality_id');
             $table->foreign('speciality_id')->references('id')->on('specialties');
 
+            $table->string('affiliate_university')->nullable();
+
             $table->string('bank_name')->nullable();
+            $table->string('bank_branch')->nullable();
             $table->string('bank_account_number')->nullable();
             $table->text('experiences')->nullable();
+
+            $table->boolean('is_cooperate')->nullable();
 
             $table->timestamps();
         });

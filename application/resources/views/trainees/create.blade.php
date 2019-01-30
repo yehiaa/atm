@@ -80,6 +80,11 @@
         </div>
 
         <div class="form-group">
+            <label for="government">Government</label>
+            <input id="government" name="government" class="form-control here" value="{{ old('government') }}" type="text">
+        </div>
+
+        <div class="form-group">
             <label for="speciality_id">Specialities</label>
             <div>
                 <select id="speciality_id" name="speciality_id"
