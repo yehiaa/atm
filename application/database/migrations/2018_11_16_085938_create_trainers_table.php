@@ -28,6 +28,13 @@ class CreateTrainersTable extends Migration
             $table->unsignedInteger('speciality_id');
             $table->foreign('speciality_id')->references('id')->on('specialties');
 
+
+            $table->unsignedInteger('university_affiliation_id')->nullable();
+            $table->foreign('university_affiliation_id')->references('id')->on('university_affiliations');
+
+            $table->unsignedInteger('professional_data_id')->nullable();
+            $table->foreign('professional_data_id')->references('id')->on('professional_data');
+
             $table->string('affiliate_university')->nullable();
 
             $table->string('bank_name')->nullable();

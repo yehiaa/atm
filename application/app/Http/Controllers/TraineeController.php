@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Speciality;
 use App\Trainee;
-use Illuminate\Http\Request;
 
 class TraineeController extends Controller
 {
@@ -17,6 +16,29 @@ class TraineeController extends Controller
     {
         $items = Trainee::all();
         return view('trainees.index', compact('items'));
+    }
+
+
+    public function autocomplete()
+    {
+        $q = request('q');
+//        $all = $request->all();
+//        $q = $request->query();
+//        $q = $request->get('q');
+//        $qq = $request->query('q');
+//        $qqq = $request->input('q');
+//        $term = Input::get('term');
+//        dd([$all ,$q, $qq, $qqq, $term]);
+//        dd([$q]);
+        $items = Trainee::all();
+        if ($q){
+            $items = Trainee::where('name', 'like', '%'.$q.'%')
+                ->orWhere('phone', '%'.$q.'%')
+                ->orWhere('identity', '%'.$q.'%')
+                ->orWhere('email', '%'.$q.'%')
+                ->get();
+        }
+        return response()->json($items);
     }
 
     /**

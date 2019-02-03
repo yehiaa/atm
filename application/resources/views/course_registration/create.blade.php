@@ -38,9 +38,9 @@
             <label for="trainee_id">Trainee / Registrant</label>
             <div>
                 <select id="trainee_id" name="trainee_id" class="form-control" aria-describedby="selectHelpBlock" required="required">
-                    @foreach($trainees as $trainee)
-                        <option @if(old('trainee_id') == $trainee->id) selected @endif value="{{ $trainee->id }}">{{ $trainee->name }}</option>
-                    @endforeach
+                    {{--@foreach($trainees as $trainee)--}}
+                        {{--<option @if(old('trainee_id') == $trainee->id) selected @endif value="{{ $trainee->id }}">{{ $trainee->name }}</option>--}}
+                    {{--@endforeach--}}
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted">Trainee</span>
             </div>
@@ -100,5 +100,34 @@
 
 @endsection
 
+@section('css')
+    @parent()
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('js')
+    @parent()
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $('#trainee_id').select2({
+            placeholder: 'Select a trainee by name, phone, ID or email',
+            ajax: {
+                url: '{{ route('api_trainees') }}',
+                // dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (item) {
+                            return {
+                                text: item.name + ' {' + item.phone +'}',
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                // cache: true
+            }
+        });
+    </script>
+
 @endsection

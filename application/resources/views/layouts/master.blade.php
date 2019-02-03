@@ -22,7 +22,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @section('css')
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @show
 
   </head>
 

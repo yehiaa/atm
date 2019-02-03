@@ -39,7 +39,12 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('/lectures.trainees-attendance', 'TraineeAttendanceController');
 
     Route::resource('/trainers', 'TrainerController');
+
+    Route::get('/api/trainees', 'TraineeApiController@index')->name('api_trainees');
+
     Route::resource('/trainees', 'TraineeController');
     Route::resource('/affiliations', 'AffiliationController');
+    Route::resource('/university_affiliations', 'UniversityAffiliationController');
+    Route::resource('/professional_data', 'ProfessionalDataController');
     Route::resource('/specialties', 'SpecialityController');
 });

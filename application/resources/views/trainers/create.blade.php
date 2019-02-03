@@ -106,6 +106,35 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            <label for="university_affiliation_id">University affiliation</label>
+            <div>
+                <select id="university_affiliation_id" name="university_affiliation_id"
+                        class="form-control"
+                        aria-describedby="selectHelpBlock" >
+                    @foreach($universityAffiliations as $universityAffiliation)
+                        <option value="{{ $universityAffiliation->id }}">{{ $universityAffiliation->name }}</option>
+                    @endforeach
+                </select>
+                <span id="selectHelpBlock" class="form-text text-muted"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="professional_data_id">Professional data</label>
+            <div>
+                <select id="professional_data_id" name="professional_data_id"
+                        class="form-control"
+                        aria-describedby="selectHelpBlock" >
+                    @foreach($professionalData as $professionalDataItem)
+                        <option value="{{ $professionalDataItem->id }}">{{ $professionalDataItem->name }}</option>
+                    @endforeach
+                </select>
+                <span id="selectHelpBlock" class="form-text text-muted"></span>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="attachments">Attachments</label>
             <input type="file" id="attachments[]" name="attachments[]" class="form-control" multiple />

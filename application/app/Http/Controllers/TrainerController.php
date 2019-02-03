@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ProfessionalData;
 use App\Speciality;
 use App\Trainer;
+use App\UniversityAffiliation;
 use Illuminate\Http\Request;
 
 class TrainerController extends Controller
@@ -27,7 +29,9 @@ class TrainerController extends Controller
     public function create()
     {
         $specialities = Speciality::all();
-        return view('trainers.create', compact('specialities'));
+        $universityAffiliations = UniversityAffiliation::all();
+        $professionalData = ProfessionalData::all();
+        return view('trainers.create', compact(['specialities', 'universityAffiliations', 'professionalData']));
     }
 
     /**
@@ -39,9 +43,15 @@ class TrainerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|min:5|unique:trainers', 'email'=> 'email|unique:trainers',
-            'phone' => 'min:11|unique:trainers', 'identity'=> 'required|unique:trainers',
-            'identity_type'=> 'required', 'speciality_id' => 'required']);
+            'name'=>'required|min:5|unique:trainers',
+            'email'=> 'email|unique:trainers',
+            'phone' => 'min:11|unique:trainers',
+            'identity'=> 'required|unique:trainers',
+            'identity_type'=> 'required',
+            'speciality_id' => 'required',
+            'university_affiliation_id' => 'required',
+            'professional_data_id' => 'required'
+        ]);
         Trainer::create($request->all());
         return redirect(route('trainers.index'))->withSuccess('created successfully');
     }
