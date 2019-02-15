@@ -23,6 +23,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+    </style>
 
     <!-- Custom fonts for this template-->
     {{--<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">--}}
@@ -80,6 +82,7 @@
         </div>
     </div>
 </div>
+<div class="after-container"><img src="images\big_logo.jpg" alt="Logo"></div>
 
 <!-- Bootstrap core JavaScript-->
 <!-- <script src="vendor/jquery/jquery.min.js"></script>

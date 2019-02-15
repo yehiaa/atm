@@ -23,17 +23,25 @@
 
     <form>
         @csrf
+        {{--<div class="form-group">--}}
+            {{--<label for="trainee_id">Trainee</label>--}}
+            {{--<div>--}}
+                {{--<select id="trainee_id" name="trainee_id"--}}
+                        {{--class="form-control"--}}
+                        {{--aria-describedby="selectHelpBlock" >--}}
+                    {{--@foreach($course->registrations as $registration)--}}
+                        {{--<option value="{{ $registration->trainee->id }}" @if(old('trainee_id') == $registration->trainee->id) selected @endif>{{ $registration->trainee->name }}</option>--}}
+                    {{--@endforeach--}}
+                {{--</select>--}}
+                {{--<span id="selectHelpBlock" class="form-text text-muted">Registered trainees</span>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
         <div class="form-group">
-            <label for="trainee_id">Trainee</label>
+            <label for="files">File uploads</label>
             <div>
-                <select id="trainee_id" name="trainee_id"
-                        class="form-control"
-                        aria-describedby="selectHelpBlock" >
-                    @foreach($course->registrations as $registration)
-                        <option value="{{ $registration->trainee->id }}" @if(old('trainee_id') == $registration->trainee->id) selected @endif>{{ $registration->trainee->name }}</option>
-                    @endforeach
-                </select>
-                <span id="selectHelpBlock" class="form-text text-muted">Registered trainees</span>
+                <input type="file" name="files" multiple>
+                <span id="selectHelpBlock" class="form-text text-muted">Evaluations files</span>
             </div>
         </div>
 
@@ -80,7 +88,7 @@
                             <input type="radio" name="{{$trainer->name}}__"> Satisfied
                         </label>
                         <label>
-                            <input type="radio" name="{{$trainer->name}}_"_> Highly Satisfied
+                            <input type="radio" name="{{$trainer->name}}__"> Highly Satisfied
                         </label>
                     </td>
                 </tr>
