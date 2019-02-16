@@ -247,40 +247,10 @@
 @section('js')
     @parent()
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="{{ asset('js/countries.js') }}"></script>
     <script type="text/javascript">
 
-        $.getJSON('json/countries.json', [], function (data) {
-            console.log(data);
-            var $country = $('#country');
-            $country.select2({
-                dropdownParent:$('#add_new_trainee_modal'),//to fix search issue
-                placeholder: 'Select country',
-                data: $.map(Object.keys(data), function (item) {
-                    return {
-                        text: item,
-                        id: item
-                    }
-                })
-            });
-
-            $country.on('change', function (e) {
-                $('#city').empty();
-                var selectedCountry = $("#country option:selected").text();
-                if (! selectedCountry) return;
-                console.log('on change', selectedCountry, data[selectedCountry]);
-                $('#city').select2({
-                    dropdownParent:$('#add_new_trainee_modal'),
-                    placeholder: '',
-                    data: $.map(data[selectedCountry], function (item) {
-                        return {
-                            text: item,
-                            id: item
-                        }
-                    })
-                });
-            });
-        });
-
+        initializeCountryAndCityControls('#country', '#city', '#add_new_trainee_modal');
 
         $('#trainee_id').select2({
             placeholder: 'Select a trainee by name, phone, ID or email',
