@@ -40,8 +40,8 @@ class TraineeApiController extends APIController
             'gender'=>'required',
             'phone' => 'min:11|unique:trainees', 'identity'=> 'required|unique:trainees',
             'identity_type'=> 'required', 'speciality_id' => 'required']);
-        Trainee::create($request->all());
-        return redirect(route('trainees.index'))->withSuccess('created successfully');
+        $trainee = Trainee::create($request->all());
+        return response()->json($trainee);
     }
 
     /**

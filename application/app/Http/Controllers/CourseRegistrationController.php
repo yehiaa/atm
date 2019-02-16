@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\CourseRegistration;
 use App\Affiliation;
+use App\Speciality;
 use App\Trainee;
 use App\User;
 use Illuminate\Http\Request;
@@ -29,9 +30,9 @@ class CourseRegistrationController extends Controller
     public function create()
     {
         $courses = Course::all();
-        $trainees = Trainee::all();
         $affiliations = Affiliation::all();
-        return view('course_registration.create', compact('courses', 'trainees', 'affiliations'));
+        $specialities = Speciality::all();
+        return view('course_registration.create', compact('courses', 'affiliations', 'specialities'));
     }
 
     /**

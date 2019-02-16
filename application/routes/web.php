@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('/trainers', 'TrainerController');
 
     Route::get('/api/trainees', 'API\TraineeApiController@index')->name('api_trainees');
+    Route::post('/api/trainees', 'API\TraineeApiController@store')->name('api_trainees_store');
 
     Route::resource('/trainees', 'TraineeController');
     Route::resource('/affiliations', 'AffiliationController');
