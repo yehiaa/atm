@@ -9,7 +9,6 @@ function initializeCountryAndCityControls(countrySelector, citySelector, dropdow
             dropdownParent: dropdownParentSelector ? $(dropdownParentSelector) : null,
             placeholder: 'Select country',
             data: $.map(Object.keys(data), function (item) {
-                console.log(item);
                 return {
                     text: item,
                     id: item
