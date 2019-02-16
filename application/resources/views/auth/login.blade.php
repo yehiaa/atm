@@ -79,10 +79,10 @@
                 <a class="d-block small mt-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                 <a class="d-block small" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
             </div>
+            <div><img  class="img-fluid" src="images\big_logo.jpg" alt="Logo"></div>
         </div>
     </div>
 </div>
-<div class="after-container"><img src="images\big_logo.jpg" alt="Logo"></div>
 
 <!-- Bootstrap core JavaScript-->
 <!-- <script src="vendor/jquery/jquery.min.js"></script>
