@@ -38,10 +38,10 @@
         {{--</div>--}}
 
         <div class="form-group">
-            <label for="files">File uploads</label>
+            <label for="files">Attachments</label>
             <div>
                 <input type="file" name="files" multiple>
-                <span id="selectHelpBlock" class="form-text text-muted">Evaluations files</span>
+                <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
             </div>
         </div>
 
@@ -164,6 +164,28 @@
             </tbody>
         </table>
         <label for="">Additional comments</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>Pretest average</td>
+                <td><input type="number"></td>
+            </tr>
+            <tr>
+                <td>Posttest average</td>
+                <td><input type="number"></td>
+            </tr>
+
+            <tr>
+                <td>Improvement percentage</td>
+                <td><input type="number"></td>
+            </tr>
+
+            <tr>
+                <td>Average trainee satisfaction</td>
+                <td><input type="number"></td>
+            </tr>
+            </tbody>
+        </table>
         <div class="form-group">
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
         </div>

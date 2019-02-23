@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="course_id">Course</label>
             <div>
-                <select id="course_id" name="course_id" class="form-control" aria-describedby="selectHelpBlock" required="required">
+                <select id="course_id" name="course_id" class="form-control js-select2-enabled" aria-describedby="selectHelpBlock" required="required">
                     @foreach($courses as $course)
                         <option value="{{ $course->id }}" @if(old('course_id') == $course->id) selected @endif >{{ $course->name }}</option>
                         @endforeach
@@ -72,7 +72,7 @@
         <div class="form-group">
             <label for="affiliation_id">Affiliation</label>
             <div>
-                <select id="affiliation_id" name="affiliation_id" class="form-control" aria-describedby="selectHelpBlock" required>
+                <select id="affiliation_id" name="affiliation_id" class="form-control js-select2-enabled" aria-describedby="selectHelpBlock" required>
                     <option value=""></option>
                     @foreach($affiliations as $affiliation)
                         <option value="{{ $affiliation->id }}" @if(old('affiliation_id') == $affiliation->id) selected @endif >{{ $affiliation->name }}</option>
@@ -241,12 +241,10 @@
 
 @section('css')
     @parent()
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('js')
     @parent()
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="{{ asset('js/countries.js') }}"></script>
     <script type="text/javascript">
 

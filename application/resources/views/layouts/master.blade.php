@@ -97,6 +97,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
 
     @section('js')
     @show

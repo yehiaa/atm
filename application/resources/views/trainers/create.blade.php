@@ -152,11 +152,9 @@
 
 @section('css')
     @parent()
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('js')
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="{{ asset('js/countries.js') }}"></script>
     <script>
         initializeCountryAndCityControls('#country', '#city', 'body');

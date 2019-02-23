@@ -23,14 +23,7 @@ class TraineeController extends Controller
     public function autocomplete()
     {
         $q = request('q');
-//        $all = $request->all();
-//        $q = $request->query();
-//        $q = $request->get('q');
-//        $qq = $request->query('q');
-//        $qqq = $request->input('q');
-//        $term = Input::get('term');
-//        dd([$all ,$q, $qq, $qqq, $term]);
-//        dd([$q]);
+
         $items = Trainee::all();
         if ($q){
             $items = Trainee::where('name', 'like', '%'.$q.'%')
