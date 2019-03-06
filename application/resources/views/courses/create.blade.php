@@ -17,7 +17,7 @@
 
     @include('_partials.flash-messages')
 
-    <form method="post" action="{{ route('courses.store') }}">
+    <form method="post" action="{{ route('courses.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -29,6 +29,12 @@
             <label for="alternative_name">Alternative name</label>
             <input id="alternative_name" name="alternative_name" autocomplete="off" placeholder="alternative name" value="{{ old('alternative_name') }}" class="form-control" aria-describedby="nameHelpBlock" type="text">
             <span id="nameHelpBlock" class="form-text text-muted">Alternative name</span>
+        </div>
+
+        <div class="form-group">
+            <label for="logo">Logo</label>
+            <input id="logo" name="logo"  class="form-control-file" aria-describedby="nameHelpBlock" type="file">
+            <span id="nameHelpBlock" class="form-text text-muted">Logo. jpeg, png, bmp, gif, or svg</span>
         </div>
 
         {{--<div class="form-group">--}}

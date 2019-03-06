@@ -40,11 +40,17 @@ class CourseController extends Controller
         $request->validate(['name'=>'required',
             'percentage_to_pass'=>'required|integer|max:100|min:0',
             'price'=>'required|integer|min:0',
+            'logo'=>'file|image',
             'start_datetime'=>'required', 'end_datetime'=>'required']);
-        
+
+        $file = $request->file('logo');
+        $logoName = $filename = 'course-logo-' . time() . '.' . $file->getClientOriginalExtension();
+        $logoPath = $file->storeAs('courseslogo', $logoName);
+
         $data = ['name' => $request->get('name'),
             'alternative_name' => $request->get('alternative_name'),
             'price' => $request->get('price'),
+            'logo' => $logoPath,
             'percentage_to_pass' => $request->get('percentage_to_pass'),
             'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
             'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
@@ -90,12 +96,17 @@ class CourseController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Course  $course
+     * @todo delete image and course's relations
+     * @todo add permissions
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Course $course)
     {
-        //
+
+        // delete course trainers, lectures trainees attendance , lectures trainers attendance
+        $course->lectures()->delete();
+        $course->delete();
+        return redirect(route('courses.index'))->withSuccess('deleted successfully');
     }
 }

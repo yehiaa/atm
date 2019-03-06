@@ -18,6 +18,7 @@
         <tr>
             <th>Name</th>
             <th>Alternative name</th>
+            <th>Logo</th>
             <th>Description</th>
             <th>Start datetime</th>
             <th>End datetime</th>
@@ -29,6 +30,10 @@
         <tr>
             <td>{{ $item->name }}</td>
             <td>{{ $item->alternative_name }}</td>
+            <td>
+                <img src="{{ asset("storage/$item->logo") }}"
+                     alt="course logo" class="img-thumbnail" style="max-width:30px">
+            </td>
             <td>{{ str_limit($item->description, 30) }}</td>
             <td>{{ $item->start_datetime }}</td>
             <td>{{ $item->end_datetime }}</td>
@@ -41,7 +46,11 @@
                         <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Show</a>
                         <a class="dropdown-item" href="{{ route('courses.lectures.create', ['course_id'=>$item->id]) }}">Add lecture</a>
                         <a class="dropdown-item" href="{{ route('courses.trainers.create', ['course_id'=>$item->id]) }}">Add trainer</a>
+                        <form action="{{ route('courses.destroy', ['id'=> $item->id]) }}" method="POST">
+                            @method('delete')
+                            @csrf
                         <button class="dropdown-item">Delete</button>
+                        </form>
                     </div>
                 </div>
                 {{--<a class="btn btn-primary" href="#" role="button">Show</a>--}}
@@ -54,6 +63,7 @@
         <tr>
             <th>Name</th>
             <th>Alternative name</th>
+            <th>Logo</th>
             <th>Description</th>
             <th>Start datetime</th>
             <th>End datetime</th>

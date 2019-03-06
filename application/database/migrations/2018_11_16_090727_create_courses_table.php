@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->integer('percentage_to_pass')->default(0);
             $table->string('alternative_name')->nullable();
             $table->text('description')->nullable();
+            $table->string('logo')->nullable();
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
 
