@@ -25,8 +25,14 @@
         <tr>
             <td>{{ $item->name }}</td>
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <form action="{{ route('professional_data.destroy',$item->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('professional_data.edit', $item->id) }}" role="button">Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
+                        Delete
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach

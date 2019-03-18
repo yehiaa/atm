@@ -9,7 +9,7 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Specialities <a href="{{ route('specialties.create') }}">Add new</a></h1>
+    <h1>Specialities <a href="{{ route('specialities.create') }}">Add new</a></h1>
     <hr>
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
@@ -27,8 +27,15 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->is_active ? 'Yes': 'No' }}</td>
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+
+                <a class="btn btn-primary" href="{{ route('specialities.edit', $item->id) }}" role="button">Edit</a>
+                <form action="{{ route('specialities.destroy',$item->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
+                        Delete
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach

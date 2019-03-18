@@ -24,10 +24,15 @@
         @foreach($items as $item)
         <tr>
             <td>{{ $item->name }}</td>
-
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <form method="post" action="{{ route('affiliations.destroy',$item->id) }}" >
+                    <a class="btn btn-primary" href="{{ route('affiliations.edit', $item->id) }}" >Edit</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" >
+                        Delete
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach

@@ -40,7 +40,7 @@ class SpecialityController extends Controller
 
         Speciality::create($request->all());
 
-        return redirect(route('specialties.index'))->withSuccess('created successfully');
+        return redirect(route('specialities.index'))->withSuccess('created successfully');
     }
 
     /**
@@ -60,9 +60,9 @@ class SpecialityController extends Controller
      * @param  \App\Speciality  $specialiy
      * @return \Illuminate\Http\Response
      */
-    public function edit(Speciality $specialiy)
+    public function edit(Speciality $speciality)
     {
-        //
+        return view('specialities.edit', compact('speciality'));
     }
 
     /**
@@ -72,9 +72,12 @@ class SpecialityController extends Controller
      * @param  \App\Speciality  $specialiy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Speciality $specialiy)
+    public function update(Request $request, Speciality $speciality)
     {
-        //
+        $request->validate(['name'=>'required']);
+        $speciality->update( \request()->all());
+        $speciality->save();
+        return redirect(route('specialities.index'))->withSuccess('updated successfully');
     }
 
     /**
@@ -82,9 +85,11 @@ class SpecialityController extends Controller
      *
      * @param  \App\Speciality  $specialiy
      * @return \Illuminate\Http\Response
+     * specialties.destroy
      */
     public function destroy(Speciality $specialiy)
     {
-        //
+        $specialiy->delete();
+        return redirect(route('specialities.index'))->withSuccess('deleted successfully');
     }
 }

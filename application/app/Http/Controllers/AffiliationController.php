@@ -46,10 +46,10 @@ class AffiliationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Affiliation  $nomination
+     * @param  \App\Affiliation  $affiliation
      * @return \Illuminate\Http\Response
      */
-    public function show(Affiliation $nomination)
+    public function show(Affiliation $affiliation)
     {
         //
     }
@@ -57,34 +57,42 @@ class AffiliationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Affiliation  $nomination
+     * @param Affiliation $affiliation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Affiliation $nomination)
+    public function edit(Affiliation $affiliation)
     {
-        //
+        return view('affiliations.edit', compact('affiliation'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Affiliation  $nomination
+     * @param  \App\Affiliation  $affiliation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Affiliation $nomination)
+    public function update(Request $request, Affiliation $affiliation)
     {
-        //
+        $request->validate(['name'=>'required']);
+        $affiliation->update( \request()->all());
+        $affiliation->save();
+        return redirect(route('affiliations.index'))->withSuccess('updated successfully');
+        //return redirect(route('affiliations.index'))->withSuccess('updated successfully');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Affiliation  $nomination
+     * @param Affiliation $affiliation
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Affiliation $nomination)
+    public function destroy(Affiliation $affiliation)
     {
-        //
+        $affiliation->delete();
+        return redirect(route('affiliations.index'))->withSuccess('deleted successfully ');
     }
 }

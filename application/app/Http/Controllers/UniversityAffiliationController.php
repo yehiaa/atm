@@ -49,7 +49,7 @@ class UniversityAffiliationController extends Controller
      * @param  \App\Hall  $hall
      * @return \Illuminate\Http\Response
      */
-    public function show(Hall $hall)
+    public function show(UniversityAffiliation $universityAffiliation)
     {
         //
     }
@@ -60,9 +60,9 @@ class UniversityAffiliationController extends Controller
      * @param  \App\Hall  $hall
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hall $hall)
+    public function edit(UniversityAffiliation $universityAffiliation)
     {
-        //
+        return view('university_affiliation.edit',compact('universityAffiliation'));
     }
 
     /**
@@ -72,9 +72,13 @@ class UniversityAffiliationController extends Controller
      * @param  \App\Hall  $hall
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hall $hall)
+    public function update(Request $request,UniversityAffiliation $universityAffiliation)
     {
-        //
+        $request->validate(['name'=>'required']);
+        $universityAffiliation->update( \request()->all());
+        $universityAffiliation->save();
+
+        return redirect(route('university_affiliations.index'))->withSuccess('updated successfully');
     }
 
     /**
@@ -83,8 +87,9 @@ class UniversityAffiliationController extends Controller
      * @param  \App\Hall  $hall
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hall $hall)
+    public function destroy(UniversityAffiliation $universityAffiliation)
     {
-        //
+        $universityAffiliation->delete();
+        return redirect(route('university_affiliations.index'))->withSuccess('deleted successfully');
     }
 }

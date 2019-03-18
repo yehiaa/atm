@@ -61,7 +61,7 @@ class HallController extends Controller
      */
     public function edit(Hall $hall)
     {
-        //
+        return view('halls.edit',compact('hall'));
     }
 
     /**
@@ -73,7 +73,12 @@ class HallController extends Controller
      */
     public function update(Request $request, Hall $hall)
     {
-        //
+        $request->validate(['name'=>'required']);
+        $hall->update( \request()->all());
+        $hall->save();
+
+        return redirect(route('halls.index'))->withSuccess('updated successfully');
+
     }
 
     /**
@@ -84,6 +89,7 @@ class HallController extends Controller
      */
     public function destroy(Hall $hall)
     {
-        //
+        $hall->delete();
+        return redirect(route('halls.index'))->with('success','deleted successfully');
     }
 }

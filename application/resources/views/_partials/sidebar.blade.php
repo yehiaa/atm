@@ -27,7 +27,7 @@
     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
       <h6 class="dropdown-header">Data Definitions:</h6>
       <a class="dropdown-item" href="{{ url('/halls') }}">Halls</a>
-      <a class="dropdown-item" href="{{ url('/specialties') }}">Specialties</a>
+      <a class="dropdown-item" href="{{ url('/specialities') }}">Specialties</a>
       <a class="dropdown-item" href="{{ url('affiliations') }}">Affiliations</a>
       <a class="dropdown-item" href="{{ url('university_affiliations') }}">University Affiliations</a>
       <a class="dropdown-item" href="{{ url('professional_data') }}">Professional Data</a>

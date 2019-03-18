@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -47,5 +48,5 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('/affiliations', 'AffiliationController');
     Route::resource('/university_affiliations', 'UniversityAffiliationController');
     Route::resource('/professional_data', 'ProfessionalDataController');
-    Route::resource('/specialties', 'SpecialityController');
+    Route::resource('/specialities', 'SpecialityController');
 });
