@@ -14,6 +14,10 @@ class Lecture extends Model
         return $this->belongsTo('App\Course');
     }
 
+    public function trainersAttendance()
+    {
+        return $this->belongsToMany(Trainer::class)->using(TrainerAttendance::class);
+    }
 
     public function hall()
     {

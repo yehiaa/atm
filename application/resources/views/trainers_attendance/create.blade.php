@@ -71,9 +71,20 @@
                                 <td>{{ $trainerAttendance->trainer->identity_type }}</td>
                                 <td>{{ $trainerAttendance->trainer->country }}</td>
                                 <td>{{ $trainerAttendance->trainer->city }}</td>
-                                {{--<td>--}}
-                                {{--<button class="btn btn-danger">Remove</button>--}}
-                                {{--</td>--}}
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('lectures.trainers-attendance.edit',[$trainerAttendance->trainer_id,$trainerAttendance->lecture_id]) }}" role="button">
+                                        Edit
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('lectures.trainers-attendance.destroy',[$trainerAttendance->lecture_id , $trainerAttendance->trainer_id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">
+                                            Remove
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
 

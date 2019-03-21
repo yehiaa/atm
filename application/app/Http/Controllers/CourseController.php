@@ -92,7 +92,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        $request->validate(['name'=>'required',
+        $request->validate([
+            'name'=>'required',
             'percentage_to_pass'=>'required|integer|max:100|min:0',
             'logo'=>'file|image',
             'start_datetime'=>'required',
@@ -107,14 +108,10 @@ class CourseController extends Controller
             'percentage_to_pass' => $request->get('percentage_to_pass'),
             'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
             'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
-            //'start_datetime' =>  $request->get('start_datetime'),
-            //'end_datetime' =>  $request->get('end_datetime'),
             'description' => $request->get('description')];
 
         $course->update($data);
-        //$course->save();
         return redirect(route('courses.index'))->withSuccess('updated successfully');
-
     }
     /**
      * Remove the specified resource from storage.
