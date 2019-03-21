@@ -59,6 +59,11 @@ class TraineeController extends Controller
             'gender'=>'required',
             'phone' => 'min:11|unique:trainees', 'identity'=> 'required|unique:trainees',
             'identity_type'=> 'required', 'speciality_id' => 'required']);
+
+        $file = $request->file('attachment');
+        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+        $attachmentPath = $file->storeAs('attachment', $attachmentName);
+
         Trainee::create($request->all());
         return redirect(route('trainees.index'))->withSuccess('created successfully');
     }
@@ -96,10 +101,17 @@ class TraineeController extends Controller
     public function update(Request $request, Trainee $trainee)
     {
         $request->validate([
-            'name'=>'required|min:5', 'email'=> 'email|unique:trainees,email,'.$trainee->id,
+            'name'=>'required|min:5',
+            'email'=> 'email|unique:trainees,email,'.$trainee->id,
             'gender'=>'required',
-            'phone' => 'min:11|unique:trainees,phone,'.$trainee->id, 'identity'=> 'required|unique:trainees,identity,'.$trainee->id,
-            'identity_type'=> 'required', 'speciality_id' => 'required']);
+            'phone' => 'min:11|unique:trainees,phone,'.$trainee->id,
+            'identity'=> 'required|unique:trainees,identity,'.$trainee->id,
+            'identity_type'=> 'required',
+            'speciality_id' => 'required']);
+
+        $file = $request->file('attachment');
+        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+        $attachmentPath = $file->storeAs('attachment', $attachmentName);
 
         $trainee->update($request->all());
         return redirect(route('trainees.index'))->withSuccess('updated successfully');
@@ -113,6 +125,13 @@ class TraineeController extends Controller
      */
     public function destroy(Trainee $trainee)
     {
-        //
+        try {
+            $trainee->delete();
+            return redirect(route('trainees.index'))->withSuccess('deleted successfully');
+        }
+        catch (\Exception $e){
+            return redirect(route('trainees.index', ['id'=>$trainee->id]))->with("error",$e->getMessage());
+        }
     }
+
 }

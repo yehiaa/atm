@@ -37,8 +37,14 @@
             <td>{{ $item->country }}</td>
             <td>{{ $item->city }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('trainees.edit', $item->id) }}" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <form action="{{ route('trainees.destroy',['id'=> $item->id]) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('trainees.edit', $item->id) }}" role="button">Edit</a>
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
+                </form>
+
+
             </td>
         </tr>
         @endforeach

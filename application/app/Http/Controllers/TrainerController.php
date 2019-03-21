@@ -52,6 +52,10 @@ class TrainerController extends Controller
             'university_affiliation_id' => 'required',
             'professional_data_id' => 'required'
         ]);
+        $file = $request->file('attachment');
+        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+        $attachmentPath = $file->storeAs('trainerAttachment', $attachmentName);
+
         Trainer::create($request->all());
         return redirect(route('trainers.index'))->withSuccess('created successfully');
     }
@@ -75,7 +79,10 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        //
+        $specialities = Speciality::all();
+        $universityAffiliations = UniversityAffiliation::all();
+        $professionalData = ProfessionalData::all();
+        return view('trainers.edit', compact(['trainer','specialities', 'universityAffiliations', 'professionalData']));
     }
 
     /**
@@ -87,7 +94,22 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:5|unique:trainers,name,'. $trainer->id,
+            'email'=> 'email|unique:trainers,email,'.$trainer->id,
+            //'email'=> 'email|unique:trainers ,email,'. $trainer->id,
+            'phone' => 'min:11|unique:trainers,phone,'.$trainer->id,
+            'identity'=> 'required|unique:trainers,identity,'.$trainer->id,
+            'identity_type'=> 'required',
+            'speciality_id' => 'required',
+            'university_affiliation_id' => 'required',
+            'professional_data_id' => 'required'
+        ]);
+        $file = $request->file('attachment');
+        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+        $attachmentPath = $file->storeAs('trainerAttachment', $attachmentName);
+        $trainer->update($request->all());
+        return redirect(route('trainers.index'))->withSuccess('updated successfully');
     }
 
     /**
@@ -98,6 +120,12 @@ class TrainerController extends Controller
      */
     public function destroy(Trainer $trainer)
     {
-        //
+        try {
+            $trainer->delete();
+            return redirect(route('trainers.index'))->withSuccess('deleted successfully');
+        }
+        catch (\Exception $e){
+            return redirect(route('trainers.index', ['id'=>$trainer->id]))->with("error",$e->getMessage());
+        }
     }
 }

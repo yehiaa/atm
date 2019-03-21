@@ -27,8 +27,11 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->is_active ? 'Yes': 'No' }}</td>
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <a class="btn btn-primary" href="#" role="button">
+                    Edit</a>
+                <button class="btn btn-danger">
+                    Delete
+                </button>
             </td>
         </tr>
         @endforeach

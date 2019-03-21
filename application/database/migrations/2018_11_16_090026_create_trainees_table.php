@@ -19,6 +19,7 @@ class CreateTraineesTable extends Migration
             $table->string('gender');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->string('attachment')->nullable();
 
             $table->string('identity')->unique();
             $table->enum('identity_type', ['passport','national']);

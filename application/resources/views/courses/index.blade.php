@@ -46,10 +46,11 @@
                         <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Show</a>
                         <a class="dropdown-item" href="{{ route('courses.lectures.create', ['course_id'=>$item->id]) }}">Add lecture</a>
                         <a class="dropdown-item" href="{{ route('courses.trainers.create', ['course_id'=>$item->id]) }}">Add trainer</a>
+                        <a class="dropdown-item" href="{{ route('courses.edit', ['course_id'=>$item->id]) }}">Edit Course</a>
                         <form action="{{ route('courses.destroy', ['id'=> $item->id]) }}" method="POST">
                             @method('delete')
                             @csrf
-                        <button class="dropdown-item">Delete</button>
+                        <button class="dropdown-item" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
                         </form>
                     </div>
                 </div>

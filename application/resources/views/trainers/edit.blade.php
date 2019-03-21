@@ -8,7 +8,7 @@
         <li class="breadcrumb-item">
             <a href="{{ route('trainers.index') }}">Trainers</a>
         </li>
-        <li class="breadcrumb-item active">Create new</li>
+        <li class="breadcrumb-item active">Edit Trainer</li>
     </ol>
 
     <!-- Page Content -->
@@ -16,36 +16,37 @@
     <hr>
     @include('_partials.flash-messages')
 
-    <form method="post" action="{{ route('trainers.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('trainers.update',[$trainer->id]) }}" enctype="multipart/form-data">
         @csrf
+        @method('PATCH')
         <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" placeholder="name" class="form-control here" type="text" value="{{ old('name') }}">
+            <input id="name" name="name" placeholder="name" class="form-control here" type="text" value="{{ $trainer->name }}">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" class="form-control here" type="text" value="{{ old('email') }}">
+            <input id="email" name="email" class="form-control here" type="text" value="{{ $trainer->email }}">
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input id="phone" name="phone" class="form-control here" type="text" value="{{ old('phone') }}">
+            <input id="phone" name="phone" class="form-control here" type="text" value="{{ $trainer->phone }}">
         </div>
         <div class="form-group">
             <label for="identity">Identity</label>
-            <input id="identity" name="identity" class="form-control here" type="text" value="{{ old('identity') }}">
+            <input id="identity" name="identity" class="form-control here" type="text" value="{{ $trainer->identity }}">
         </div>
         <div class="form-group">
             <label>Identity type</label>
             <div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input name="identity_type" class="form-check-input" value="passport" type="radio">
+                        <input name="identity_type" class="form-check-input" value="passport" type="radio" @if($trainer->identity_type == 'passport') checked @endif>
                         Passport
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input name="identity_type" class="form-check-input" value="national" type="radio">
+                        <input name="identity_type" class="form-check-input" value="national" type="radio" @if($trainer->identity_type == 'national') checked @endif>
                         National
                     </label>
                 </div>
@@ -56,47 +57,48 @@
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
                     <input type="hidden" name="is_cooperate"  value="0">
-                    <input class="form-check-input" type="checkbox" @if(old('is_cooperate') == 1) checked @endif name="is_cooperate" id="is_cooperate" value="1">
-                    Is cooperate ? </label>
+                    <input class="form-check-input" type="checkbox" @if($trainer->is_cooperate == 1) checked @endif name="is_cooperate" id="is_cooperate" value="1">
+                    Is cooperate ?
+                </label>
             </div>
         </div>
 
         <div class="form-group">
             <label for="country">Country</label>
-            <select id="country" name="country" class="form-control" value="{{ old('country') }}">
-                <option value=""></option>
+            <select id="country" name="country" class="form-control" >
+                <option value="{{ $trainer->country }}"></option>
             </select>
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <select id="city" name="city" class="form-control here"></select>
+            <select id="city" name="city" class="form-control here" value="{{ $trainer->city }}"></select>
         </div>
         <div class="form-group">
             <label for="bank_name">Bank name</label>
-            <input id="bank_name" name="bank_name" class="form-control here" type="text" value="{{ old('bank_name') }}">
+            <input id="bank_name" name="bank_name" class="form-control here" type="text" value="{{ $trainer->bank_name }}">
         </div>
         <div class="form-group">
             <label for="bank_branch">Bank branch</label>
-            <input id="bank_branch" name="bank_branch" class="form-control here" type="text" value="{{ old('bank_branch') }}">
+            <input id="bank_branch" name="bank_branch" class="form-control here" type="text" value="{{ $trainer->bank_branch }}">
         </div>
         <div class="form-group">
             <label for="bank_account_number">Bank acc number</label>
-            <input id="bank_account_number" name="bank_account_number" class="form-control here" type="text" value="{{ old('bank_account_number') }}">
+            <input id="bank_account_number" name="bank_account_number" class="form-control here" type="text" value="{{ $trainer->bank_account_number }}">
         </div>
 
         <div class="form-group">
             <label for="experiences">Experiences</label>
-            <textarea id="experiences" name="experiences" class="form-control" value="{{ old('experiences') }}"></textarea>
+            <textarea id="experiences" name="experiences" class="form-control" value="{{ $trainer->experiences }}"></textarea>
         </div>
 
         <div class="form-group">
             <label for="speciality_id">Speciality</label>
             <div>
-                <select id="speciality_id" name="speciality_id"
-                        class="form-control"
-                        aria-describedby="selectHelpBlock" >
+                <select id="speciality_id" name="speciality_id" class="form-control" aria-describedby="selectHelpBlock">
                     @foreach($specialities as $speciality)
-                        <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
+                        <option value="{{ $speciality->id }}">
+                            {{ $speciality->name }}
+                        </option>
                     @endforeach
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted">Speciality</span>
@@ -111,7 +113,9 @@
                         class="form-control"
                         aria-describedby="selectHelpBlock" >
                     @foreach($universityAffiliations as $universityAffiliation)
-                        <option value="{{ $universityAffiliation->id }}">{{ $universityAffiliation->name }}</option>
+                        <option value="{{ $universityAffiliation->id }}">
+                            {{ $universityAffiliation->name }}
+                        </option>
                     @endforeach
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted"></span>
@@ -121,11 +125,11 @@
         <div class="form-group">
             <label for="professional_data_id">Professional data</label>
             <div>
-                <select id="professional_data_id" name="professional_data_id"
-                        class="form-control"
-                        aria-describedby="selectHelpBlock" >
+                <select id="professional_data_id" name="professional_data_id" class="form-control" aria-describedby="selectHelpBlock" >
                     @foreach($professionalData as $professionalDataItem)
-                        <option value="{{ $professionalDataItem->id }}">{{ $professionalDataItem->name }}</option>
+                        <option value="{{ $professionalDataItem->id }}">
+                            {{ $professionalDataItem->name }}
+                        </option>
                     @endforeach
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted"></span>

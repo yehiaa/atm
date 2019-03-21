@@ -38,7 +38,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|min:5', 'email'=> 'email', 'password'=>'required|min:6']);
+            'name'=>'required|min:5',
+            'email'=> 'email',
+            'password'=>'required|min:6']);
         $data = ['name' => $request->get('name'), 'email'=>$request->get('email'),
             'password'=> Hash::make($request->get('password'))];
 
@@ -65,7 +67,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -75,9 +77,29 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,User $user)
     {
-        //
+        $validationRules = [
+            'name'=>'required|min:5',
+            'email'=> 'required|email|unique:users,email,'.$user->id,
+            'password'=>'required|min:6'];
+
+        if ($request->input('password'))
+        {
+            $request->validate($validationRules );
+            $user->password = bcrypt($request->input('password'));
+        }else
+        {
+            unset($validationRules['password']);
+            $request->validate($validationRules);
+        }
+        // 1//password is empty
+
+        // 2// password is not empty
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        return redirect(route('users.index'))->with('success', ' updated successfully ');
     }
 
     /**
@@ -88,6 +110,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect(route('users.index'))->withSuccess('deleted successfuly');
     }
 }

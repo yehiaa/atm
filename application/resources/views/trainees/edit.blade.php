@@ -16,7 +16,7 @@
     <hr>
     @include('_partials.flash-messages')
 
-    <form method="post" action="{{ route('trainees.update', [$trainee->id]) }}">
+    <form method="post" action="{{ route('trainees.update', [$trainee->id]) }}" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="form-group">
@@ -96,8 +96,8 @@
 
 
         <div class="form-group">
-            <label for="attachments">Attachments</label>
-            <input type="file" id="attachments[]" name="attachments[]" class="form-control" multiple />
+            <label for="attachment">Attachment</label>
+            <input type="file" id="attachment" name="attachment" class="form-control"  />
             <span class="form-text text-muted">to be done</span>
         </div>
 

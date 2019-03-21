@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -79,7 +80,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('courses.edit', compact('course'));
     }
 
     /**
@@ -91,9 +92,30 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
-    }
+        $request->validate(['name'=>'required',
+            'percentage_to_pass'=>'required|integer|max:100|min:0',
+            'logo'=>'file|image',
+            'start_datetime'=>'required',
+            'end_datetime'=>'required']);
+        $file = $request->file('logo');
+        $logoName = $filename = 'course-logo-' . time() . '.' . $file->getClientOriginalExtension();
+        $logoPath = $file->storeAs('courseslogo', $logoName);
 
+        $data = ['name' => $request->get('name'),
+            'alternative_name' => $request->get('alternative_name'),
+            'logo' => $logoPath,
+            'percentage_to_pass' => $request->get('percentage_to_pass'),
+            'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
+            'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
+            //'start_datetime' =>  $request->get('start_datetime'),
+            //'end_datetime' =>  $request->get('end_datetime'),
+            'description' => $request->get('description')];
+
+        $course->update($data);
+        //$course->save();
+        return redirect(route('courses.index'))->withSuccess('updated successfully');
+
+    }
     /**
      * Remove the specified resource from storage.
      * @todo delete image and course's relations
@@ -103,10 +125,16 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-
         // delete course trainers, lectures trainees attendance , lectures trainers attendance
-        $course->lectures()->delete();
-        $course->delete();
-        return redirect(route('courses.index'))->withSuccess('deleted successfully');
+        try{
+
+            //Storage::delete('course-logo-' . time() . '.' .$course->logo.getClientOriginalExtension());
+            $course->lectures()->delete();
+            $course->delete();
+            return redirect(route('courses.index'))->withSuccess('deleted successfully');
+        }
+        catch (\Exception $e){
+            return redirect(route('courses.show', ['id'=>$course->id]))->with("error",$e->getMessage());
+        }
     }
 }

@@ -21,7 +21,7 @@ class CreateTrainersTable extends Migration
 
             $table->string('country')->nullable();
             $table->string('city')->nullable();
-
+            $table->string('attachment')->nullable();
             $table->string('identity')->unique();
             $table->enum('identity_type', ['passport','national']);
 

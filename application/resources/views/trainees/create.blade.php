@@ -16,7 +16,7 @@
     <hr>
     @include('_partials.flash-messages')
 
-    <form method="post" action="{{ route('trainees.store') }}">
+    <form method="post" action="{{ route('trainees.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -100,12 +100,17 @@
             </div>
         </div>
 
-
         <div class="form-group">
-            <label for="attachments">Attachments</label>
-            <input type="file" id="attachments[]" name="attachments[]" class="form-control" multiple />
-            <span class="form-text text-muted">to be done</span>
+            <label for="attachment">Attachments</label>
+            <input id="attachment" name="attachment"  class="form-control-file"  type="file">
+            <span id="nameHelpBlock" class="form-text text-muted">Upload a single file</span>
         </div>
+
+        {{--<div class="form-group">--}}
+            {{--<label for="attachments">Attachments</label>--}}
+            {{--<input type="file" id="attachments[]" name="attachments[]" class="form-control" multiple />--}}
+            {{--<span class="form-text text-muted">to be done</span>--}}
+        {{--</div>--}}
 
         <div class="form-group">
             <label for="refereedFrom">How did you know about us?</label>

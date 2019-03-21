@@ -27,10 +27,15 @@
             <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
-                <td>{{ $item->is_active ? 'Yes': 'No' }}</td>
                 <td>
-                    <a class="btn btn-primary" href="#" role="button">Edit</a>
-                    <button class="btn btn-danger">Delete</button>
+                    <form action="{{ route('users.destroy',$item->id) }}" method="POST">
+                        <a class="btn btn-primary" href="{{route('users.edit',$item->id) }}" role="button">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
+                            Delete
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

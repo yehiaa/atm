@@ -36,9 +36,14 @@
             <td>{{ $item->speciality->name }}</td>
 
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <form action="{{ route('trainers.destroy', $item->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('trainers.edit', $item->id) }}" role="button">Edit</a>
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
+                </form>
             </td>
+
         </tr>
         @endforeach
 

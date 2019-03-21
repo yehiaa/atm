@@ -76,7 +76,8 @@ class LectureController extends Controller
      */
     public function edit(Course $course, Lecture $lecture)
     {
-        //
+        $halls = Hall::all();
+        return view('lectures.edit', compact('course','lecture', 'halls'));
     }
 
     /**
@@ -88,7 +89,20 @@ class LectureController extends Controller
      */
     public function update(Request $request, Course $course, Lecture $lecture)
     {
-        //
+        $request->validate(['name'=>'required',
+            'start_datetime'=>'required',
+            'end_datetime'=>'required',
+            'hall_id'=>'required']);
+
+        $data = ['name' => $request->get('name'),
+            'course_id' => $course->id,
+            'hall_id' => $request->get('hall_id'),
+            'start_datetime' =>  $request->get('start_datetime'),
+            'end_datetime' => $request->get('end_datetime'),
+            'notes' => $request->get('notes')];
+
+        $lecture->update($data);
+        return redirect(route('courses.show', ['id'=>$course->id]))->withSuccess('updated successfully');
     }
 
     /**
@@ -99,6 +113,14 @@ class LectureController extends Controller
      */
     public function destroy(Course $course, Lecture $lecture)
     {
-        //
+        //$course->lectures()->delete();
+        try{
+            //$lecture->course()->delete();
+            $lecture->delete();
+        return redirect(route('courses.show', ['id'=>$course->id]))->withSuccess('deleted successfully');
+        }
+        catch (\Exception $e){
+            return redirect(route('courses.show', ['id'=>$course->id]))->with("error", "unable to delete");
+        }
     }
 }
