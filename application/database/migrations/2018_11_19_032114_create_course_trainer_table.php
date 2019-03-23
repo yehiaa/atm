@@ -14,15 +14,14 @@ class CreateCourseTrainerTable extends Migration
     public function up()
     {
         Schema::create('course_trainer', function (Blueprint $table) {
-            $table->bigIncrements('course_id');
+            $table->bigIncrements('id');
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('trainer_id');
 
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('trainer_id')->references('id')->on('trainers');
 
-//            $table->index('course_id');
-//            $table->index('trainer_id');
+
             $table->unique(['trainer_id', 'course_id']);
 
             $table->timestamps();
