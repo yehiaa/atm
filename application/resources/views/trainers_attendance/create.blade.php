@@ -56,6 +56,7 @@
                             <th>Identity type</th>
                             <th>Country</th>
                             <th>City</th>
+                            <th>Attendance</th>
                             {{--<th>Actions</th>--}}
                         </tr>
                         </thead>
@@ -69,6 +70,7 @@
                                 <td>{{ $trainerAttendance->trainer->identity_type }}</td>
                                 <td>{{ $trainerAttendance->trainer->country }}</td>
                                 <td>{{ $trainerAttendance->trainer->city }}</td>
+                                <td>{{ $trainerAttendance->attended_at }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{ route('lectures.trainers-attendance.edit',[$trainerAttendance->lecture_id, $trainerAttendance->id]) }}" role="button">
                                         Edit
