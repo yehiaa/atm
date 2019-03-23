@@ -14,6 +14,7 @@ class CreateTraineeAttendanceTable extends Migration
     public function up()
     {
         Schema::create('trainee_attendance', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedInteger('trainee_id');
             $table->unsignedInteger('lecture_id');
 
@@ -24,9 +25,8 @@ class CreateTraineeAttendanceTable extends Migration
             $table->foreign('trainee_id')->references('id')->on('trainees');
             $table->foreign('created_by')->references('id')->on('users');
 
-            $table->index('lecture_id');
-            $table->index('trainee_id');
-            $table->primary(['trainee_id', 'lecture_id']);
+
+            $table->unique(['trainee_id', 'lecture_id']);
             $table->timestamps();
         });
     }

@@ -14,6 +14,8 @@ class CreateCourseRegistrationTable extends Migration
     public function up()
     {
         Schema::create('course_registration', function (Blueprint $table) {
+
+            $table->bigIncrements('id');
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('trainee_id');
 
@@ -39,9 +41,8 @@ class CreateCourseRegistrationTable extends Migration
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('payment_by')->references('id')->on('users');
 
-            $table->index('course_id');
-            $table->index('trainee_id');
-            $table->primary(['trainee_id', 'course_id']);
+            $table->unique(['course_id', 'trainee_id']);
+//            $table->primary(['trainee_id', 'course_id']);
 
             $table->timestamps();
         });
