@@ -91,11 +91,13 @@ class TraineeAttendanceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TraineeAttendance  $traineeAttendance
+     * @param Lecture $lecture
+     * @param TraineeAttendance $trainees_attendance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TraineeAttendance $traineeAttendance)
+    public function destroy(Lecture $lecture, TraineeAttendance $trainees_attendance)
     {
-        //
+        $trainees_attendance->delete();
+        return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withSuccess('deleted successfully');
     }
 }

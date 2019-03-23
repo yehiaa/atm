@@ -19,8 +19,6 @@
 
     <form method="post" action="{{ route('lectures.trainers-attendance.store', [$lecture->id]) }}">
         @csrf
-        <input type="hidden" name="lecture_id" value="{{ $lecture->id }}">
-
         <div class="form-group">
             <label for="trainer_id">Trainer</label>
             <div>
@@ -72,12 +70,12 @@
                                 <td>{{ $trainerAttendance->trainer->country }}</td>
                                 <td>{{ $trainerAttendance->trainer->city }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('lectures.trainers-attendance.edit',[$trainerAttendance->trainer_id,$trainerAttendance->lecture_id]) }}" role="button">
+                                    <a class="btn btn-primary" href="{{ route('lectures.trainers-attendance.edit',[$trainerAttendance->lecture_id, $trainerAttendance->id]) }}" role="button">
                                         Edit
                                     </a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('lectures.trainers-attendance.destroy',[$trainerAttendance->lecture_id , $trainerAttendance->trainer_id]) }}" method="POST">
+                                    <form action="{{ route('lectures.trainers-attendance.destroy',[$trainerAttendance->lecture_id , $trainerAttendance->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">
