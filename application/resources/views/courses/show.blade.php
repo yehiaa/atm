@@ -145,17 +145,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($course->trainers as $trainer)
+                                @foreach($course->courseTrainers as $courseTrainer)
                                     <tr>
-                                        <td>{{ $trainer->name }}</td>
-                                        <td>{{ $trainer->email }}</td>
-                                        <td>{{ $trainer->phone }}</td>
-                                        <td>{{ $trainer->identity }}</td>
-                                        <td>{{ $trainer->identity_type }}</td>
-                                        <td>{{ $trainer->country }}</td>
-                                        <td>{{ $trainer->city }}</td>
+                                        <td>{{ $courseTrainer->trainer->name }}</td>
+                                        <td>{{ $courseTrainer->trainer->email }}</td>
+                                        <td>{{ $courseTrainer->trainer->phone }}</td>
+                                        <td>{{ $courseTrainer->trainer->identity }}</td>
+                                        <td>{{ $courseTrainer->trainer->identity_type }}</td>
+                                        <td>{{ $courseTrainer->trainer->country }}</td>
+                                        <td>{{ $courseTrainer->trainer->city }}</td>
                                         <td>
-                                            <button class="btn btn-danger">Remove</button>
+                                            <form action="{{ route('courses.trainers.destroy', [$course->id, $courseTrainer->trainer->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">
+                                                    Remove
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
