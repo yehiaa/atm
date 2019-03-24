@@ -29,7 +29,7 @@
                     <a class="btn btn-primary" href="{{ route('affiliations.edit', $item->id) }}" >Edit</a>
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" >
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')" >
                         Delete
                     </button>
                 </form>

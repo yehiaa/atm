@@ -31,10 +31,14 @@
             <td>{{ $item->affiliation_name }}</td>
             <td>{{ $item->is_paid }}</td>
             <td>{{ $item->reference }}</td>
-
             <td>
-                <a class="btn btn-primary" href="#" role="button">Edit</a>
-                <button class="btn btn-danger">Delete</button>
+                <form method="post" action="{{ route('course_registration.destroy',$item->id) }}" >
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete')" >
+                        Delete
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach

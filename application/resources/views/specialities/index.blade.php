@@ -28,8 +28,8 @@
             <td>{{ $item->is_active ? 'Yes': 'No' }}</td>
             <td>
 
-                <a class="btn btn-primary" href="{{ route('specialities.edit', $item->id) }}" role="button">Edit</a>
                 <form action="{{ route('specialities.destroy',$item->id) }}" method="POST">
+                    <a class="btn btn-primary" href="{{ route('specialities.edit', $item->id) }}" role="button">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">

@@ -10,6 +10,7 @@ use App\Affiliation;
 use App\Speciality;
 use App\Trainee;
 use App\User;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +50,6 @@ class CourseRegistrationController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -84,7 +84,6 @@ class CourseRegistrationController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  \App\CourseRegistration  $courseRegistration
      * @return \Illuminate\Http\Response
      */
@@ -96,7 +95,6 @@ class CourseRegistrationController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
      * @param  \App\CourseRegistration  $courseRegistration
      * @return \Illuminate\Http\Response
      */
@@ -124,6 +122,12 @@ class CourseRegistrationController extends Controller
      */
     public function destroy(CourseRegistration $courseRegistration)
     {
-
+        try {
+            $courseRegistration->delete();
+            return redirect(route('course_registration.index'))->withSuccess('registry removed successfully');
+        }
+        catch (\Exception $e){
+            return redirect(route('course_registration.index')->with("error",$e->getMessage()));
+        }
     }
 }

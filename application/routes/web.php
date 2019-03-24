@@ -28,15 +28,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
 
-/*POST      | course-registration                        | course-registration.store | App\Http\Controllers\CourseRegistrationController@store                | web,auth     |
-GET|HEAD  | course-registration                        | course-registration.index | App\Http\Controllers\CourseRegistrationController@index                | web,auth     |
-GET|HEAD  | course-registration/create                 | course-registration.create| App\Http\Controllers\CourseRegistrationController@create               | web,auth     |
-DELETE    | course-registration/{course_registration}  | course-registration.destroy | App\Http\Controllers\CourseRegistrationController@destroy              | web,auth     |
-PUT|PATCH | course-registration/{course_registration}  | course-registration.update  | App\Http\Controllers\CourseRegistrationController@update               | web,auth     |
-GET|HEAD  | course-registration/{course_registration}/edit | course-registration.edit| App\Http\Controllers\CourseRegistrationController@edit                 | web,auth     |
-GET|HEAD  | course-registration/{course_registration}  | course-registration.show    | App\Http\Controllers\CourseRegistrationController@show                 | web,auth     |
-*/
-    //Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
+  //Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
     Route::get('/course-registration', 'CourseRegistrationController@index')->name('course_registration.index');
     Route::get('/course-registration/create', 'CourseRegistrationController@create')->name('course_registration.create');
     Route::post('/course-registration', 'CourseRegistrationController@store')->name('course_registration.store');

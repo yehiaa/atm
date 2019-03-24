@@ -68,7 +68,6 @@ class AffiliationController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Affiliation  $affiliation
      * @return \Illuminate\Http\Response
@@ -79,20 +78,22 @@ class AffiliationController extends Controller
         $affiliation->update( \request()->all());
         $affiliation->save();
         return redirect(route('affiliations.index'))->withSuccess('updated successfully');
-        //return redirect(route('affiliations.index'))->withSuccess('updated successfully');
-
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Remove the specified resource from storage
      * @param Affiliation $affiliation
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
     public function destroy(Affiliation $affiliation)
     {
+        try{
         $affiliation->delete();
         return redirect(route('affiliations.index'))->withSuccess('deleted successfully ');
+        }
+        catch (\Exception $e){
+            return redirect(route('affiliations.index')->with("error",$e->getMessage()));
+        }
     }
 }

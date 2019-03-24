@@ -165,6 +165,7 @@
         </table>
         <label for="">Additional comments</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
         <table class="table">
+            <h1>Trainee Assisment</h1>
             <tbody>
             <tr>
                 <td>Pretest average</td>

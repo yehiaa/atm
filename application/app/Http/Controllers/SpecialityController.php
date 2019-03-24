@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Speciality;
 use Illuminate\Http\Request;
+use mysql_xdevapi\Exception;
 
 class SpecialityController extends Controller
 {
@@ -89,7 +90,12 @@ class SpecialityController extends Controller
      */
     public function destroy(Speciality $specialiy)
     {
-        $specialiy->delete();
-        return redirect(route('specialities.index'))->withSuccess('deleted successfully');
+        try {
+            $specialiy->delete();
+            return redirect(route('specialities.index'))->withSuccess('deleted successfully');
+        }
+        catch (\Exception $e){
+            return redirect(route('specialities.index'))->with("error",$e->getMessage());
+        }
     }
 }
