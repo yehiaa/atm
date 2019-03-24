@@ -14,6 +14,15 @@ class Course extends Model
         return $this->hasMany('App\Lecture');
     }
 
+    /**
+     * returns course trainer pivot relation
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function courseTrainers ()
+    {
+        return $this->hasMany('App\CourseTrainer');
+    }
+
     public function trainers ()
     {
         return $this->belongsToMany('App\Trainer');

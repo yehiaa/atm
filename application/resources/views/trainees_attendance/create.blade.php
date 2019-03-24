@@ -19,8 +19,6 @@
 
     <form method="post" action="{{ route('lectures.trainees-attendance.store', [$lecture->id]) }}">
         @csrf
-        <input type="hidden" name="lecture_id" value="{{ $lecture->id }}">
-
         <div class="form-group">
             <label for="trainee_id">Trainee</label>
             <div>
@@ -59,6 +57,7 @@
                             <th>Identity type</th>
                             <th>Country</th>
                             <th>City</th>
+                            <th>Attendance</th>
                             {{--<th>Actions</th>--}}
                         </tr>
                         </thead>
@@ -72,9 +71,21 @@
                                 <td>{{ $traineeAttendance->trainee->identity_type }}</td>
                                 <td>{{ $traineeAttendance->trainee->country }}</td>
                                 <td>{{ $traineeAttendance->trainee->city }}</td>
-                                {{--<td>--}}
-                                    {{--<button class="btn btn-danger">Remove</button>--}}
-                                {{--</td>--}}
+                                <td>{{ $traineeAttendance->attended_at }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('lectures.trainees-attendance.edit',[$traineeAttendance->lecture_id, $traineeAttendance->id]) }}" role="button">
+                                        Edit
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('lectures.trainees-attendance.destroy',[$traineeAttendance->lecture_id , $traineeAttendance->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">
+                                            Remove
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
 

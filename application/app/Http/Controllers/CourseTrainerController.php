@@ -90,11 +90,13 @@ class CourseTrainerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CourseTrainer  $courseTrainer
+     * @param Course $course
+     * @param Trainer $trainer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseTrainer $courseTrainer)
+    public function destroy(Course $course , Trainer $trainer)
     {
-        //
+        $course->trainers()->detach($trainer->id);
+        return redirect(route('courses.show', [$course->id]))->withSuccess('deleted successfully');
     }
 }
