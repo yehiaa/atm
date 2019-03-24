@@ -11,10 +11,10 @@ class CourseRegistration extends Pivot
     //
 //     payment here , payment types cash , visa, nomination, nomination reference
 //     payment amount , payment type , nomination reference, payment by, payment datetime
-
 //    attendance also goes in trainee_attendance .....
 //    attendance also goes in trainer_attendance .....
 //    created by createdAt , attendanceDatetime
+
 
     const PAYMENT_TYPE_CASH = 1;
     const PAYMENT_TYPE_VISA = 2;
@@ -35,5 +35,10 @@ class CourseRegistration extends Pivot
     public function affiliation()
     {
         return $this->belongsTo('App\Affiliation');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
     }
 }

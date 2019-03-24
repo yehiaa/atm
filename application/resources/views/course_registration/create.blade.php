@@ -18,7 +18,7 @@
 
     @include('_partials.flash-messages')
 
-    <form method="post" action="{{ route('course_registration.create') }}">
+    <form method="post" action="{{ route('course_registration.store') }}">
         @csrf
         <div class="form-group">
             <label for="course_id">Course</label>
