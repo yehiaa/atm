@@ -73,12 +73,12 @@ class TrainerAttendanceController extends Controller
      * @param  \App\TrainerAttendance $trainerAttendance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lecture $lecture, TrainerAttendance $trainerAttendance)
+    public function edit(Lecture $lecture, TrainerAttendance $trainer_attendance)
     {
         $courseTrainersIds = CourseTrainer::where('course_id', $lecture->course_id)->pluck('trainer_id')->toArray();
         $trainers = Trainer::whereIn('id', $courseTrainersIds)->get();
-        $trainersAttendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
-        return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainerAttendance'));
+        //$trainer_attendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
+        return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainer_attendance'));
        // return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainerAttendance'));
     }
 

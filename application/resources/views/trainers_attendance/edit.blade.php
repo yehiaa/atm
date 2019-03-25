@@ -17,10 +17,9 @@
     @include('_partials.flash-messages')
     <hr>
 
-    <form method="post" action="{{ route('lectures.trainers-attendance.update',[$trainerAttendance->trainer->id,$trainerAttendance->lecture->id]) }}">
+    <form method="post" action="{{ route('lectures.trainers-attendance.update',[$trainer_attendance->lecture_id, $trainer_attendance->id]) }}">
         @csrf
         @method('PATCH')
-
         <div class="form-group">
             <label for="trainer_id">Trainer</label>
             <div>
@@ -41,11 +40,9 @@
             <label for="lecture_id">Lecture</label>
             <div>
                 <select id="lecture_id" name="lecture_id" class="form-control" aria-describedby="selectHelpBlock" >
-                    @foreach($lecture as $lect)
-                        <option value="{{ $lect->id }}">
-                            {{ $lect->name }}
-                        </option>
-                    @endforeach
+                    <option value="{{ $lecture->id }}">
+                        {{ $lecture->name }}
+                    </option>
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted"></span>
             </div>
@@ -60,6 +57,8 @@
 
 
 @endsection
-
 @section('js')
+    <script>
+        $('.datetime').datetimepicker();
+    </script>
 @endsection

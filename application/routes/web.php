@@ -23,13 +23,21 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/evaluation', 'EvaluationController@index')->name('evaluations.index');
     Route::get('/evaluation/{course}/create', 'EvaluationController@create')->name('evaluations.create');
+    //Route::get('/evaluation/course_evaluation', 'EvaluationController@create')->name('course_evaluation.create');
+    //Route::get('/evaluation/trainer_evaluation', 'EvaluationController@create')->name('trainer_evaluation.create');
+    //Route::get('/evaluation/trainee_assisment', 'EvaluationController@create')->name('trainee_assisment.create');
+
+    Route::resource('course_evaluation','CourseEvaluationController');
+    Route::resource('trainer_evaluation','TrainerEvaluationController');
+    Route::resource('trainee_assisment','TraineeAssismentController');
+
     Route::get('/logout', 'Auth\LoginController@logout');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
 
   //Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
-    Route::get('/course-registration', 'CourseRegistrationController@index')->name('course_registration.index');
+    Route::get('/courses/{course}/course-registration', 'CourseRegistrationController@index')->name('course_registration.index');
     Route::get('/course-registration/create', 'CourseRegistrationController@create')->name('course_registration.create');
     Route::post('/course-registration', 'CourseRegistrationController@store')->name('course_registration.store');
     Route::get('/course-registration/{course_registration}', 'CourseRegistrationController@show')->name('course_registration.show');

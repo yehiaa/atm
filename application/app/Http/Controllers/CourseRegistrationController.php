@@ -22,17 +22,20 @@ class CourseRegistrationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Course $course)
     {
        $items = DB::table('course_registration')
             ->join('courses','course_registration.course_id','=','courses.id'  )
             ->join('trainees',  'course_registration.trainee_id','=', 'trainees.id')
             ->join('affiliations','course_registration.affiliation_id','=','affiliations.id')
+            ->where('courses.id', $course->id)
             ->select('course_registration.*', 'trainees.name as trainee_name', 'courses.name as course_name', 'affiliations.name as affiliation_name')
             ->get();
+      // dd($items);
+
        // $items = CourseRegistration::where('trainee_id', 'course_registration.trainee_id')->where('course_id','course_registration.course_id')->get();
 
-        return view('course_registration.index', compact('items'));
+        return view('course_registration.index', compact('items','course'));
     }
 
     /**
@@ -65,7 +68,6 @@ class CourseRegistrationController extends Controller
         $request->merge(['payment_by'=> auth()->user()->id]);
         $request->merge(['payment_at'=> (new \DateTIme())->format('Y-m-d H:i:s')]);
 
-
         $request->validate(['course_id'=>'required',
                             'trainee_id'=>'required',
                             'payment_type'=>'required',
@@ -76,7 +78,6 @@ class CourseRegistrationController extends Controller
 //        {
 //            $request->validate(['affiliation_id'=>'required', 'nomination_reference'=>'required']);
 //        }
-
         $courseRegistration = CourseRegistration::create($request->all());
 
         return redirect(route('course_registration.create'))->withSuccess('created successfully');
