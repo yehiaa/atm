@@ -8,12 +8,12 @@
         <li class="breadcrumb-item">
             <a href="{{ route('evaluations.index') }}">Evaluations</a>
         </li>
-        <li class="breadcrumb-item active">Course evaluation</li>
+        <li class="breadcrumb-item active">Trainer evaluation</li>
     </ol>
 
     <p>This is for demo purposes</p>
     <!-- Page Content -->
-    <h1>Courses Evaluation</h1>
+    <h1>Trainer Evaluation</h1>
     {{--<hr>--}}
 
     @include('_partials.flash-messages')
@@ -23,20 +23,6 @@
 
             <form>
                 @csrf
-                {{--<div class="form-group">--}}
-                {{--<label for="trainee_id">Trainee</label>--}}
-                {{--<div>--}}
-                {{--<select id="trainee_id" name="trainee_id"--}}
-                {{--class="form-control"--}}
-                {{--aria-describedby="selectHelpBlock" >--}}
-                {{--@foreach($course->registrations as $registration)--}}
-                {{--<option value="{{ $registration->trainee->id }}" @if(old('trainee_id') == $registration->trainee->id) selected @endif>{{ $registration->trainee->name }}</option>--}}
-                {{--@endforeach--}}
-                {{--</select>--}}
-                {{--<span id="selectHelpBlock" class="form-text text-muted">Registered trainees</span>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-
                 <div class="form-group">
                     <label for="files">Attachments</label>
                     <div>
@@ -49,27 +35,12 @@
                     <thead>
                     <tr>
                         <th scope="col">Trainer Name</th>
-                        <th scope="col">Scientific Skills </th>
-                        <th scope="col">Presentation Skills</th>
-                        <th scope="col">Communication Skills</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($course->trainers as $trainer)
-                            <th scope="row">{{ $trainer->name }}</th>
                             <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}"> Unsatisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}"> Satisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}"> Highly Satisfied
-                                </label>
-                            </td>
-                        </tr>
+                                <th scope="col">Scientific Skills </th>
+                            </tr>
                         <tr>
                             <td>
                                 <label>
@@ -83,6 +54,9 @@
                                 </label>
                             </td>
                         </tr>
+                            <tr>
+                                <th scope="col">Presentation Skills</th>
+                            </tr>
                         <tr>
                             <td>
                                 <label>
@@ -96,7 +70,24 @@
                                 </label>
                             </td>
                         </tr>
-                    @endforeach
+                    <tr>
+                        <th scope="col">Communication Skills</th>
+                    </tr>
+                    <!--@foreach($course->trainers as $trainer)
+                                @endforeach-->
+                            <tr>
+                            <td>
+                                <label>
+                                    <input type="radio" name="{{$trainer->name}}"> Unsatisfied
+                                </label>
+                                <label>
+                                    <input type="radio" name="{{$trainer->name}}"> Satisfied
+                                </label>
+                                <label>
+                                    <input type="radio" name="{{$trainer->name}}"> Highly Satisfied
+                                </label>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <label for="">Recommendation for improvements</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>

@@ -14,7 +14,7 @@ class courseEvaluationController extends Controller
      */
     public function index(Course $course)
     {
-        return view('evaluation/course_evaluation', compact('course'));
+        return view('evaluation.course_evaluation', compact('course'));
     }
 
     /**

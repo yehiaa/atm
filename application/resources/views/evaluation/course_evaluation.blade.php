@@ -32,14 +32,15 @@
                 </div>
                     <table class="table">
                         <thead>
-                        <tr>
-                            <th scope="col">Organization</th>
-                            <th scope="col">Educational tools</th>
-                            <th scope="col">Coffee break</th>
-                            <th scope="col">Overall evaluation</th>
-                        </tr>
+
+
+
+
                         </thead>
                         <tbody>
+                        <tr>
+                            <th scope="col">Organization</th>
+                        </tr>
                         <tr>
                             <td>
                                 <label>
@@ -52,6 +53,9 @@
                                     <input type="radio" name="_"> Highly Satisfied
                                 </label>
                             </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Educational tools</th>
                         </tr>
                         <tr>
                             <td>
@@ -67,6 +71,9 @@
                             </td>
                         </tr>
                         <tr>
+                            <th scope="col">Coffee break</th>
+                        </tr>
+                        <tr>
                             <td>
                                 <label>
                                     <input type="radio" name="___"> Unsatisfied
@@ -78,6 +85,9 @@
                                     <input type="radio" name="___"> Highly Satisfied
                                 </label>
                             </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Overall evaluation</th>
                         </tr>
                         <tr>
                             <td>
@@ -95,7 +105,8 @@
                         </tbody>
                     </table>
 
-                <label for="">Additional comments</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <label for="">Additional comments</label>
+                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
                 <div class="form-group">
                     <button name="submit" type="submit" class="btn btn-primary">Save</button>
                 </div>

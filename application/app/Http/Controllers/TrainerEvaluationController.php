@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\Trainer;
 use Illuminate\Http\Request;
 
 class trainerEvaluationController extends Controller
@@ -11,9 +13,10 @@ class trainerEvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Trainer $trainer, Course $course)
     {
-        //
+
+        return view('evaluation.trainer_evaluation', compact('course','trainer'));
     }
 
     /**

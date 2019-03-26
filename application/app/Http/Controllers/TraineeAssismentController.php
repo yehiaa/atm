@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Course;
 class traineeAssismentController extends Controller
 {
     /**
@@ -11,9 +11,9 @@ class traineeAssismentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        //
+        return view('evaluation.trainee_assisment', compact('course'));
     }
 
     /**

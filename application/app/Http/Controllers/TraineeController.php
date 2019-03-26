@@ -34,6 +34,20 @@ class TraineeController extends Controller
         }
         return response()->json($items);
     }
+    public function autocompleteCity()
+    {
+        $q = request('q');
+
+        $items = Trainee::all();
+        if ($q){
+            $items = Trainee::where('name', 'like', '%'.$q.'%')
+                ->orWhere('phone', '%'.$q.'%')
+                ->orWhere('identity', '%'.$q.'%')
+                ->orWhere('email', '%'.$q.'%')
+                ->get();
+        }
+        return response()->json($items);
+    }
 
     /**
      * Show the form for creating a new resource.
