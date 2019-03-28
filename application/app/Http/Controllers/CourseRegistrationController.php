@@ -43,12 +43,12 @@ class CourseRegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
         $courses = Course::all();
         $affiliations = Affiliation::all();
         $specialities = Speciality::all();
-        return view('course_registration.create', compact('courses', 'affiliations', 'specialities'));
+        return view('course_registration.create', compact('courses', 'affiliations', 'specialities','course'));
     }
 
     /**
@@ -121,11 +121,11 @@ class CourseRegistrationController extends Controller
      * @param  \App\CourseRegistration  $courseRegistration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseRegistration $courseRegistration)
+    public function destroy(CourseRegistration $courseRegistration, Course $course)
     {
         try {
             $courseRegistration->delete();
-            return redirect(route('course_registration.index'))->withSuccess('registry removed successfully');
+            return redirect(route('course_registration.index',$course))->withSuccess('registry removed successfully');
         }
         catch (\Exception $e){
             return redirect(route('course_registration.index')->with("error",$e->getMessage()));

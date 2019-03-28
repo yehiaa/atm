@@ -5,9 +5,9 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/home') }}">Home</a>
         </li>
-        {{--<li class="breadcrumb-item">--}}
-            {{--<a href="{{ route('course_registration.create') }}">Course registration</a>--}}
-        {{--</li>--}}
+        <li class="breadcrumb-item">
+            <a href="{{ route('course_registration.index',[$course->course_id]) }}">Course registration</a>
+        </li>
         <li class="breadcrumb-item active">Course registration</li>
     </ol>
 
@@ -65,7 +65,8 @@
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="payment_type" id="payment_type" checked value="3">
-                        Affiliation</label>
+                        Affiliation
+                    </label>
                 </div>
         </div>
 

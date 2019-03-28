@@ -8,7 +8,7 @@
         <li class="breadcrumb-item">
             <a href="{{ route('trainees.index') }}">Trainees</a>
         </li>
-        <li class="breadcrumb-item active">Edit trainee{{ $trainee->name }}</li>
+        <li class="breadcrumb-item active">Edit trainee  {{ $trainee->name }}</li>
     </ol>
 
     <!-- Page Content -->
@@ -71,13 +71,18 @@
                 </div>
             </div>
         </div>
+
         <div class="form-group">
             <label for="country">Country</label>
-            <input id="country" name="country" class="form-control here" value="{{ $trainee->country}}" type="text">
+            <select id="country" name="country" class="form-control">
+
+            </select>
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input id="city" name="city" class="form-control here" value="{{ $trainee->city }}" type="text">
+            <select id="city" name="city" class="form-control" >
+
+            </select>
         </div>
 
         <div class="form-group">
@@ -87,7 +92,9 @@
                         class="form-control"
                         aria-describedby="selectHelpBlock" >
                     @foreach($specialities as $speciality)
-                        <option value="{{ $speciality->id }}" @if($trainee->speciality_id == $speciality->id) selected @endif>{{ $speciality->name }}</option>
+                        <option value="{{ $speciality->id }}" @if($trainee->speciality_id == $speciality->id) selected @endif>
+                            {{ $speciality->name }}
+                        </option>
                     @endforeach
                 </select>
                 <span id="selectHelpBlock" class="form-text text-muted">Specialities</span>
@@ -125,4 +132,16 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('js/countries.js') }}"></script>
+    <script>
+        var clb = function (country, city){
+            country.val("{{ $trainee->country }}");
+            country.trigger('change');
+            city.val("{{ $trainee->city }}");
+            city.trigger('change');
+        }
+
+        initializeCountryAndCityControls('#country', '#city', 'body', clb);
+
+    </script>
 @endsection

@@ -5,7 +5,9 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
-        <li class="breadcrumb-item"><a href="{{ route('courses.index') }}">Courses</a></li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('courses.index') }}">Courses</a>
+        </li>
         <li class="breadcrumb-item active">{{ $course->name }}</li>
     </ol>
     <!-- Page Content -->

@@ -65,13 +65,11 @@
 
         <div class="form-group">
             <label for="country">Country</label>
-            <select id="country" name="country" class="form-control" >
-                <option value="{{ $trainer->country }}"></option>
-            </select>
+            <select id="country" name="country" class="form-control" ></select>
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <select id="city" name="city" class="form-control here" value="{{ $trainer->city }}"></select>
+            <select id="city" name="city" class="form-control here" ></select>
         </div>
         <div class="form-group">
             <label for="bank_name">Bank name</label>
@@ -156,6 +154,14 @@
 @section('js')
     <script src="{{ asset('js/countries.js') }}"></script>
     <script>
-        initializeCountryAndCityControls('#country', '#city', 'body');
+        var clb = function (country, city){
+            country.val("{{ $trainer->country }}");
+            country.trigger('change');
+            city.val("{{ $trainer->city }}");
+            city.trigger('change');
+        }
+
+        initializeCountryAndCityControls('#country', '#city', 'body', clb);
+
     </script>
 @endsection

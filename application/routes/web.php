@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function()
 
   //Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
     Route::get('/courses/{course}/course-registration', 'CourseRegistrationController@index')->name('course_registration.index');
-    Route::get('/course-registration/create', 'CourseRegistrationController@create')->name('course_registration.create');
+    Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');
     Route::post('/course-registration', 'CourseRegistrationController@store')->name('course_registration.store');
     Route::get('/course-registration/{course_registration}', 'CourseRegistrationController@show')->name('course_registration.show');
     Route::get('/course-registration/{course_registration}/edit', 'CourseRegistrationController@edit')->name('course_registration.edit');

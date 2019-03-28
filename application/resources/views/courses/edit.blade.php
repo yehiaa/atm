@@ -6,7 +6,7 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('trainees.index') }}">Course</a>
+            <a href="{{ route('courses.index') }}">Course</a>
         </li>
         <li class="breadcrumb-item active">Edit Course{{ $course->name }}</li>
     </ol>

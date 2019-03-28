@@ -1,4 +1,4 @@
-function initializeCountryAndCityControls(countrySelector, citySelector, dropdownParentSelector){
+function initializeCountryAndCityControls(countrySelector, citySelector, dropdownParentSelector, callback){
     countrySelector = countrySelector || '#country';
     citySelector = citySelector || '#city';
 
@@ -31,5 +31,10 @@ function initializeCountryAndCityControls(countrySelector, citySelector, dropdow
                 })
             });
         });
+
+        if (callback) {
+            callback($country, $(citySelector));
+        }
+
     });
 }

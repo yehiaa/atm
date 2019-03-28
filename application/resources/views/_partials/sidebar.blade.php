@@ -8,7 +8,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="{{ url('/course-registration') }}">
+    <a class="nav-link" href="{{ route('course_registration.create') }}">
       <i class="fas fa-fw fa-calendar"></i>
       <span>Course registration</span></a>
   </li>
