@@ -62,9 +62,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Evaluation:</h6>
-            <a class="dropdown-item" href="{{ url('course_evaluation') }}">Course Evaluation</a>
-            <a class="dropdown-item" href="{{ url('trainer_evaluation') }}">Trainer Evaluation</a>
-            <a class="dropdown-item" href="{{ url('trainee_assisment') }}">Trainees Assisment</a>
+            <a class="dropdown-item" href= "{{ url('/course-evaluation') }}">Course Evaluation</a>
+            <a class="dropdown-item" href="{{ url('/trainer_evaluation') }}">Trainer Evaluation</a>
+            <a class="dropdown-item" href="{{ url('/trainee_assessment') }}">Trainees Assessment</a>
             <div class="dropdown-divider"></div>
         </div>
     </li>

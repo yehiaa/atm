@@ -6,7 +6,7 @@
             <a href="{{ url('/home') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('course_registration.index',[$course->course_id]) }}">Course registration</a>
+            <a href="{{ route('course_registration.index',[$course->id]) }}">Course registration</a>
         </li>
         <li class="breadcrumb-item active">Course registration</li>
     </ol>

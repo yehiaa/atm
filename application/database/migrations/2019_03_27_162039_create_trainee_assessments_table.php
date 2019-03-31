@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTraineeAssismentTable extends Migration
+class CreateTraineeAssessmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTraineeAssismentTable extends Migration
      */
     public function up()
     {
-        Schema::create('trainee_assisment', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('trainee_assessments', function (Blueprint $table) {
+            $table->bigincrements('id');
             $table->unsignedInteger('course_id');
-            $table->foreign('course_id')->reference('id')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->unsignedInteger('trainee_id');
-            $table->foreign('trainee_id')->reference('id')->on('trainees');
+            $table->foreign('trainee_id')->references('id')->on('trainees');
             $table->unsignedTinyInteger('pretest');
             $table->unsignedTinyInteger('posttest');
             $table->unsignedTinyInteger('improvement');
@@ -35,6 +35,6 @@ class CreateTraineeAssismentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trainee_assisment');
+        Schema::dropIfExists('trainee_assessments');
     }
 }

@@ -31,8 +31,8 @@ class CourseRegistrationController extends Controller
             ->where('courses.id', $course->id)
             ->select('course_registration.*', 'trainees.name as trainee_name', 'courses.name as course_name', 'affiliations.name as affiliation_name')
             ->get();
-      // dd($items);
 
+      // dd($items);
        // $items = CourseRegistration::where('trainee_id', 'course_registration.trainee_id')->where('course_id','course_registration.course_id')->get();
 
         return view('course_registration.index', compact('items','course'));
@@ -48,7 +48,7 @@ class CourseRegistrationController extends Controller
         $courses = Course::all();
         $affiliations = Affiliation::all();
         $specialities = Speciality::all();
-        return view('course_registration.create', compact('courses', 'affiliations', 'specialities','course'));
+        return view('course_registration.create', compact('course','courses', 'affiliations', 'specialities'));
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
-class traineeAssismentController extends Controller
+class traineeAssessmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class traineeAssismentController extends Controller
      */
     public function index(Course $course)
     {
-        return view('evaluation.trainee_assisment', compact('course'));
+        return view('evaluation.trainee_assessment', compact('course'));
     }
 
     /**

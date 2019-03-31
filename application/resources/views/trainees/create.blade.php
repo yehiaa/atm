@@ -18,6 +18,7 @@
 
     <form method="post" action="{{ route('trainees.store') }}" enctype="multipart/form-data">
         @csrf
+
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="name" class="form-control here" value="{{ old('name') }}" type="text">

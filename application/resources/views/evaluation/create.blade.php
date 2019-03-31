@@ -118,54 +118,55 @@
                 <tr>
                     <td>
                         <label>
-                            <input type="radio" name="_"> Unsatisfied
+                            <input id="organization" type="radio" name="organization"> Unsatisfied
                         </label>
                         <label>
-                            <input type="radio" name="_"> Satisfied
+                            <input id="organization" type="radio" name="Organization"> Satisfied
                         </label>
                         <label>
-                            <input type="radio" name="_"> Highly Satisfied
-                        </label>
-                    </td>
-                    <td>
-                        <label>
-                            <input type="radio" name="__"> Unsatisfied
-                        </label>
-                        <label>
-                            <input type="radio" name="__"> Satisfied
-                        </label>
-                        <label>
-                            <input type="radio" name="__"> Highly Satisfied
+                            <input id="organization" type="radio" name="organization"> Highly Satisfied
                         </label>
                     </td>
                     <td>
                         <label>
-                            <input type="radio" name="___"> Unsatisfied
+                            <input id="educational_tools" type="radio" name="educational_tools"> Unsatisfied
                         </label>
                         <label>
-                            <input type="radio" name="___"> Satisfied
+                            <input id="educational_tools" type="radio" name="educational_tools"> Satisfied
                         </label>
                         <label>
-                            <input type="radio" name="___"> Highly Satisfied
+                            <input id="educational_tools" type="radio" name="educational_tools"> Highly Satisfied
                         </label>
                     </td>
                     <td>
                         <label>
-                            <input type="radio" name="_____"> Unsatisfied
+                            <input id="cofee_break" type="radio" name="cofee_break"> Unsatisfied
                         </label>
                         <label>
-                            <input type="radio" name="_____"> Satisfied
+                            <input id="cofee_break" type="radio" name="cofee_break"> Satisfied
                         </label>
                         <label>
-                            <input type="radio" name="_____"> Highly Satisfied
+                            <input id="cofee_break" type="radio" name="cofee_break"> Highly Satisfied
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input id="overall_evaluation" type="radio" name="overall_evaluation"> Unsatisfied
+                        </label>
+                        <label>
+                            <input id="overall_evaluation" type="radio" name="overall_evaluation"> Satisfied
+                        </label>
+                        <label>
+                            <input id="overall_evaluation" type="radio" name="overall_evaluation"> Highly Satisfied
                         </label>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <label for="">Additional comments</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+        <label for="comment">Additional comments</label>
+        <textarea class="form-control" name="comment" id="comment" cols="30" rows="5"></textarea>
         <table class="table">
-            <h1>Trainee Assisment</h1>
+            <h1>Trainee Assessment</h1>
             <tbody>
             <tr>
                 <td>Pretest average</td>

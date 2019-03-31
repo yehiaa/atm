@@ -6,7 +6,8 @@
             <a href="{{ url('/home') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('evaluations.index') }}">Evaluations</a>
+
+            <a href= "{{ route('course_evaluation.create', [$course->id]) }}">Evaluations</a>
         </li>
         <li class="breadcrumb-item active">Course evaluation</li>
     </ol>
@@ -20,9 +21,23 @@
 
     <div class="row">
         <div class="col-md-12">
-
-            <form>
+            <form method="post" action="{{ route('course_evaluation.store',[$course->id]) }}">
+                <did>
+                    <h2> Course</h2>
+                </did>
                 @csrf
+                <div class="form-group">
+                    <label for="course_id">Course</label>
+                    <div>
+                        <select id="course_id" name="course_id" class="form-control js-select2-enabled" aria-describedby="selectHelpBlock" required="required">
+                            @foreach($courses as $course)
+                                <option value="{{ $course->id }}" @if(old('course_id') == $course->id) selected @endif >{{ $course->name }}</option>
+                            @endforeach
+                        </select>
+                        <span id="selectHelpBlock" class="form-text text-muted">select the course</span>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="files">Attachments</label>
                     <div>
@@ -31,12 +46,7 @@
                     </div>
                 </div>
                     <table class="table">
-                        <thead>
-
-
-
-
-                        </thead>
+                        <thead></thead>
                         <tbody>
                         <tr>
                             <th scope="col">Organization</th>
@@ -44,13 +54,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input type="radio" name="_"> Unsatisfied
+                                    <input id="organization" type="radio" name="organization"> Unsatisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="_"> Satisfied
+                                    <input id="organization" type="radio" name="organization"> Satisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="_"> Highly Satisfied
+                                    <input id="organization" type="radio" name="organization"> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
@@ -60,13 +70,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input type="radio" name="__"> Unsatisfied
+                                    <input id="educational_tools" type="radio" name="educational_tools"> Unsatisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="__"> Satisfied
+                                    <input id="educational_tools" type="radio" name="educational_tools"> Satisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="__"> Highly Satisfied
+                                    <input id="educational_tools" type="radio" name="educational_tools"> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
@@ -76,13 +86,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input type="radio" name="___"> Unsatisfied
+                                    <input id="cofee_break" type="radio" name="cofee_break"> Unsatisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="___"> Satisfied
+                                    <input id="cofee_break" type="radio" name="cofee_break"> Satisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="___"> Highly Satisfied
+                                    <input id="cofee_break" type="radio" name="cofee_break"> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
@@ -92,21 +102,20 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input type="radio" name="_____"> Unsatisfied
+                                    <input id="overall_evaluation" type="radio" name="overall_evaluation"> Unsatisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="_____"> Satisfied
+                                    <input id="overall_evaluation" type="radio" name="overall_evaluation"> Satisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="_____"> Highly Satisfied
+                                    <input id="overall_evaluation" type="radio" name="overall_evaluation"> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-
-                <label for="">Additional comments</label>
-                <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                <label for="comment">Additional comments</label>
+                <textarea class="form-control" name="comment" id="comment" cols="30" rows="5"></textarea>
                 <div class="form-group">
                     <button name="submit" type="submit" class="btn btn-primary">Save</button>
                 </div>
