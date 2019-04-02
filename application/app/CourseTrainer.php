@@ -10,7 +10,7 @@ class CourseTrainer extends Pivot
 
     public function trainer()
     {
-        return $this->belongsTo('App\Trainee');
+        return $this->belongsTo('App\Trainer');
     }
 
     public function course()

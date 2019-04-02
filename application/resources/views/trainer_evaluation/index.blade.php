@@ -38,44 +38,44 @@
                     </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <th scope="col">Scientific Skills </th>
-                            </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}_"> Unsatisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}_"> Satisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}_"> Highly Satisfied
-                                </label>
-                            </td>
-                        </tr>
-                            <tr>
-                                <th scope="col">Presentation Skills</th>
-                            </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}__"> Unsatisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}__"> Satisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="{{$trainer->name}}__"> Highly Satisfied
-                                </label>
-                            </td>
-                        </tr>
+                    <tr>
+                        <th scope="col">Scientific Skills </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="{{$trainer->name}}_"> Unsatisfied
+                            </label>
+                            <label>
+                                <input type="radio" name="{{$trainer->name}}_"> Satisfied
+                            </label>
+                            <label>
+                                <input type="radio" name="{{$trainer->name}}_"> Highly Satisfied
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Presentation Skills</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="{{$trainer->name}}__"> Unsatisfied
+                            </label>
+                            <label>
+                                <input type="radio" name="{{$trainer->name}}__"> Satisfied
+                            </label>
+                            <label>
+                                <input type="radio" name="{{$trainer->name}}__"> Highly Satisfied
+                            </label>
+                        </td>
+                    </tr>
                     <tr>
                         <th scope="col">Communication Skills</th>
                     </tr>
                     <!--@foreach($course->trainers as $trainer)
-                                @endforeach-->
-                            <tr>
+                        @endforeach-->
+                        <tr>
                             <td>
                                 <label>
                                     <input type="radio" name="{{$trainer->name}}"> Unsatisfied

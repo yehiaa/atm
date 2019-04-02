@@ -13,7 +13,7 @@ class traineeAssessmentController extends Controller
      */
     public function index(Course $course)
     {
-        return view('evaluation.trainee_assessment', compact('course'));
+        return view('trainee_assessment.index', compact('course'));
     }
 
     /**
@@ -23,7 +23,7 @@ class traineeAssessmentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

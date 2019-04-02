@@ -13,7 +13,6 @@ class Course extends Model
     {
         return $this->hasMany('App\Lecture');
     }
-
     /**
      * returns course trainer pivot relation
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -32,5 +31,10 @@ class Course extends Model
     public function registrations()
     {
         return $this->hasMany('App\CourseRegistration');
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany('App\CourseEvaluation');
     }
 }

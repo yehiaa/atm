@@ -16,9 +16,10 @@
     select course to evaluate
     <div class="form-group">
         <div>
-            <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" class="form-control" aria-describedby="selectHelpBlock">
+            <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);
+                             " class="form-control" aria-describedby="selectHelpBlock">
+                <option value="">select</option>
                 @foreach($courses as $course)
-                    <option value="">select</option>
                     <option value="{{ route('evaluations.create', [$course->id]) }}">{{ $course->name }}</option>
                 @endforeach
             </select>

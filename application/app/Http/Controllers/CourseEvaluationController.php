@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Course;
 use App\CourseEvaluation;
 use App\Trainee;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class courseEvaluationController extends Controller
 {
@@ -14,11 +16,21 @@ class courseEvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+//
     public function index(Course $course)
     {
-        return view('evaluation.course_evaluation', compact('course'));
-    }
+        $items = DB::table('course_evaluations')
+            ->join('trainees','course_evaluations.trainee_id','=','trainees.id')
+            ->join('course_registration','trainees.id','=','course_registration.trainee_id'  )
+            ->join('courses',  'course_registration.course_id','=', 'courses.id')
+            //->where('courses.id', $course->id)
+            ->select( 'course_evaluations.*','trainees.*','trainees.name as trainee_name', 'courses.name as course_name')
+            ->get();
 
+//$items = CourseEvaluation::all();
+//dd($items);
+        return view('course_evaluation.index', compact('course','items','trainees'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -27,10 +39,36 @@ class courseEvaluationController extends Controller
      * ,
      */
 
-    public function create(Course $course,Trainee $trainee)
+    public function create(Course $course)
     {
-        $courses = Course::all();
-        return view('evaluation.course_evaluation', compact('courses' ,'course','trainee'));
+        /*$trainees = $course->trainees;
+        $items = DB::table('course_registration')
+            ->join('courses','course_registration.course_id','=','courses.id'  )
+            ->join('trainees',  'course_registration.trainee_id','=', 'trainees.id')
+            ->join('affiliations','course_registration.affiliation_id','=','affiliations.id')
+            ->where('courses.id', $course->id)
+            ->select('course_registration.*', 'trainees.name as trainee_name', 'courses.name as course_name', 'affiliations.name as affiliation_name')
+            ->get();
+            SELECT course_evaluations.*,trainees.name, courses.name
+            FROM course_evaluations
+            JOIN courses ON course_evaluations.course_id = courses.id
+            JOIN trainees on trainees.id = course_evaluations.trainee_id
+            WHERE trainee_id = 1
+
+        SELECT trainees.name, courses.name
+        FROM trainees
+        JOIN course_registration ON trainee_id=trainees.id
+        JOIN courses on course_registration.course_id = courses.id
+        WHERE courses.id = 9;
+        */
+        $trainees = DB::table('trainees')
+            ->join('course_registration','trainees.id','=','trainee_id'  )
+            ->join('courses',  'course_registration.course_id','=', 'courses.id')
+            ->where('courses.id', $course->id)
+            ->select( 'trainees.*','trainees.name as trainee_name', 'courses.name as course_name')
+            ->get();
+        //dd($trainees);
+        return view('course_evaluation.create', compact('trainees','course'));
     }
 
     /**
@@ -40,13 +78,8 @@ class courseEvaluationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
-        $count = CourseEvaluation::where('trainee_id', $request->get('trainee_id'))->where('course_id', $request->get('course_id'))->count();
-        if ($count > 0){
-            return redirect(route('course_evaluation.create'))
-                ->withErrors('trainee already evaluate the course ')->withInput();
-        }
         $request->validate(['course_id'=>'required',
             'trainee_id'=>'required',
             'organization'=>'required',
@@ -55,8 +88,7 @@ class courseEvaluationController extends Controller
             'overall_evaluation'=>'required'
            ]);
         CourseEvaluation::create($request->all());
-
-        return redirect(route('course_evaluation.create'))->withSuccess('created successfully');
+        return redirect(route('course_evaluation.index',[$course->id]))->withSuccess('created successfully');
 
     }
 
@@ -100,8 +132,14 @@ class courseEvaluationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CourseEvaluation $courseEvaluation ,Course $course)
     {
-        //
+        try{
+        $courseEvaluation->delete();
+        return redirect(route('course_evaluation.index',[$course->id]))->withSuccess('created successfully');
+        } catch (\Exception $e){
+                return redirect(route('course_evaluation.index',[$course->id]))->with("error", $e);
+            }
+        }
+
     }
-}

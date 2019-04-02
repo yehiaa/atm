@@ -23,6 +23,10 @@
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lectures</a>
                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Trainers</a>
                     <a class="nav-link"  href="{{ route('course_registration.index',$course->id) }}">Registrants</a>
+                    <a class="nav-link"  href="{{ route('course_evaluation.index',$course->id) }}">Course Evaluation</a>
+                    <a class="nav-link"  href="{{ route('trainer_evaluation.index',$course->id) }}">Trainer Evaluation</a>
+                    <a class="nav-link"  href="{{ route('trainee_assessment.index',$course->id) }}">Trainee Assessment</a>
+
                     <!--<a class="nav-item nav-link" id="nav-registrant-tab" data-toggle="tab" href="#nav-registrant" role="tab" aria-controls="nav-registrant" aria-selected="false"></a>-->
                 </div>
             </nav>

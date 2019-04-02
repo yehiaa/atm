@@ -25,17 +25,15 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/evaluation/{course}/create', 'EvaluationController@create')->name('evaluations.create');
     //Route::get('/evaluation/course_evaluation', 'EvaluationController@create')->name('course_evaluation.create');
     //Route::get('/evaluation/trainer_evaluation', 'EvaluationController@create')->name('trainer_evaluation.create');
-    //Route::get('/evaluation/trainee_assessment', 'EvaluationController@create')->name('trainee_assisment.create');
+    //Route::get('/evaluation/trainee_assessment', 'EvaluationController@create')->name('trainee_assessment.create');
 
    // Route::resource('course-evaluation','CourseEvaluationController');
     //
-    Route::get('/course-evaluation', 'CourseEvaluationController@index')->name('course_evaluation.index');
-    Route::get('/course-evaluation/{course}/create', 'CourseEvaluationController@create')->name('course_evaluation.create');
-    Route::post('/course-evaluation', 'CourseEvaluationController@store')->name('course_evaluation.store');
-    Route::get('/course-evaluation/{course_evaluation}', 'CourseEvaluationController@show')->name('course_evaluation.show');
-    Route::get('/course-evaluation/{course_evaluation}/edit', 'CourseEvaluationController@edit')->name('course_evaluation.edit');
-    Route::patch('/course-evaluation/{course_evaluation}', 'CourseEvaluationController@update')->name('course_evaluation.update');
-    Route::delete('/course-evaluation/{course_evaluation}', 'CourseEvaluationController@destroy')->name('course_evaluation.destroy');
+    Route::get('/courses/{course}/course-evaluation', 'CourseEvaluationController@index')->name('course_evaluation.index');
+    Route::get('/courses/{course}/course-evaluation/create', 'CourseEvaluationController@create')->name('course_evaluation.create');
+    Route::post('/courses/{course}/course-evaluation', 'CourseEvaluationController@store')->name('course_evaluation.store');
+    Route::get('/courses/{course}/course-evaluation/{course_evaluation}', 'CourseEvaluationController@show')->name('course_evaluation.show');
+    Route::delete('/courses/{course}/course-evaluation/{course_evaluation}', 'CourseEvaluationController@destroy')->name('course_evaluation.destroy');
 
 
 

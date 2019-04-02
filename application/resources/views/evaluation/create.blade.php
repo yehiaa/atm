@@ -6,9 +6,9 @@
             <a href="{{ url('/home') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('evaluations.index') }}">Evaluations</a>
+            <a href="{{ route('course_evaluations.index') }}">Course Evaluations</a>
         </li>
-        <li class="breadcrumb-item active">Course evaluation</li>
+        <li class="breadcrumb-item active">Add Course evaluation</li>
     </ol>
 
     <p>This is for demo purposes</p>
@@ -23,20 +23,6 @@
 
     <form>
         @csrf
-        {{--<div class="form-group">--}}
-            {{--<label for="trainee_id">Trainee</label>--}}
-            {{--<div>--}}
-                {{--<select id="trainee_id" name="trainee_id"--}}
-                        {{--class="form-control"--}}
-                        {{--aria-describedby="selectHelpBlock" >--}}
-                    {{--@foreach($course->registrations as $registration)--}}
-                        {{--<option value="{{ $registration->trainee->id }}" @if(old('trainee_id') == $registration->trainee->id) selected @endif>{{ $registration->trainee->name }}</option>--}}
-                    {{--@endforeach--}}
-                {{--</select>--}}
-                {{--<span id="selectHelpBlock" class="form-text text-muted">Registered trainees</span>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-
         <div class="form-group">
             <label for="files">Attachments</label>
             <div>
@@ -92,12 +78,6 @@
                         </label>
                     </td>
                 </tr>
-
-                {{--<div class="form-group">--}}
-                    {{--<label>--}}
-                        {{--<input name="text" autocomplete="off" class="form-control" type="radio">--}}
-                    {{--</label>--}}
-                {{--</div>--}}
             @endforeach
 
             </tbody>

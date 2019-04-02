@@ -128,7 +128,7 @@ class CourseRegistrationController extends Controller
             return redirect(route('course_registration.index',$course))->withSuccess('registry removed successfully');
         }
         catch (\Exception $e){
-            return redirect(route('course_registration.index')->with("error",$e->getMessage()));
+            return redirect(route('course_registration.index',$course)->with("error",$e->getMessage()));
         }
     }
 }
