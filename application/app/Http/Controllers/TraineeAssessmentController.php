@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TraineeAssessment;
 use Illuminate\Http\Request;
 use App\Course;
 class traineeAssessmentController extends Controller
@@ -13,7 +14,8 @@ class traineeAssessmentController extends Controller
      */
     public function index(Course $course)
     {
-        return view('trainee_assessment.index', compact('course'));
+        $items = TraineeAssessment::all();
+        return view('trainee_assessment.index', compact('course','items'));
     }
 
     /**

@@ -35,6 +35,6 @@ class Course extends Model
 
     public function evaluations()
     {
-        return $this->hasMany('App\CourseEvaluation');
+        return $this->hasMany(CourseEvaluation::class);
     }
 }
