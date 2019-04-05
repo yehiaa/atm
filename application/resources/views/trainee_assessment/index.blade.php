@@ -27,7 +27,6 @@
                     <a class="nav-link"  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>
                     <a class="nav-link"  href="{{ route('trainer_evaluation.index',[$course->id]) }}">Trainer Evaluation</a>
                     <a class="nav-link active"  href="{{ route('trainee_assessment.index',[$course->id]) }}">Trainee Assessment</a>
-
                 </div>
             </nav>
         </div>
@@ -47,7 +46,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($course->assessments as $item)
+                    @foreach($course->traineeAssessments as $item)
                         <tr>
                             <td scope="col">{{$course->name}}</td>
                             <td scope="col">{{$item->trainee_id }}</td>
@@ -56,7 +55,7 @@
                             <td scope="col">{{$item->improvement}}</td>
                             <td scope="col">{{$item->average_trainee_satisfaction}}</td>
                             <td>
-                                <form action="{{ route('trainee_assessment.destroy',[$course->id,$item->id]) }}" method="POST">
+                                <form action="{{ route('trainee_assessment.destroy',[$item->course_id, $item->id]) }}" method="POST">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>

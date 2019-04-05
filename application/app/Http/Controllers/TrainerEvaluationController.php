@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Trainer;
-use App\TrainerEvaluation;
-use App\TrainerEvaluationDetail;
 use Illuminate\Http\Request;
 
 class trainerEvaluationController extends Controller
@@ -15,11 +13,9 @@ class trainerEvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Course $course)
+    public function index(Course $course)
     {
-        $items = TrainerEvaluationDetail::with(TrainerEvaluation::class)->where('trainer_evaluation_id','=','id')->get();
-        dd($items);
-        return view('trainer_evaluation.index', compact('course','items'));
+        return view('trainer_evaluation.index', compact('course'));
     }
 
     /**
@@ -40,7 +36,26 @@ class trainerEvaluationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+         "details" => array:2 [▼
+            1 => array:2 [▼
+            "scientific_skills" => "unsatisfied"
+            "communications_skills" => "highly_Satisfied"
+            ]
+            2 => array:1 [▼
+            "communications_skills" => "unsatisfied"
+            ]
+            ]
+        */
+        dd($request->all());
+        //details is an associative array the keys are the trainer ids
+        $details = $request->get('details');
+        foreach ($details as $trainer_id => $detail)
+        {
+            var_dump($trainer_id);
+            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
+
+        }
     }
 
     /**
@@ -85,6 +100,6 @@ class trainerEvaluationController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
 }

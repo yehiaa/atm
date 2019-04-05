@@ -38,14 +38,14 @@ class Course extends Model
         return $this->hasMany(CourseEvaluation::class);
     }
 
-    public function trainerEvaluation()
-    {
-        return $this->hasMany(TrainerEvaluation::class);
-    }
-
-    public function assessments()
+    public function traineeAssessments()
     {
         return $this->hasMany(TraineeAssessment::class);
+    }
+    // new
+    public function trainersEvaluations()
+    {
+        return $this->hasMany(TrainerEvaluation::class);
     }
 
 }

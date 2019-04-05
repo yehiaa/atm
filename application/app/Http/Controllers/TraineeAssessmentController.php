@@ -15,7 +15,9 @@ class traineeAssessmentController extends Controller
      */
     public function index(Course $course)
     {
-        return view('trainee_assessment.index', compact('course'));
+//      $items = TraineeAssessment::all();// this will return ALL trainee assessments regardless of the course
+        $items = $course->traineeAssessments;
+        return view('trainee_assessment.index', compact('course','items'));
     }
 
     /**
@@ -50,7 +52,7 @@ class traineeAssessmentController extends Controller
             'average_trainee_satisfaction'=>'required',
             'attachment'=>'file|image'
         ]);
-        
+
 
         TraineeAssessment::create($request->all());
         return redirect(route('trainee_assessment.index',[$course->id]))->withSuccess('created successfully');

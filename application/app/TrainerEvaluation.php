@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TrainerEvaluation extends Model
 {
+
     protected $fillable=[
         'course_id',
         'trainee_id',
