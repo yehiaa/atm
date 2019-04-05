@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form>
+            <form method="POST" action="{{ route('trainer_evaluation.store', $course->id) }}">
                 @csrf
                 <div class="form-group">
                     <label for="files">Attachments</label>
@@ -31,10 +31,12 @@
                     </div>
                 </div>
 
+                @foreach ($course->trainers as $trainer)
+
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Trainer Name</th>
+                        <th scope="col">Trainer Name {{ $trainer->name }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,13 +46,13 @@
                     <tr>
                         <td>
                             <label>
-                                <input type="radio" name="{{$trainer->name}}_"> Unsatisfied
+                                <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="unsatisfied"> Unsatisfied
                             </label>
                             <label>
-                                <input type="radio" name="{{$trainer->name}}_"> Satisfied
+                                <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="satisfied"> Satisfied
                             </label>
                             <label>
-                                <input type="radio" name="{{$trainer->name}}_"> Highly Satisfied
+                                <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="highly_Satisfied"> Highly Satisfied
                             </label>
                         </td>
                     </tr>
@@ -60,38 +62,39 @@
                     <tr>
                         <td>
                             <label>
-                                <input type="radio" name="{{$trainer->name}}__"> Unsatisfied
+                                <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="unsatisfied"> Unsatisfied
                             </label>
                             <label>
-                                <input type="radio" name="{{$trainer->name}}__"> Satisfied
+                                <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="satisfied"> Satisfied
                             </label>
                             <label>
-                                <input type="radio" name="{{$trainer->name}}__"> Highly Satisfied
+                                <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="highly_Satisfied"> Highly Satisfied
                             </label>
                         </td>
                     </tr>
                     <tr>
                         <th scope="col">Communication Skills</th>
                     </tr>
-                    <!--@foreach($course->trainers as $trainer)
-                        @endforeach-->
                         <tr>
                             <td>
                                 <label>
-                                    <input type="radio" name="{{$trainer->name}}"> Unsatisfied
+                                    <input type="radio" name="details[{{$trainer->id}}][communications_skills]" value="unsatisfied"> Unsatisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="{{$trainer->name}}"> Satisfied
+                                    <input type="radio" name="details[{{$trainer->id}}][communications_skills]" value="satisfied"> Satisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="{{$trainer->name}}"> Highly Satisfied
+                                    <input type="radio" name="details[{{$trainer->id}}][communications_skills]" value="highly_Satisfied"> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <label for="">Recommendation for improvements</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
-                <label for="">Additional comments</label><textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                    <hr>
+                @endforeach
+
+                <label for="">Recommendation for improvements</label><textarea class="form-control" name="recommendations"  cols="30" rows="5"></textarea>
+                <label for="">Additional comments</label><textarea class="form-control" name="additional_comments"  cols="30" rows="5"></textarea>
                 <div class="form-group">
                     <button name="submit" type="submit" class="btn btn-primary">Save</button>
                 </div>

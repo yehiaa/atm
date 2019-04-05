@@ -13,10 +13,10 @@ class trainerEvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Trainer $trainer, Course $course)
+    public function index(Course $course)
     {
 
-        return view('evaluation.trainer_evaluation', compact('course','trainer'));
+        return view('trainer_evaluation.index', compact('course'));
     }
 
     /**
@@ -37,7 +37,26 @@ class trainerEvaluationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+         "details" => array:2 [▼
+            1 => array:2 [▼
+            "scientific_skills" => "unsatisfied"
+            "communications_skills" => "highly_Satisfied"
+            ]
+            2 => array:1 [▼
+            "communications_skills" => "unsatisfied"
+            ]
+            ]
+        */
+        dd($request->all());
+        //details is an associative array the keys are the trainer ids
+        $details = $request->get('details');
+        foreach ($details as $trainer_id => $detail)
+        {
+            var_dump($trainer_id);
+            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
+
+        }
     }
 
     /**

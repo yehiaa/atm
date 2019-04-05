@@ -14,7 +14,8 @@ class traineeAssessmentController extends Controller
      */
     public function index(Course $course)
     {
-        $items = TraineeAssessment::all();
+//        $items = TraineeAssessment::all();// this will return ALL trainee assessments regardless of the course
+        $items = $course->traineeAssessments;
         return view('trainee_assessment.index', compact('course','items'));
     }
 

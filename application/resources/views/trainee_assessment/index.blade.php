@@ -13,7 +13,7 @@
 
     <p>This is for demo purposes</p>
     <!-- Page Content -->
-    <h1>Trainee Assessment<a href="{{ route('course_evaluation.create', [$course->id]) }}"> Add new</a></h1>
+    <h1>Trainee Assessment<a href="{{ route('trainee_assessment.create', [$course->id]) }}"> Add new</a></h1>
     @include('_partials.flash-messages')
 
     <div class="row">
@@ -41,7 +41,7 @@
                             <td scope="col">{{$item->improvement}}</td>
                             <td scope="col">{{$item->average_trainee_satisfaction}}</td>
                             <td>
-                                <form action="{{ route('trainee_assessment.destroy',[$item->course_id,$item->id]) }}" method="POST">
+                                <form action="{{ route('trainee_assessment.destroy',[$item->course_id, $item->id]) }}" method="POST">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
