@@ -23,7 +23,7 @@ class TrainerEvaluation extends Model
     {
         return $this->belongsToMany(Course::class);
     }
-    public function TrainerEvaluationDetail ()
+    public function trainerEvaluationDetail ()
     {
         return $this->hasMany(TrainerEvaluationDetail::class);
     }

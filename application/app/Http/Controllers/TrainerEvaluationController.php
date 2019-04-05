@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Trainer;
+use App\TrainerEvaluation;
+use App\TrainerEvaluationDetail;
 use Illuminate\Http\Request;
 
 class trainerEvaluationController extends Controller
@@ -23,9 +25,9 @@ class trainerEvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('trainer_evaluation.create');
+        return view('trainer_evaluation.create',compact('course'));
     }
 
     /**
@@ -65,20 +67,28 @@ class trainerEvaluationController extends Controller
         //dd($request->all());
         //details is an associative array the keys are the trainer ids
 
-        $request->validate(['course_id'=>'required',
-            'trainee_id'=>'required',
-            'attachment'=>'file|image'
-        ]);
+        //$request->validate(['course_id'=>'required',
+           // 'trainee_id'=>'required',
+           // 'attachment'=>'file|image'
+       // ]);
 
         $details = $request->get('details');
+        $trainerEvaluationDetails  = [];
+        $filePath = "";
+        $trainee_id = 5;
+        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $trainee_id, 'attache' => $filePath]);
         foreach ($details as $trainer_id => $detail)
         {
-            var_dump($trainer_id);
-            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
+            var_dump($detail);
+            $trainerEvaluationDetail = new TrainerEvaluationDetail(['trainer_id' => $trainer_id, 'scientific_skills' => $detail['scientific_skills'], 'presentation_skills' => $detail['presentation_skills'], 'communication_skills' => $detail['communication_skills']]);
+//            var_dump($trainer_id);
+//            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
+            $trainerEvaluation->trainerEvaluationDetail()->save($trainerEvaluationDetail);
         }
 
+        //dd($details);
 
-        return view('trainer_evaluation.index', compact('details','course'));
+        return redirect(route('trainer_evaluation.create', $course->id));
     }
 
     /**

@@ -78,13 +78,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input type="radio" name="details[{{$trainer->id}}][communications_skills]" value="unsatisfied"> Unsatisfied
+                                    <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="unsatisfied"> Unsatisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="details[{{$trainer->id}}][communications_skills]" value="satisfied"> Satisfied
+                                    <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="satisfied"> Satisfied
                                 </label>
                                 <label>
-                                    <input type="radio" name="details[{{$trainer->id}}][communications_skills]" value="highly_Satisfied"> Highly Satisfied
+                                    <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="highly_Satisfied"> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
