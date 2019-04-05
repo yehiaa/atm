@@ -20,7 +20,7 @@
     @include('_partials.flash-messages')
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="{{ route('trainee_assessment.store',[$course->id]) }}" enctype="multipart/form-data>
+            <form method="post" action="{{ route('trainee_assessment.store',[$course->id]) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="reference">Course</label>

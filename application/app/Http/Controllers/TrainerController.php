@@ -123,7 +123,7 @@ class TrainerController extends Controller
             'professional_data_id' => 'required'
         ]);
 
-        $attachmentPath = "";
+        $attachmentPath = $trainer->attachment;
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');
             $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();

@@ -19,7 +19,6 @@ class TraineeController extends Controller
         return view('trainees.index', compact('items'));
     }
 
-
     public function autocomplete()
     {
         $q = request('q');
@@ -141,7 +140,7 @@ class TraineeController extends Controller
             'identity_type'=> 'required',
             'speciality_id' => 'required']);
 
-        $attachmentPath = "";
+        $attachmentPath = $trainee->attachment;
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');
             $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();

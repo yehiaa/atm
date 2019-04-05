@@ -102,18 +102,12 @@ class CourseController extends Controller
             'logo'=>'file|image',
             'start_datetime'=>'required',
             'end_datetime'=>'required'];
-        $logoPath = "";
+        $logoPath = $course->logo;
         if ($request->hasFile('logo')){
             $file = $request->file('logo');
             $logoName = $filename = 'course-logo-' . time() . '.' . $file->getClientOriginalExtension();
             $logoPath = $file->storeAs('courseslogo', $logoName);
-        }else
-        {
-            //unset($validation['logo']);
-            $request->validate($validation);
-            //$request->get('logoPath');
         }
-
         $data = ['name' => $request->get('name'),
             'alternative_name' => $request->get('alternative_name'),
             'logo' => $logoPath,

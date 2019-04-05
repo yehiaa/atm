@@ -13,6 +13,13 @@
       <span>Course registration</span></a>
   </li>
 
+    <li class="nav-item ">
+        <a class="nav-link " href="{{ url('/courses') }}" >
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Courses</span>
+        </a>
+    </li>
+
   <li class="nav-item">
     <a class="nav-link" href="{{ url('/calendar') }}">
       <i class="fas fa-fw fa-calendar"></i>

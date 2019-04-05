@@ -49,7 +49,7 @@
                     @foreach($course->traineeAssessments as $item)
                         <tr>
                             <td scope="col">{{$course->name}}</td>
-                            <td scope="col">{{$item->trainee_id }}</td>
+                            <td scope="col">{{$item->trainee->name }}</td>
                             <td scope="col">{{$item->pretest}}</td>
                             <td scope="col">{{$item->posttest}}</td>
                             <td scope="col">{{$item->improvement}}</td>
