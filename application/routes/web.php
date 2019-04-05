@@ -37,8 +37,8 @@ Route::group(['middleware' => 'auth'], function()
 
 
 
-    Route::resource('trainer_evaluation','TrainerEvaluationController');
-    Route::resource('trainee_assessment','TraineeAssessmentController');
+    Route::resource('/courses/{course}/trainer_evaluation','TrainerEvaluationController');
+    Route::resource('/courses/{course}/trainee_assessment','TraineeAssessmentController');
 
     Route::get('/logout', 'Auth\LoginController@logout');
 

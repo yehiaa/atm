@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Trainer;
+use App\TrainerEvaluation;
+use App\TrainerEvaluationDetail;
 use Illuminate\Http\Request;
 
 class trainerEvaluationController extends Controller
@@ -13,10 +15,11 @@ class trainerEvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Trainer $trainer, Course $course)
+    public function index( Course $course)
     {
-
-        return view('evaluation.trainer_evaluation', compact('course','trainer'));
+        $items = TrainerEvaluationDetail::with(TrainerEvaluation::class)->where('trainer_evaluation_id','=','id')->get();
+        dd($items);
+        return view('trainer_evaluation.index', compact('course','items'));
     }
 
     /**
@@ -82,6 +85,6 @@ class trainerEvaluationController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

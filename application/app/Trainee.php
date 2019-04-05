@@ -11,6 +11,7 @@ class Trainee extends Model
         'country', 'city',
         'identity', 'identity_type',
         'speciality_id', 'refereedFrom', 'gender', 'government'];
+
 }
 
 

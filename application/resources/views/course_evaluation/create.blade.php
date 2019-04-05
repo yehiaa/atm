@@ -20,7 +20,7 @@
     @include('_partials.flash-messages')
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="{{ route('course_evaluation.store',[$course->id]) }}">
+            <form method="post" action="{{ route('course_evaluation.store',[$course->id]) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="reference">Course</label>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label for="files">Attachments</label>
                     <div>
-                        <input type="file" name="files" multiple>
+                        <input type="file" name="attachment" multiple id="attachment">
                         <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                         <tr>
                             <th scope="col">Organization</th>
                         </tr>
-                        <tr><!--enum('unsatisfied', 'satisfied', 'highly_satisfied...-->
+                        <tr>
                             <td>
                                 <label>
                                     <input id="organization" type="radio" name="organization" value="unsatisfied"> Unsatisfied

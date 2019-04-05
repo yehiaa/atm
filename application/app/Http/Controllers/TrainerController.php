@@ -52,11 +52,28 @@ class TrainerController extends Controller
             'university_affiliation_id' => 'required',
             'professional_data_id' => 'required'
         ]);
-        $file = $request->file('attachment');
-        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
-        $attachmentPath = $file->storeAs('trainerAttachment', $attachmentName);
 
-        Trainer::create($request->all());
+        $attachmentPath = "";
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+            $attachmentPath = $file->storeAs('trainerAttachment', $attachmentName);
+        }
+
+
+        $data = ['name' => $request->get('name'),
+            'email'=>$request->get('email'),
+            'phone'=>$request->get('phone'),
+            'identity'=>$request->get('identity'),
+            'identity_type'=>$request->get('identity_type'),
+            'speciality_id'=>$request->get('speciality_id'),
+            'university_affiliation_id'=>$request->get('university_affiliation_id'),
+            'professional_data_id'=>$request->get('professional_data_id'),
+            'attachment'=>$attachmentPath];
+
+
+        Trainer::create($data);
+
         return redirect(route('trainers.index'))->withSuccess('created successfully');
     }
 
@@ -105,10 +122,26 @@ class TrainerController extends Controller
             'university_affiliation_id' => 'required',
             'professional_data_id' => 'required'
         ]);
-        $file = $request->file('attachment');
-        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
-        $attachmentPath = $file->storeAs('trainerAttachment', $attachmentName);
-        $trainer->update($request->all());
+
+        $attachmentPath = "";
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+            $attachmentPath = $file->storeAs('trainerAttachment', $attachmentName);
+        }
+
+
+        $data = ['name' => $request->get('name'),
+            'email'=>$request->get('email'),
+            'phone'=>$request->get('phone'),
+            'identity'=>$request->get('identity'),
+            'identity_type'=>$request->get('identity_type'),
+            'speciality_id'=>$request->get('speciality_id'),
+            'university_affiliation_id'=>$request->get('university_affiliation_id'),
+            'professional_data_id'=>$request->get('professional_data_id'),
+            'attachment'=>$attachmentPath];
+
+        $trainer->update($data);
         return redirect(route('trainers.index'))->withSuccess('updated successfully');
     }
 

@@ -43,12 +43,9 @@
                     @csrf
                     <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
                 </form>
-
-
             </td>
         </tr>
         @endforeach
-
         </tbody>
         <tfoot>
         <tr>

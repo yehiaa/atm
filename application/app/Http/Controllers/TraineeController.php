@@ -69,16 +69,34 @@ class TraineeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|min:5', 'email'=> 'email|unique:trainees',
+            'name'=>'required|min:5',
+            'email'=> 'email|unique:trainees',
             'gender'=>'required',
-            'phone' => 'min:11|unique:trainees', 'identity'=> 'required|unique:trainees',
-            'identity_type'=> 'required', 'speciality_id' => 'required']);
+            'phone' => 'min:11|unique:trainees',
+            'identity'=> 'required|unique:trainees',
+            'identity_type'=> 'required',
+            'speciality_id' => 'required']);
 
-        $file = $request->file('attachment');
-        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
-        $attachmentPath = $file->storeAs('attachment', $attachmentName);
+        $attachmentPath = "";
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+            $attachmentPath = $file->storeAs('traineeAttachment', $attachmentName);
+            }
 
-        Trainee::create($request->all());
+        $data = ['name' => $request->get('name'),
+            'gender'=>$request->get('gender'),
+            'phone'=>$request->get('phone'),
+            'identity_type'=>$request->get('identity_type'),
+            'email'=>$request->get('email'),
+            'identity'=>$request->get('identity'),
+            'speciality_id'=>$request->get('speciality_id'),
+            'country'=>$request->get('country'),
+            'city'=>$request->get('city'),
+            'attachment'=>$attachmentPath];
+
+        Trainee::create($data);
+
         return redirect(route('trainees.index'))->withSuccess('created successfully');
     }
 
@@ -123,11 +141,27 @@ class TraineeController extends Controller
             'identity_type'=> 'required',
             'speciality_id' => 'required']);
 
-        $file = $request->file('attachment');
-        $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
-        $attachmentPath = $file->storeAs('attachment', $attachmentName);
+        $attachmentPath = "";
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $attachmentName = $filename = 'attachment-file-' . time() . '.' . $file->getClientOriginalExtension();
+            $attachmentPath = $file->storeAs('traineeAttachment', $attachmentName);
+        }
 
-        $trainee->update($request->all());
+        $data = ['name' => $request->get('name'),
+            'gender'=>$request->get('gender'),
+            'phone'=>$request->get('phone'),
+            'identity_type'=>$request->get('identity_type'),
+            'email'=>$request->get('email'),
+            'identity'=>$request->get('identity'),
+            'speciality_id'=>$request->get('speciality_id'),
+            'country'=>$request->get('country'),
+            'city'=>$request->get('city'),
+            'attachment'=>$attachmentPath
+        ];
+
+        $trainee->update($data);
+
         return redirect(route('trainees.index'))->withSuccess('updated successfully');
     }
 
@@ -144,7 +178,7 @@ class TraineeController extends Controller
             return redirect(route('trainees.index'))->withSuccess('deleted successfully');
         }
         catch (\Exception $e){
-            return redirect(route('trainees.index', ['id'=>$trainee->id]))->with("error",$e->getMessage());
+            return redirect(route('trainees.index', ['id'=>$trainee->id]))->with("error","can not delete");
         }
     }
 

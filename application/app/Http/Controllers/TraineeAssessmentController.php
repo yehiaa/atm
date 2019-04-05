@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TraineeAssessment;
 use Illuminate\Http\Request;
 use App\Course;
+use Illuminate\Support\Facades\DB;
 class traineeAssessmentController extends Controller
 {
     /**
@@ -14,8 +15,7 @@ class traineeAssessmentController extends Controller
      */
     public function index(Course $course)
     {
-        $items = TraineeAssessment::all();
-        return view('trainee_assessment.index', compact('course','items'));
+        return view('trainee_assessment.index', compact('course'));
     }
 
     /**
@@ -23,9 +23,15 @@ class traineeAssessmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-
+        $trainees = DB::table('trainees')
+            ->join('course_registration','trainees.id','=','trainee_id'  )
+            ->join('courses',  'course_registration.course_id','=', 'courses.id')
+            ->where('courses.id', $course->id)
+            ->select( 'trainees.*','trainees.name as trainee_name', 'courses.name as course_name')
+            ->get();
+        return view('trainee_assessment.create', compact('course','trainees'));
     }
 
     /**
@@ -34,9 +40,20 @@ class traineeAssessmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Course $course)
     {
-        //
+        $request->validate(['course_id'=>'required',
+            'trainee_id'=>'required',
+            'pretest'=>'required',
+            'posttest'=>'required',
+            'improvement'=>'required',
+            'average_trainee_satisfaction'=>'required',
+            'attachment'=>'file|image'
+        ]);
+        
+
+        TraineeAssessment::create($request->all());
+        return redirect(route('trainee_assessment.index',[$course->id]))->withSuccess('created successfully');
     }
 
     /**
@@ -79,8 +96,16 @@ class traineeAssessmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function destroy(Course $course, TraineeAssessment $trainee_assessment)
     {
-        //
+        try{
+            $trainee_assessment->delete();
+            return redirect(route('trainee_assessment.index',[$course->id]))->withSuccess('deleted successfully');
+        } catch (\Exception $e){
+            return redirect(route('trainee_assessment.index',[$course->id]))->with("error",'can not delete');
+        }
     }
+
+
 }

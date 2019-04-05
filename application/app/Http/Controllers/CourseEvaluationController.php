@@ -75,9 +75,26 @@ class courseEvaluationController extends Controller
             'organization'=>'required',
             'educational_tools'=>'required',
             'cofee_break'=>'required',
-            'overall_evaluation'=>'required'
+            'overall_evaluation'=>'required',
+            'attachment'=>'file|image'
            ]);
-        CourseEvaluation::create($request->all());
+        $attachmentPath = "";
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $attachmentName = $filename = 'course-evaluation-attachment-' . time() . '.' . $file->getClientOriginalExtension();
+            $attachmentPath = $file->storeAs('courseEvaluationAttachment', $attachmentName);
+        }
+
+        $data = ['course_id' => $request->get('course_id'),
+            'trainee_id'=>$request->get('trainee_id'),
+            'organization'=>$request->get('organization'),
+            'educational_tools'=>$request->get('educational_tools'),
+            'cofee_break'=>$request->get('cofee_break'),
+            'overall_evaluation'=>$request->get('overall_evaluation'),
+            'attachment'=>$attachmentPath
+        ];
+
+        CourseEvaluation::create($data);
         return redirect(route('course_evaluation.index',[$course->id]))->withSuccess('created successfully');
 
     }
@@ -128,7 +145,7 @@ class courseEvaluationController extends Controller
              $course_evaluation->delete();
         return redirect(route('course_evaluation.index',[$course->id]))->withSuccess('deleted successfully');
         } catch (\Exception $e){
-                return redirect(route('course_evaluation.index',[$course->id]))->with("error", $e);
+                return redirect(route('course_evaluation.index',[$course->id]))->with("error",'can not delete');
             }
         }
 

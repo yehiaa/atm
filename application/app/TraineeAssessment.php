@@ -15,6 +15,7 @@ class TraineeAssessment extends Model
         'average_trainee_satisfaction',
         'attachment'
     ];
+
     public function trainee()
     {
         return $this->belongsTo('App\Trainee');

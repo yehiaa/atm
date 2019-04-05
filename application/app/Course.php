@@ -37,4 +37,15 @@ class Course extends Model
     {
         return $this->hasMany(CourseEvaluation::class);
     }
+
+    public function trainerEvaluation()
+    {
+        return $this->hasMany(TrainerEvaluation::class);
+    }
+
+    public function assessments()
+    {
+        return $this->hasMany(TraineeAssessment::class);
+    }
+
 }
