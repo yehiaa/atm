@@ -7,6 +7,7 @@ use App\Trainer;
 use App\TrainerEvaluation;
 use App\TrainerEvaluationDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class trainerEvaluationController extends Controller
 {
@@ -64,31 +65,43 @@ class trainerEvaluationController extends Controller
             'communications_skills'=>'required',
         */
 
-        //dd($request->all());
-        //details is an associative array the keys are the trainer ids
-
-        //$request->validate(['course_id'=>'required',
-           // 'trainee_id'=>'required',
-           // 'attachment'=>'file|image'
-       // ]);
-
+        $request->validate([
+            'trainee_id'=>'required',
+            'attachment'=>'file|image'
+        ]);
         $details = $request->get('details');
         $trainerEvaluationDetails  = [];
-        $filePath = "";
-        $trainee_id = 5;
-        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $trainee_id, 'attache' => $filePath]);
+
         foreach ($details as $trainer_id => $detail)
         {
-            var_dump($detail);
-            $trainerEvaluationDetail = new TrainerEvaluationDetail(['trainer_id' => $trainer_id, 'scientific_skills' => $detail['scientific_skills'], 'presentation_skills' => $detail['presentation_skills'], 'communication_skills' => $detail['communication_skills']]);
-//            var_dump($trainer_id);
-//            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
+            $detail['trainer_id'] = $trainer_id;
+            $validator = Validator::make($detail, [
+                'scientific_skills' => 'required',
+                'presentation_skills' => 'required',
+                'communication_skills' => 'required',
+                'trainer_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect(route('trainer_evaluation.create', $course->id))
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $trainerEvaluationDetails [] = new TrainerEvaluationDetail($detail);
+        }
+
+        $filePath = "";
+        //handle the file upload here ...
+
+        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $request->get('trainee_id'), 'attache' => $filePath]);
+
+        foreach ($trainerEvaluationDetails as $trainerEvaluationDetail)
+        {
             $trainerEvaluation->trainerEvaluationDetail()->save($trainerEvaluationDetail);
         }
 
-        //dd($details);
-
-        return redirect(route('trainer_evaluation.create', $course->id));
+        return redirect(route('trainer_evaluation.create', $course->id))->withSuccess("created successfully");
     }
 
     /**
