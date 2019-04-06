@@ -5,9 +5,7 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/home') }}">Home</a>
         </li>
-        <li class="breadcrumb-item">
-            <a href="{{ route('trainee_assessment.index', [$course->id]) }}">Evaluations</a>
-        </li>
+
         <li class="breadcrumb-item active">Trainee Assessment</li>
     </ol>
 
@@ -43,6 +41,8 @@
                         <th scope="col">Post Test Average</th>
                         <th scope="col">Improvement Percentage</th>
                         <th scope="col">Average Trainee Satisfaction</th>
+                        <th scope="col">Attachment</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -54,6 +54,11 @@
                             <td scope="col">{{$item->posttest}}</td>
                             <td scope="col">{{$item->improvement}}</td>
                             <td scope="col">{{$item->average_trainee_satisfaction}}</td>
+                            <td scope="col">
+                                @if($item->attachment)
+                                    <a target="_blank" href="{{asset("/storage/$item->attachment")}}">Attachment</a>
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('trainee_assessment.destroy',[$item->course_id, $item->id]) }}" method="POST">
                                     @method('delete')
@@ -64,7 +69,7 @@
                         </tr>
                     @endforeach
                     </tbody>
-                </table>
+               </table>
         </div>
     </div>
 

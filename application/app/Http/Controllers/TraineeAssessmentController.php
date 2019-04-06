@@ -15,7 +15,6 @@ class traineeAssessmentController extends Controller
      */
     public function index(Course $course)
     {
-//      $items = TraineeAssessment::all();// this will return ALL trainee assessments regardless of the course
         $items = $course->traineeAssessments;
         return view('trainee_assessment.index', compact('course','items'));
     }
@@ -50,11 +49,26 @@ class traineeAssessmentController extends Controller
             'posttest'=>'required',
             'improvement'=>'required',
             'average_trainee_satisfaction'=>'required',
-            'attachment'=>'file|image'
+            'attachment'=>'file'
         ]);
 
+        $attachmentPath = "";
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $attachmentName = $filename = 'trainee-assessment-attachment-' . time() . '.' . $file->getClientOriginalExtension();
+            $attachmentPath = $file->storeAs('traineeAssessAttach', $attachmentName);
+        }
 
-        TraineeAssessment::create($request->all());
+        $data = ['course_id' => $request->get('course_id'),
+            'trainee_id'=>$request->get('trainee_id'),
+            'pretest'=>$request->get('pretest'),
+            'posttest'=>$request->get('posttest'),
+            'improvement'=>$request->get('improvement'),
+            'average_trainee_satisfaction'=>$request->get('average_trainee_satisfaction'),
+            'attachment'=>$attachmentPath
+        ];
+
+        TraineeAssessment::create($data);
         return redirect(route('trainee_assessment.index',[$course->id]))->withSuccess('created successfully');
     }
 

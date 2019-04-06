@@ -112,10 +112,10 @@ class CourseController extends Controller
             'alternative_name' => $request->get('alternative_name'),
             'logo' => $logoPath,
             'percentage_to_pass' => $request->get('percentage_to_pass'),
-            'start_datetime' =>$request->get('start_datetime'),
-            'end_datetime' =>$request->get('end_datetime'),
-            //'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
-            //'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
+            //'start_datetime' =>$request->get('start_datetime'),
+            //'end_datetime' =>$request->get('end_datetime'),
+            'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
+            'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
             'description' => $request->get('description')];
 
         $course->update($data);

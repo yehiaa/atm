@@ -8,6 +8,7 @@ use App\TrainerEvaluation;
 use App\TrainerEvaluationDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use mysql_xdevapi\Exception;
 
 class trainerEvaluationController extends Controller
 {
@@ -28,7 +29,8 @@ class trainerEvaluationController extends Controller
      */
     public function create(Course $course)
     {
-        return view('trainer_evaluation.create',compact('course'));
+        $trainees = $course->registrations;
+        return view('trainer_evaluation.create',compact('course','trainees'));
     }
 
     /**
@@ -61,14 +63,17 @@ class trainerEvaluationController extends Controller
          "additional_comments" => null
          "submit" => null ]
         'scientific_skills'=>'required',
-            'presentation_skills'=>'required',
-            'communications_skills'=>'required',
+        'presentation_skills'=>'required',
+        'communications_skills'=>'required',
         */
+
 
         $request->validate([
             'trainee_id'=>'required',
-            'attachment'=>'file|image'
+            'attachment'=>'file'
         ]);
+
+
         $details = $request->get('details');
         $trainerEvaluationDetails  = [];
 
@@ -92,9 +97,13 @@ class trainerEvaluationController extends Controller
         }
 
         $filePath = "";
-        //handle the file upload here ...
+        if ($request->hasFile('attachment')){
+            $file = $request->file('attachment');
+            $fileName = $filename = 'trainer-avaluation-attach' . time() . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('trainerEvaluatiinAttach', $fileName);
+        }
 
-        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $request->get('trainee_id'), 'attache' => $filePath]);
+        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $request->get('trainee_id'), 'attachment' => $filePath]);
 
         // we can use saveMany also.
         // https://laravel.com/docs/5.8/eloquent-relationships#inserting-and-updating-related-models
@@ -103,7 +112,7 @@ class trainerEvaluationController extends Controller
             $trainerEvaluation->trainerEvaluationDetail()->save($trainerEvaluationDetail);
         }
         // we redirect to create . we should instead redirect to index.
-        return redirect(route('trainer_evaluation.create', $course->id))->withSuccess("created successfully");
+        return redirect(route('trainer_evaluation.index', $course->id))->withSuccess("created successfully");
     }
 
     /**
@@ -137,7 +146,7 @@ class trainerEvaluationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -146,8 +155,14 @@ class trainerEvaluationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course, TrainerEvaluation $trainer_evaluation)
     {
-        //
+        try {
+            $trainer_evaluation->trainerEvaluationDetail()->delete();
+            $trainer_evaluation->delete();
+            return redirect(route('trainer_evaluation.index', $course->id))->withSuccess("deleted successfully");
+        }catch (Exception $e){
+            return redirect(route('trainer_evaluation.index', $course->id))->withError("can not delete");
+        }
     }
 }

@@ -22,13 +22,25 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form method="POST" action="{{ route('trainer_evaluation.store', $course->id) }}">
+            <form method="POST" action="{{ route('trainer_evaluation.store', $course->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="files">Attachments</label>
                     <div>
                         <input type="file" name="attachment" id="attachment" multiple>
                         <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="course_id">Trainee</label>
+                    <div>
+                        <select id="trainee_id" name="trainee_id" class="form-control js-select2-enabled" aria-describedby="selectHelpBlock" required="required">
+                            @foreach($trainees as $trainee)
+                                <option value="{{$trainee->id }}" @if(old('trainee_id') == $trainee->id) selected @endif >{{ $trainee->trainee->name }}</option>
+                            @endforeach
+                        </select>
+                        <span id="selectHelpBlock" class="form-text text-muted">select Trainee</span>
                     </div>
                 </div>
 
@@ -43,6 +55,8 @@
                         <tbody>
                         <tr>
                             <th scope="col">Scientific Skills </th>
+                            <th scope="col">Presentation Skills</th>
+                            <th scope="col">Communication Skills</th>
                         </tr>
                         <tr>
                             <td>
@@ -56,11 +70,7 @@
                                     <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="highly_Satisfied"> Highly Satisfied
                                 </label>
                             </td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Presentation Skills</th>
-                        </tr>
-                        <tr>
+
                             <td>
                                 <label>
                                     <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="unsatisfied"> Unsatisfied
@@ -72,11 +82,7 @@
                                     <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="highly_Satisfied"> Highly Satisfied
                                 </label>
                             </td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Communication Skills</th>
-                        </tr>
-                        <tr>
+
                             <td>
                                 <label>
                                     <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="unsatisfied"> Unsatisfied

@@ -15,13 +15,13 @@ class TrainerEvaluation extends Model
         'attachment',
         ];
 
-    public function trainees ()
+    public function trainee ()
     {
-        return $this->belongsToMany(Trainee::class);
+        return $this->belongsTo(Trainee::class);
     }
-    public function courses ()
+    public function course ()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsTo(Course::class);
     }
     public function trainerEvaluationDetail ()
     {

@@ -5,16 +5,13 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/home') }}">Home</a>
         </li>
-        <li class="breadcrumb-item">
-            <a href="{{ route('evaluations.index') }}">Evaluations</a>
-        </li>
+
         <li class="breadcrumb-item active">Trainer evaluation</li>
     </ol>
 
     <p>This is for demo purposes</p>
     <!-- Page Content -->
-    <h1></h1>
-    <h1>Trainer Evaluation<a href="{{ route('trainer_evaluation.create', [$course->id]) }}"> Add new</a></h1>
+    <h1>Trainer Evaluation ({{$course->name}})<a href="{{ route('trainer_evaluation.create', [$course->id]) }}"> Add new</a></h1>
     {{--<hr>--}}
 
     @include('_partials.flash-messages')
@@ -34,88 +31,50 @@
             </nav>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-
-            <form method="POST" action="{{ route('trainer_evaluation.store', $course->id) }}">
-                @csrf
-                <div class="form-group">
-                    <label for="files">Attachments</label>
-                    <div>
-                        <input type="file" name="files" multiple>
-                        <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Trainee</th>
+                                <th scope="col">Details</th>
+                                <th scope="col">Attachment</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Recommendation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($course->trainersEvaluations as $item)
+                            <tr>
+                                <td scope="col">{{ $item->trainee->name}}</td>
+                                <td>@foreach($item->trainerEvaluationDetail as $detail)
+                                        {{$detail->trainer->name}}
+                                        <strong>Scientific</strong> {{$detail->scientific_skills}}
+                                       <strong>Presentation</strong> {{$detail->presentation_skills}}
+                                       <strong>Communication</strong> {{$detail->communication_skills}}
+                                        <br/>
+                                    @endforeach
+                                </td>
+                                <td scope="col">
+                                    @if($item->attachment)
+                                    <a target="_blank" href="{{asset("/storage/$item->attachment")}}">Attachment</a>
+                                    @endif
+                                </td>
+                                <td scope="col">{{ $item->trainee->comment}}</td>
+                                <td scope="col">{{ $item->trainee->recommendation}}</td>
+                                <td>
+                                    <form action="{{ route('trainer_evaluation.destroy',[$item->course_id, $item->id]) }}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
-
-                @foreach ($course->trainers as $trainer)
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Trainer Name {{ $trainer->name }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="col">Scientific Skills </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>
-                                <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="unsatisfied"> Unsatisfied
-                            </label>
-                            <label>
-                                <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="satisfied"> Satisfied
-                            </label>
-                            <label>
-                                <input type="radio" name="details[{{$trainer->id}}][scientific_skills]" value="highly_Satisfied"> Highly Satisfied
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Presentation Skills</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>
-                                <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="unsatisfied"> Unsatisfied
-                            </label>
-                            <label>
-                                <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="satisfied"> Satisfied
-                            </label>
-                            <label>
-                                <input type="radio" name="details[{{$trainer->id}}][presentation_skills]" value="highly_Satisfied"> Highly Satisfied
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Communication Skills</th>
-                    </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="unsatisfied"> Unsatisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="satisfied"> Satisfied
-                                </label>
-                                <label>
-                                    <input type="radio" name="details[{{$trainer->id}}][communication_skills]" value="highly_Satisfied"> Highly Satisfied
-                                </label>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                    <hr>
-                @endforeach
-
-                <label for="">Recommendation for improvements</label><textarea class="form-control" name="recommendations"  cols="30" rows="5"></textarea>
-                <label for="">Additional comments</label><textarea class="form-control" name="additional_comments"  cols="30" rows="5"></textarea>
-                <div class="form-group">
-                    <button name="submit" type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 

@@ -6,8 +6,7 @@
             <a href="{{ url('/home') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-
-            <a href= "{{ route('course_evaluation.index', [$course->id]) }}">Course evaluation</a>
+            <a href= "{{ route('courses.show', [$course->id]) }}">Course {{ $course->name }}</a>
         </li>
         <li class="breadcrumb-item active">Course evaluation</li>
     </ol>
@@ -44,7 +43,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="files">Attachments</label>
+                    <label for="attachment">Attachments</label>
                     <div>
                         <input type="file" name="attachment" multiple id="attachment">
                         <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>

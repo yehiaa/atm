@@ -39,11 +39,6 @@
       <a class="dropdown-item" href="{{ url('university_affiliations') }}">University Affiliations</a>
       <a class="dropdown-item" href="{{ url('professional_data') }}">Professional Data</a>
       <div class="dropdown-divider"></div>
-
-      <h6 class="dropdown-header">Courses:</h6>
-      <a class="dropdown-item" href="{{ url('/courses') }}">Courses</a>
-{{--      <a class="dropdown-item" href="{{ url('/lectures') }}">Lectures</a>--}}
-      <div class="dropdown-divider"></div>
     </div>
   </li>
 

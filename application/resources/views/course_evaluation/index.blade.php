@@ -45,6 +45,8 @@
                         <th scope="col">Educational tools</th>
                         <th scope="col">Coffee break</th>
                         <th scope="col">Overall evaluation</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Attachment</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +58,13 @@
                         <td scope="col">{{$item->educational_tools}}</td>
                         <td scope="col">{{$item->cofee_break}}</td>
                         <td scope="col">{{$item->overall_evaluation}}</td>
+                        <td scope="col">{{$item->comment}}</td>
+                        </td>
+                        <td scope="col">
+                            @if($item->attachment)
+                                <a target="_blank" href="{{asset("/storage/$item->attachment")}}">Attachment</a>
+                            @endif
+                        </td>
                     <td>
                         <form action="{{ route('course_evaluation.destroy',[$item->course_id, $item->id]) }}" method="POST">
                             @method('delete')

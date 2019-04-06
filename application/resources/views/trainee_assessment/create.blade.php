@@ -7,7 +7,7 @@
         </li>
         <li class="breadcrumb-item">
 
-            <a href= "{{ route('trainee_assessment.index', [$course->id]) }}">Trainee Assessment</a>
+            <a href= "{{ route('courses.show', [$course->id]) }}">Course {{ $course->name }}</a>
         </li>
         <li class="breadcrumb-item active">Trainee Assessment</li>
     </ol>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label for="files">Attachments</label>
                     <div>
-                        <input type="file" name="files" multiple>
+                        <input type="file" name="attachment" multiple>
                         <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
                     </div>
                 </div>

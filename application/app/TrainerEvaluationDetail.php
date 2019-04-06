@@ -19,7 +19,7 @@ class TrainerEvaluationDetail extends Model
     {
         return $this->belongsTo(TrainerEvaluation::class);
     }
-    public function trainers()
+    public function trainer()
     {
         return $this->belongsTo(Trainer::class);
     }
