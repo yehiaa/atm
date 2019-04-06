@@ -7,7 +7,7 @@
         </li>
         <li class="breadcrumb-item">
 
-            <a href= "{{ route('trainer_evaluation.index', [$course->id]) }}">Trainer Evaluation</a>
+            <a href= "{{ route('courses.show', [$course->id]) }}">Course : {{$course->name}}</a>
         </li>
         <li class="breadcrumb-item active">Trainer Evaluation</li>
     </ol>

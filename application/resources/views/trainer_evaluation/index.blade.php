@@ -13,10 +13,27 @@
 
     <p>This is for demo purposes</p>
     <!-- Page Content -->
-    <h1>Trainer Evaluation</h1>
+    <h1></h1>
+    <h1>Trainer Evaluation<a href="{{ route('trainer_evaluation.create', [$course->id]) }}"> Add new</a></h1>
     {{--<hr>--}}
 
     @include('_partials.flash-messages')
+
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">courses</a>
+                    <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>
+                    <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>
+                    <a class="nav-link"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
+                    <a class="nav-link"  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>
+                    <a class="nav-link active"  href="{{ route('trainer_evaluation.index',[$course->id]) }}">Trainer Evaluation</a>
+                    <a class="nav-link"  href="{{ route('trainee_assessment.index',[$course->id]) }}">Trainee Assessment</a>
+                </div>
+            </nav>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">

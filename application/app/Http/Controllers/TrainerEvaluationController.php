@@ -64,22 +64,26 @@ class trainerEvaluationController extends Controller
             'communications_skills'=>'required',
         */
 
-        //dd($request->all());
-        //details is an associative array the keys are the trainer ids
 
-        //$request->validate(['course_id'=>'required',
-           // 'trainee_id'=>'required',
-           // 'attachment'=>'file|image'
-       // ]);
-
+        $trainees = $course->registrations;
         $details = $request->get('details');
         $trainerEvaluationDetails  = [];
+
         $filePath = "";
-        $trainee_id = 5;
+        if ($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $logoName = $filename = 'trainer-evaluation-attach-' . time() . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('trainerEvaluationAttach', $logoName);
+        }
+
+        //$trainee_id = ;
+
+
+
         $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $trainee_id, 'attache' => $filePath]);
         foreach ($details as $trainer_id => $detail)
         {
-            var_dump($detail);
+            //var_dump($detail);
             $trainerEvaluationDetail = new TrainerEvaluationDetail(['trainer_id' => $trainer_id, 'scientific_skills' => $detail['scientific_skills'], 'presentation_skills' => $detail['presentation_skills'], 'communication_skills' => $detail['communication_skills']]);
 //            var_dump($trainer_id);
 //            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
@@ -88,7 +92,7 @@ class trainerEvaluationController extends Controller
 
         //dd($details);
 
-        return redirect(route('trainer_evaluation.create', $course->id));
+        return redirect(route('trainer_evaluation.index', $course->id));
     }
 
     /**
