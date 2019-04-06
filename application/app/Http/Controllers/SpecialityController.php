@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Speciality;
 use Illuminate\Http\Request;
-use mysql_xdevapi\Exception;
 
 class SpecialityController extends Controller
 {
@@ -50,7 +49,7 @@ class SpecialityController extends Controller
      * @param  \App\Speciality  $specialiy
      * @return \Illuminate\Http\Response
      */
-    public function show(Speciality $specialiy)
+    public function show(Speciality $speciality)
     {
         //
     }
@@ -84,14 +83,15 @@ class SpecialityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Speciality  $specialiy
+     * @param Speciality $speciality
      * @return \Illuminate\Http\Response
      * specialties.destroy
+     * @throws \moodle_exception
      */
-    public function destroy(Speciality $specialiy)
+    public function destroy(Speciality $speciality)
     {
         try {
-            $specialiy->delete();
+            $speciality->delete();
             return redirect(route('specialities.index'))->withSuccess('deleted successfully');
         }
         catch (\Exception $e){

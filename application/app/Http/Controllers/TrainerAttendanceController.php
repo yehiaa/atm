@@ -48,6 +48,8 @@ class TrainerAttendanceController extends Controller
         {
             return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withErrors('trainer already attended');
         }
+
+        $request->validate(['trainer_id'=>'required']);
         $traineeAttendance = TrainerAttendance::create([
             'lecture_id' => $lecture->id,
             'created_by' => auth()->user()->id,

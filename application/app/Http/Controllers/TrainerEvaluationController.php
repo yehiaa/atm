@@ -7,6 +7,7 @@ use App\Trainer;
 use App\TrainerEvaluation;
 use App\TrainerEvaluationDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class trainerEvaluationController extends Controller
 {
@@ -64,35 +65,45 @@ class trainerEvaluationController extends Controller
             'communications_skills'=>'required',
         */
 
-
-        $trainees = $course->registrations;
+        $request->validate([
+            'trainee_id'=>'required',
+            'attachment'=>'file|image'
+        ]);
         $details = $request->get('details');
         $trainerEvaluationDetails  = [];
 
-        $filePath = "";
-        if ($request->hasFile('logo')){
-            $file = $request->file('logo');
-            $logoName = $filename = 'trainer-evaluation-attach-' . time() . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('trainerEvaluationAttach', $logoName);
-        }
-
-        //$trainee_id = ;
-
-
-
-        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $trainee_id, 'attache' => $filePath]);
         foreach ($details as $trainer_id => $detail)
         {
-            //var_dump($detail);
-            $trainerEvaluationDetail = new TrainerEvaluationDetail(['trainer_id' => $trainer_id, 'scientific_skills' => $detail['scientific_skills'], 'presentation_skills' => $detail['presentation_skills'], 'communication_skills' => $detail['communication_skills']]);
-//            var_dump($trainer_id);
-//            var_dump($detail); // detail contains for ex : "communications_skills" => "unsatisfied"
-            $trainerEvaluation->trainerEvaluationDetail()->save($trainerEvaluationDetail);
+            $detail['trainer_id'] = $trainer_id;
+            $validator = Validator::make($detail, [
+                'scientific_skills' => 'required',
+                'presentation_skills' => 'required',
+                'communication_skills' => 'required',
+                'trainer_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect(route('trainer_evaluation.create', $course->id))
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $trainerEvaluationDetails [] = new TrainerEvaluationDetail($detail);
         }
 
-        //dd($details);
+        $filePath = "";
+        //handle the file upload here ...
 
-        return redirect(route('trainer_evaluation.index', $course->id));
+        $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $request->get('trainee_id'), 'attache' => $filePath]);
+
+        // we can use saveMany also.
+        // https://laravel.com/docs/5.8/eloquent-relationships#inserting-and-updating-related-models
+        foreach ($trainerEvaluationDetails as $trainerEvaluationDetail)
+        {
+            $trainerEvaluation->trainerEvaluationDetail()->save($trainerEvaluationDetail);
+        }
+        // we redirect to create . we should instead redirect to index.
+        return redirect(route('trainer_evaluation.create', $course->id))->withSuccess("created successfully");
     }
 
     /**

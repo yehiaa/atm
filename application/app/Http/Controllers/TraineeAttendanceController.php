@@ -45,6 +45,9 @@ class TraineeAttendanceController extends Controller
         {
             return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withErrors('trainee already attended');
         }
+
+        $request->validate(['trainee_id'=>'required']);
+
         $traineeAttendance = TraineeAttendance::create([
             'lecture_id' => $lecture->id,
             'created_by' => auth()->user()->id,
