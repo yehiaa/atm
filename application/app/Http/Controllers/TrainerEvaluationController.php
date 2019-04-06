@@ -96,11 +96,13 @@ class trainerEvaluationController extends Controller
 
         $trainerEvaluation = TrainerEvaluation::create(['course_id'=> $course->id, 'trainee_id' => $request->get('trainee_id'), 'attache' => $filePath]);
 
+        // we can use saveMany also.
+        // https://laravel.com/docs/5.8/eloquent-relationships#inserting-and-updating-related-models
         foreach ($trainerEvaluationDetails as $trainerEvaluationDetail)
         {
             $trainerEvaluation->trainerEvaluationDetail()->save($trainerEvaluationDetail);
         }
-
+        // we redirect to create . we should instead redirect to index.
         return redirect(route('trainer_evaluation.create', $course->id))->withSuccess("created successfully");
     }
 
