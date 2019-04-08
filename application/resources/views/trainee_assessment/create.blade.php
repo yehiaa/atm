@@ -59,7 +59,7 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="pretest" type="number" name="pretest" value="">
+                                    <input id="pretest" type="number" name="pretest" value="{{old('pretest')}}" required="required">
                                 </label>
                             </td>
                         </tr>
@@ -69,7 +69,7 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="posttest" type="number" name="posttest" value="">
+                                    <input id="posttest" type="number" name="posttest" value="{{old('posttest')}}" required="required">
                                 </label>
                             </td>
                         </tr>
@@ -79,7 +79,7 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="improvement" type="number" name="improvement" value="unsatisfied">
+                                    <input id="improvement" type="number" name="improvement" value="{{old('improvement')}}" required="required">
                                 </label>
                             </td>
                         </tr>
@@ -89,14 +89,14 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="average_trainee_satisfaction" type="number" name="average_trainee_satisfaction">
+                                    <input id="average_trainee_satisfaction" type="number" name="average_trainee_satisfaction" value="{{old('average_trainee_satisfaction')}}" required="required">
                                 </label>
                             </td>
                         </tr>
                         </tbody>
                      </table>
                 <label for="comment">Additional comments</label>
-                <textarea class="form-control" name="comment" id="comment" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" value="{{old('comment')}}"></textarea>
                 <div class="form-group">
                     <button name="submit" type="submit" class="btn btn-primary">Save</button>
                 </div>

@@ -13,7 +13,7 @@
 
     <p>This is for demo purposes</p>
     <!-- Page Content -->
-    <h1>Courses Evaluation</h1>
+    <h2>Courses Evaluation</h2>
     <hr>
 
     @include('_partials.flash-messages')
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label for="attachment">Attachments</label>
                     <div>
-                        <input type="file" name="attachment" multiple id="attachment" >
+                        <input type="file" name="attachment" multiple id="attachment" value="{{old('attachment')}}" >
                         <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
                     </div>
                 </div>
@@ -58,13 +58,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="organization" type="radio" name="organization" value="unsatisfied" > Unsatisfied
+                                    <input id="organization" type="radio" name="organization" value="unsatisfied" @if(old('organization') == 'unsatisfied') checked @endif > Unsatisfied
                                 </label>
                                 <label>
-                                    <input id="organization" type="radio" name="organization" value="satisfied"> Satisfied
+                                    <input id="organization" type="radio" name="organization" value="satisfied" @if(old('organization') == 'satisfied') checked @endif> Satisfied
                                 </label>
                                 <label>
-                                    <input id="organization" type="radio" name="organization" value="highly_satisfied"> Highly Satisfied
+                                    <input id="organization" type="radio" name="organization" value="highly_satisfied" @if(old('organization') == 'highly_satisfied') checked @endif> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
@@ -74,13 +74,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="educational_tools" type="radio" name="educational_tools" value="unsatisfied"> Unsatisfied
+                                    <input id="educational_tools" type="radio" name="educational_tools" value="unsatisfied" @if(old('educational_tools') == 'unsatisfied') checked @endif> Unsatisfied
                                 </label>
                                 <label>
-                                    <input id="educational_tools" type="radio" name="educational_tools" value="satisfied"> Satisfied
+                                    <input id="educational_tools" type="radio" name="educational_tools" value="satisfied" @if(old('educational_tools') == 'satisfied') checked @endif > Satisfied
                                 </label>
                                 <label>
-                                    <input id="educational_tools" type="radio" name="educational_tools" value="highly_satisfied"> Highly Satisfied
+                                    <input id="educational_tools" type="radio" name="educational_tools" value="highly_satisfied" @if(old('educational_tools') == 'highly_satisfied') checked @endif > Highly Satisfied
                                 </label>
                             </td>
                         </tr>
@@ -90,13 +90,13 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="cofee_break" type="radio" name="cofee_break" value="unsatisfied"> Unsatisfied
+                                    <input id="cofee_break" type="radio" name="cofee_break" value="unsatisfied" @if(old('cofee_break') == 'unsatisfied') checked @endif > Unsatisfied
                                 </label>
                                 <label>
-                                    <input id="cofee_break" type="radio" name="cofee_break" value="satisfied"> Satisfied
+                                    <input id="cofee_break" type="radio" name="cofee_break" value="satisfied" @if(old('cofee_break') == 'satisfied') checked @endif > Satisfied
                                 </label>
                                 <label>
-                                    <input id="cofee_break" type="radio" name="cofee_break" value="highly_satisfied"> Highly Satisfied
+                                    <input id="cofee_break" type="radio" name="cofee_break" value="highly_satisfied" @if(old('cofee_break') == 'highly_satisfied') checked @endif > Highly Satisfied
                                 </label>
                             </td>
                         </tr>
@@ -106,20 +106,20 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="overall_evaluation" type="radio" name="overall_evaluation" value="unsatisfied"> Unsatisfied
+                                    <input id="overall_evaluation" type="radio" name="overall_evaluation" value="unsatisfied" @if(old('overall_evaluation') == 'unsatisfied') checked @endif > Unsatisfied
                                 </label>
                                 <label>
-                                    <input id="overall_evaluation" type="radio" name="overall_evaluation" value="satisfied"> Satisfied
+                                    <input id="overall_evaluation" type="radio" name="overall_evaluation" value="satisfied" @if(old('overall_evaluation') == 'satisfied') checked @endif > Satisfied
                                 </label>
                                 <label>
-                                    <input id="overall_evaluation" type="radio" name="overall_evaluation" value="highly_satisfied"> Highly Satisfied
+                                    <input id="overall_evaluation" type="radio" name="overall_evaluation" value="highly_satisfied" @if(old('overall_evaluation') == 'highly_satisfied') checked @endif> Highly Satisfied
                                 </label>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 <label for="comment">Additional comments</label>
-                <textarea class="form-control" name="comment" id="comment" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" {{old('comment')}}></textarea>
                 <div class="form-group">
                     <button name="submit" type="submit" class="btn btn-primary">Save</button>
                 </div>

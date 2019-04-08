@@ -103,7 +103,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             <label for="university_affiliation_id">University affiliation</label>
             <div>
