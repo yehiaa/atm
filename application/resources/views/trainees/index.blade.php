@@ -23,6 +23,7 @@
             <th>Identity type</th>
             <th>Country</th>
             <th>City</th>
+            <th>Attachment</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -36,6 +37,11 @@
             <td>{{ $item->identity_type }}</td>
             <td>{{ $item->country }}</td>
             <td>{{ $item->city }}</td>
+            <td scope="col">
+                @if($item->attachment)
+                    <a target="_blank" href="{{asset("/storage/$item->attachment")}}">Attachment</a>
+                @endif
+            </td>
             <td>
                 <form action="{{ route('trainees.destroy',['id'=> $item->id]) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('trainees.edit', $item->id) }}" role="button">Edit</a>

@@ -4,11 +4,11 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{{ url('/home') }}">Home</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{{ route('course_registration.index',[$course->id]) }}">Course registration</a>
-        </li>
-        <li class="breadcrumb-item active">Course registration</li>
+        {{--</li>--}}
+        {{--<li class="breadcrumb-item">--}}
+            {{--<a href="{{ route('course_registration.index',[$course->id]) }}">Course registration</a>--}}
+        {{--</li>--}}
+        {{--<li class="breadcrumb-item active">Course registration</li>--}}
     </ol>
 
     <p>This is for demo purposes</p>
@@ -37,7 +37,7 @@
         <div class="form-group">
             <label for="trainee_id">Trainee / Registrant</label>
             <div>
-                <select id="trainee_id" name="trainee_id" class="form-control" style="width: 100%" aria-describedby="selectHelpBlock" required="required">
+                <select  id="trainee_id" name="trainee_id" class="form-control" style="width: 100%" aria-describedby="selectHelpBlock" {{old('trainee_id')}} required="required">
                     {{--@foreach($trainees as $trainee)--}}
                         {{--<option @if(old('trainee_id') == $trainee->id) selected @endif value="{{ $trainee->id }}">{{ $trainee->name }} {{{ $trainee->phone }}}</option>--}}
                     {{--@endforeach--}}
@@ -93,7 +93,7 @@
 
         <div class="form-group">
             <label for="reference">Reference code / number</label>
-            <input id="reference" name="reference" value="{{ old('reference') }}" autocomplete="off" class="form-control" type="text">
+            <input id="reference" name="reference" value="{{ old('reference') }}" autocomplete="off" class="form-control"  type="text">
         </div>
 
         <div class="form-group">

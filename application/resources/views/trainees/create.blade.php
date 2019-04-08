@@ -102,7 +102,7 @@
         </div>
 
         <div class="form-group">
-            <label for="attachment">Attachments</label>
+            <label for="attachment">Attachment</label>
             <input id="attachment" name="attachment"  class="form-control-file"  type="file">
             <span id="nameHelpBlock" class="form-text text-muted">Upload a single file</span>
         </div>

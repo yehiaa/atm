@@ -9,10 +9,8 @@
     </ol>
 
     <!-- Page Content -->
-    <h1>Courses <a href="{{ route('course_registration.create') }}" >New Registre</a></h1>
-    <hr/>
-    @include('_partials.flash-messages')
 
+    @include('_partials.flash-messages')
 
     <div class="row">
         <div class="col-md-12">
@@ -22,15 +20,13 @@
                     <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>
                     <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>
                     <a class="nav-link active"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
-                    <a class="nav-link" active href="{{ route('course_evaluation.index',$course->id) }}">Course Evaluation</a>
+                    <a class="nav-link" href="{{ route('course_evaluation.index',$course->id) }}">Course Evaluation</a>
                     <a class="nav-link"  href="{{ route('trainer_evaluation.index',$course->id) }}">Trainer Evaluation</a>
                     <a class="nav-link"  href="{{ route('trainee_assessment.index',$course->id) }}">Trainee Assessment</a>
-
                 </div>
             </nav>
         </div>
     </div>
-
     <table id="example" class="display" style="width:100%">
         <thead>
         <tr>
@@ -50,7 +46,7 @@
             <td>{{ $item->is_paid }}</td>
             <td>{{ $item->reference }}</td>
             <td>
-                <form method="post" action="{{ route('course_registration.destroy',$item->id) }}" >
+                <form method="post" action="{{ route('course_registration.destroy',[$course->id,$item->id]) }}" >
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete')" >

@@ -68,11 +68,11 @@ class TraineeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|min:5',
-            'email'=> 'email|unique:trainees',
+            'name'=>'required|min:5|max:255',
+            'email'=> 'email|unique:trainees|max:255',
             'gender'=>'required',
-            'phone' => 'min:11|unique:trainees',
-            'identity'=> 'required|unique:trainees',
+            'phone' => 'min:11|max:255|unique:trainees',
+            'identity'=> 'max:255|required|unique:trainees',
             'identity_type'=> 'required',
             'speciality_id' => 'required']);
 
@@ -132,11 +132,11 @@ class TraineeController extends Controller
     public function update(Request $request, Trainee $trainee)
     {
         $request->validate([
-            'name'=>'required|min:5',
-            'email'=> 'email|unique:trainees,email,'.$trainee->id,
+            'name'=>'required|min:5|max:255',
+            'email'=> 'email|max:255|unique:trainees,email,'.$trainee->id,
             'gender'=>'required',
-            'phone' => 'min:11|unique:trainees,phone,'.$trainee->id,
-            'identity'=> 'required|unique:trainees,identity,'.$trainee->id,
+            'phone' => 'min:11|max:255|unique:trainees,phone,'.$trainee->id,
+            'identity'=> 'required|max:255|unique:trainees,identity,'.$trainee->id,
             'identity_type'=> 'required',
             'speciality_id' => 'required']);
 

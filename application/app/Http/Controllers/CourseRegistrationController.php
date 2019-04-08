@@ -79,8 +79,8 @@ class CourseRegistrationController extends Controller
 //            $request->validate(['affiliation_id'=>'required', 'nomination_reference'=>'required']);
 //        }
         $courseRegistration = CourseRegistration::create($request->all());
-
-        return redirect(route('course_registration.create'))->withSuccess('created successfully');
+        return redirect(route('course_registration.create'))->withSuccess('registry removed successfully');
+        //return redirect(route('course_registration.create'))->withSuccess('created successfully');
     }
 
     /**
@@ -121,14 +121,14 @@ class CourseRegistrationController extends Controller
      * @param  \App\CourseRegistration  $courseRegistration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseRegistration $courseRegistration, Course $course)
+    public function destroy(Course $course , CourseRegistration $courseRegistration )
     {
         try {
             $courseRegistration->delete();
             return redirect(route('course_registration.index',$course))->withSuccess('registry removed successfully');
         }
         catch (\Exception $e){
-            return redirect(route('course_registration.index',$course)->with("error",$e->getMessage()));
+            return redirect(route('course_registration.index',$course)->with("error",'can not delete related record'));
         }
     }
 }
