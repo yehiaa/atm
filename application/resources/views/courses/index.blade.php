@@ -30,10 +30,20 @@
         <tr>
             <td>{{ $item->name }}</td>
             <td>{{ $item->alternative_name }}</td>
-            <td>
-                <img src="{{ asset("storage/$item->logo") }}"
-                     alt="course logo" class="img-thumbnail" style="max-width:30px">
+            <td scope="col">
+
+                @if($item->logo)
+
+                    <a target="_blank" href="{{asset("/storage/$item->logo")}}">
+                        <img src="{{ asset("storage/$item->logo") }}"
+                             alt="course logo" class="img-thumbnail" style="max-width:30px">
+                    </a>
+                @endif
             </td>
+            {{--<td>--}}
+                {{--<img src="{{ asset("storage/$item->logo") }}"--}}
+                     {{--alt="course logo" class="img-thumbnail" style="max-width:30px">--}}
+            {{--</td>--}}
             <td>{{ str_limit($item->description, 30) }}</td>
             <td>{{ $item->start_datetime }}</td>
             <td>{{ $item->end_datetime }}</td>

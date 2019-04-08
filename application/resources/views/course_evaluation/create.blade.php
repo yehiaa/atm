@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label for="attachment">Attachments</label>
                     <div>
-                        <input type="file" name="attachment" multiple id="attachment">
+                        <input type="file" name="attachment" multiple id="attachment" >
                         <span id="selectHelpBlock" class="form-text text-muted">Evaluations attachments</span>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input id="organization" type="radio" name="organization" value="unsatisfied"> Unsatisfied
+                                    <input id="organization" type="radio" name="organization" value="unsatisfied" > Unsatisfied
                                 </label>
                                 <label>
                                     <input id="organization" type="radio" name="organization" value="satisfied"> Satisfied

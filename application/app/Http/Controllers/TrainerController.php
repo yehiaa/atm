@@ -43,10 +43,10 @@ class TrainerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|min:5|unique:trainers',
-            'email'=> 'email|unique:trainers',
-            'phone' => 'min:11|unique:trainers',
-            'identity'=> 'required|unique:trainers',
+            'name'=>'required|min:5|unique:trainers|max:255',
+            'email'=> 'email|unique:trainers|max:255',
+            'phone' => 'min:11|unique:trainers|max:255',
+            'identity'=> 'required|unique:trainers|max:255',
             'identity_type'=> 'required',
             'speciality_id' => 'required',
             'university_affiliation_id' => 'required',
@@ -112,11 +112,11 @@ class TrainerController extends Controller
     public function update(Request $request, Trainer $trainer)
     {
         $request->validate([
-            'name'=>'required|min:5|unique:trainers,name,'. $trainer->id,
-            'email'=> 'email|unique:trainers,email,'.$trainer->id,
+            'name'=>'required|min:5||max:255|unique:trainers,name,'. $trainer->id,
+            'email'=> 'max:255|email|unique:trainers,email,'.$trainer->id,
             //'email'=> 'email|unique:trainers ,email,'. $trainer->id,
-            'phone' => 'min:11|unique:trainers,phone,'.$trainer->id,
-            'identity'=> 'required|unique:trainers,identity,'.$trainer->id,
+            'phone' => 'max:255|min:11|unique:trainers,phone,'.$trainer->id,
+            'identity'=> 'required|max:255|unique:trainers,identity,'.$trainer->id,
             'identity_type'=> 'required',
             'speciality_id' => 'required',
             'university_affiliation_id' => 'required',

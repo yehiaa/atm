@@ -15,7 +15,7 @@
 
     <li class="nav-item ">
         <a class="nav-link " href="{{ url('/courses') }}" >
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-calendar"></i>
             <span>Courses</span>
         </a>
     </li>

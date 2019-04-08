@@ -22,6 +22,7 @@
             <th>Country</th>
             <th>City</th>
             <th>Speciality</th>
+            <th>Attachment</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -34,7 +35,11 @@
             <td>{{ $item->country }}</td>
             <td>{{ $item->city }}</td>
             <td>{{ $item->speciality->name }}</td>
-
+            <td scope="col">
+                @if($item->attachment)
+                    <a target="_blank" href="{{asset("/storage/$item->attachment")}}">Attachment</a>
+                @endif
+            </td>
             <td>
                 <form action="{{ route('trainers.destroy', $item->id) }}" method="POST">
                     <a class="btn btn-primary" href="{{ route('trainers.edit', $item->id) }}" role="button">Edit</a>
@@ -46,7 +51,6 @@
 
         </tr>
         @endforeach
-
         </tbody>
         <tfoot>
         <tr>
