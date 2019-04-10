@@ -42,7 +42,8 @@ class CourseController extends Controller
             'percentage_to_pass'=>'required|integer|max:100|min:0',
             'price'=>'required|integer|min:0',
             'logo'=>'file|image',
-            'start_datetime'=>'required', 'end_datetime'=>'required']);
+            'start_datetime'=>'required|date_format:Y/m/d H:i',
+            'end_datetime'=>'required|date_format:Y/m/d H:i|after:start_datetime']);
 
         $logoPath = "";
         if ($request->hasFile('logo')){
@@ -100,8 +101,8 @@ class CourseController extends Controller
             'name'=>'required',
             'percentage_to_pass'=>'required|integer|max:100|min:0',
             'logo'=>'file|image',
-            'start_datetime'=>'required',
-            'end_datetime'=>'required'];
+            'start_datetime'=>'required|date_format:Y/m/d H:i',
+            'end_datetime'=>'required|date_format:Y/m/d H:i|after:start_datetime'];
         $logoPath = $course->logo;
         if ($request->hasFile('logo')){
             $file = $request->file('logo');

@@ -52,13 +52,13 @@
 
         <div class="form-group">
             <label for="start_datetime">Start datetime</label>
-            <input id="start_datetime" name="start_datetime" autocomplete="off" class="form-control datetime" aria-describedby="nameHelpBlock" value="{{ $course->start_datetime }}" required="required" type="text">
+            <input id="start_datetime" name="start_datetime" autocomplete="off" class="form-control datetime" aria-describedby="nameHelpBlock" value="{{ $course->start_datetime->format('Y/m/d H:i') }}" required="required" type="text">
             <span id="nameHelpBlock" class="form-text text-muted">start date</span>
         </div>
 
         <div class="form-group">
             <label for="end_datetime">End datetime</label>
-            <input id="end_datetime" name="end_datetime" autocomplete="off" class="form-control datetime" aria-describedby="nameHelpBlock" value="{{ $course->end_datetime }}" required="required" type="text">
+            <input id="end_datetime" name="end_datetime" autocomplete="off" class="form-control datetime" aria-describedby="nameHelpBlock" value="{{ $course->end_datetime->format('Y/m/d H:i') }}" required="required" type="text">
             <span id="nameHelpBlock" class="form-text text-muted">end date</span>
         </div>
 
