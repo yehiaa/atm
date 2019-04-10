@@ -110,7 +110,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-        return redirect(route('users.index'))->withSuccess('deleted successfuly');
+        try {
+            $user->delete();
+            return redirect(route('users.index'))->withSuccess('deleted successfully');
+        }catch (\Exception $ex){
+            return redirect(route('users.index'))->withError('can not delete related record');
+        }
     }
 }
