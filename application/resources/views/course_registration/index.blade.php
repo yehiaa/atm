@@ -10,7 +10,6 @@
 
     <!-- Page Content -->
     <h1>{{ $course->name }}</h1>
-    <hr>
     @include('_partials.flash-messages')
 
     <div class="row">

@@ -50,6 +50,9 @@ class TrainerAttendanceController extends Controller
         }
 
         $request->validate(['trainer_id'=>'required']);
+
+        //@todo add timing validation
+
         $traineeAttendance = TrainerAttendance::create([
             'lecture_id' => $lecture->id,
             'created_by' => auth()->user()->id,
@@ -60,10 +63,10 @@ class TrainerAttendanceController extends Controller
     }
     /**
      * Display the specified resource.
-     * @param  \App\TrainerAttendance  $trainerAttendance
+     * @param  \App\TrainerAttendance  $trainers_attendance
      * @return \Illuminate\Http\Response
      */
-    public function show(TrainerAttendance $trainerAttendance)
+    public function show(TrainerAttendance $trainers_attendance)
     {
         //
     }
@@ -72,7 +75,7 @@ class TrainerAttendanceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Lecture $lecture
-     * @param  \App\TrainerAttendance $trainerAttendance
+     * @param  \App\TrainerAttendance $trainer_attendance
      * @return \Illuminate\Http\Response
      */
     public function edit(Lecture $lecture, TrainerAttendance $trainer_attendance)
@@ -87,19 +90,22 @@ class TrainerAttendanceController extends Controller
     /**
      * Update the specified resource in storage
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TrainerAttendance  $trainerAttendance
+     * @param  \App\TrainerAttendance  $trainers_attendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TrainerAttendance $trainerAttendance)
+    public function update(Request $request, TrainerAttendance $trainers_attendance)
     {
+        //this won't work
         $request->vaildate([
             'lecture_id' =>'require',
             'created_by'=>'require',
-            'attended_at' =>'require',
+            'attended_at' =>'require', // needs to be formatted
             'trainer_id' =>'require'
         ]);
 
-        $trainerAttendance->update( $request->all());
+        //@todo add timing validation
+
+        $trainers_attendance->update( $request->all());
     }
 
     /**

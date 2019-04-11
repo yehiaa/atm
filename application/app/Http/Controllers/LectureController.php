@@ -42,9 +42,11 @@ class LectureController extends Controller
     {
 //        return $course;
         $request->validate(['name'=>'required',
-            'start_datetime'=>'required',
-            'end_datetime'=>'required',
+            'start_datetime'=>'required|date_format:Y/m/d H:i',
+            'end_datetime'=>'required|date_format:Y/m/d H:i|after:start_datetime',
             'hall_id'=>'required']);
+
+        //@todo compare timing with course timing
 
         $data = ['name' => $request->get('name'),
             'course_id' => $course->id,
@@ -90,15 +92,18 @@ class LectureController extends Controller
     public function update(Request $request, Course $course, Lecture $lecture)
     {
         $request->validate(['name'=>'required',
-            'start_datetime'=>'required',
-            'end_datetime'=>'required',
+            'start_datetime'=>'required|date_format:Y/m/d H:i',
+            'end_datetime'=>'required|date_format:Y/m/d H:i|after:start_datetime',
             'hall_id'=>'required']);
+
+        //@todo compare lecture timings with course timings
+
 
         $data = ['name' => $request->get('name'),
             'course_id' => $course->id,
             'hall_id' => $request->get('hall_id'),
-            'start_datetime' =>  $request->get('start_datetime'),
-            'end_datetime' => $request->get('end_datetime'),
+            'start_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('start_datetime'))->toDateTimeString(),
+            'end_datetime' => Carbon::createFromFormat('Y/m/d H:i', $request->get('end_datetime'))->toDateTimeString(),
             'notes' => $request->get('notes')];
 
         $lecture->update($data);
@@ -113,9 +118,7 @@ class LectureController extends Controller
      */
     public function destroy(Course $course, Lecture $lecture)
     {
-        //$course->lectures()->delete();
         try{
-            //$lecture->course()->delete();
             $lecture->delete();
         return redirect(route('courses.show', ['id'=>$course->id]))->withSuccess('deleted successfully');
         }

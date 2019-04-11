@@ -71,6 +71,8 @@ class TraineeController extends Controller
             'name'=>'required|min:5|max:255',
             'email'=> 'email|unique:trainees|max:255',
             'gender'=>'required',
+            'country'=>'required',
+            'city'=>'required',
             'phone' => 'min:11|max:255|unique:trainees',
             'identity'=> 'max:255|required|unique:trainees',
             'identity_type'=> 'required',

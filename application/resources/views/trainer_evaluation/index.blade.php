@@ -9,10 +9,8 @@
         <li class="breadcrumb-item active">Trainer evaluation</li>
     </ol>
 
-    <p>This is for demo purposes</p>
     <!-- Page Content -->
     <h1>Trainer Evaluation ({{$course->name}})<a href="{{ route('trainer_evaluation.create', [$course->id]) }}"> Add new</a></h1>
-    {{--<hr>--}}
 
     @include('_partials.flash-messages')
 
