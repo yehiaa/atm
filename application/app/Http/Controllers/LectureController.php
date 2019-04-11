@@ -46,6 +46,8 @@ class LectureController extends Controller
             'end_datetime'=>'required|date_format:Y/m/d H:i|after:start_datetime',
             'hall_id'=>'required']);
 
+        //@todo compare timing with course timing
+
         $data = ['name' => $request->get('name'),
             'course_id' => $course->id,
             'hall_id' => $request->get('hall_id'),
@@ -94,7 +96,7 @@ class LectureController extends Controller
             'end_datetime'=>'required|date_format:Y/m/d H:i|after:start_datetime',
             'hall_id'=>'required']);
 
-        //compare lecture timings with course timings
+        //@todo compare lecture timings with course timings
 
 
         $data = ['name' => $request->get('name'),
