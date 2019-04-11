@@ -8,8 +8,6 @@
 
         <li class="breadcrumb-item active">Trainee Assessment</li>
     </ol>
-
-    <p>This is for demo purposes</p>
     <!-- Page Content -->
     <h1>Trainee Assessment<a href="{{ route('trainee_assessment.create', [$course->id]) }}"> Add new</a></h1>
     @include('_partials.flash-messages')

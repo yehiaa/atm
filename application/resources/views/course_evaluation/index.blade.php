@@ -11,11 +11,8 @@
         </li>
         <li class="breadcrumb-item active">Course evaluation</li>
     </ol>
-
-    <p>This is for demo purposes</p>
     <!-- Page Content -->
     <h1>{{$course->name}} <a href="{{ route('course_evaluation.create', [$course->id]) }}">Add new</a></h1>
-    <hr/>
     @include('_partials.flash-messages')
     <div class="row">
         <div class="col-md-12">

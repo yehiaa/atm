@@ -63,7 +63,7 @@
 
         <div class="form-group">
             <label for="country">Country</label>
-            <select id="country" name="country" class="form-control" value="{{ old('country') }}">
+            <select id="country" name="country" class="form-control">
                 <option value=""></option>
             </select>
         </div>
