@@ -79,8 +79,7 @@ class CourseRegistrationController extends Controller
 //            $request->validate(['affiliation_id'=>'required', 'nomination_reference'=>'required']);
 //        }
         $courseRegistration = CourseRegistration::create($request->all());
-        return redirect(route('course_registration.create'))->withSuccess('registry removed successfully');
-        //return redirect(route('course_registration.create'))->withSuccess('created successfully');
+        return redirect(route('course_registration.create'))->withSuccess('created successfully');
     }
 
     /**
