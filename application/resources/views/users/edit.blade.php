@@ -27,6 +27,15 @@
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control here" value="{{ $user->email }}" type="text">
         </div>
+
+        <h5><b>Give Role</b></h5>
+        <div class='form-group'>
+            @foreach ($roles as $role)
+                {{ Form::checkbox('roles[]',  $role->id, $user->roles ) }}
+                {{ Form::label($role->name, ucfirst($role->name)) }}<br>
+            @endforeach
+        </div>
+
         <div class="form-group">
             <label for="email">PassWord</label>
             <input id="password" name="password" class="form-control here"  type="password">

@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles=Role::get();
+        return view('users.create',['roles'=>'$roles']);
     }
 
     /**
@@ -41,10 +49,20 @@ class UserController extends Controller
             'name'=>'required|min:5',
             'email'=> 'email',
             'password'=>'required|min:6']);
-        $data = ['name' => $request->get('name'), 'email'=>$request->get('email'),
-            'password'=> Hash::make($request->get('password'))];
+        //$user = ['name' => $request->get('name'), 'email'=>$request->get('email'),
+            //'password'=> Hash::make($request->get('password'))];
+        $user = User::create(['name' => $request->get('name'), 'email'=>$request->get('email'),
+            'password'=> Hash::make($request->get('password'))]);
+        //($request->only('email', 'name', 'password')); //Retrieving only the email and password data
 
-        User::create($data);
+       // User::create($data);
+        $roles = $request['roles'];
+        if (isset($roles)) {
+            foreach ($roles as $role) {
+                $role_r = Role::where('id', '=', $role)->firstOrFail();
+                $user->assignRole($role_r); //Assigning role to user
+            }
+        }
         return redirect(route('users.index'))->withSuccess('created successfully');
     }
 
@@ -67,7 +85,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::get(); //Get all roles
+
+        return view('users.edit', compact('user'.'roles'));
     }
 
     /**
@@ -99,6 +119,12 @@ class UserController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->save();
+        if (isset($roles)) {
+            $user->roles()->sync($roles);  //If one or more role is selected associate user to roles
+        }
+        else {
+            $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
+        }
         return redirect(route('users.index'))->with('success', ' updated successfully ');
     }
 

@@ -8,6 +8,13 @@
         <li class="breadcrumb-item active">Users</li>
     </ol>
 
+    <h1><i class="fa fa-users"></i>
+        User Administration
+        <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
+        <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a>
+    </h1>
+    <hr>
+
     <!-- Page Content -->
     <h1>Users <a href="{{ route('users.create') }}">Add new</a></h1>
     <hr>
@@ -18,6 +25,8 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>User Roles</th>
+            <th>Operations</th>
             <th>Active</th>
             <th>Actions</th>
         </tr>
@@ -27,6 +36,8 @@
             <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
+                <td>{{  $user->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
+
                 <td>
                     <form action="{{ route('users.destroy',$item->id) }}" method="POST">
                         <a class="btn btn-primary" href="{{route('users.edit',$item->id) }}" role="button">Edit</a>
