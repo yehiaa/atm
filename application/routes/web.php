@@ -21,6 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => 'auth'], function()
 {
+    Route::resource('roles','RoleController');
+    Route::resource('permissions','PermissionController');
+
     //Route::get('/evaluation', 'EvaluationController@index')->name('evaluations.index');
     //Route::get('/evaluation/{course}/create', 'EvaluationController@create')->name('evaluations.create');
     //Route::get('/evaluation/course_evaluation', 'EvaluationController@create')->name('course_evaluation.create');

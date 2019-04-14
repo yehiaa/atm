@@ -28,6 +28,13 @@
             <input id="email" name="email" class="form-control here" type="text">
         </div>
 
+        {{--<div class="form-group">--}}
+            {{--@foreach ($roles as $role)--}}
+            {{--<input type="checkbox" value="{{$role->id}}" checked id="role" name="role">--}}
+            {{--<label for="remember_me">Remember me</label>--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
+
         <div class='form-group'>
             @foreach ($roles as $role)
                 {{ Form::checkbox('roles[]',  $role->id ) }}

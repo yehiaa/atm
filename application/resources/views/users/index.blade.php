@@ -36,7 +36,7 @@
             <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
-                <td>{{  $user->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
+                <td>{{  $item->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
 
                 <td>
                     <form action="{{ route('users.destroy',$item->id) }}" method="POST">

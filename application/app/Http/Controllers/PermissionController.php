@@ -15,7 +15,7 @@ use Session;
 class PermissionController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        //$this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
     }
 
     /**
@@ -23,6 +23,7 @@ class PermissionController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index() {
         $permissions = Permission::all(); //Get all permissions
 
@@ -46,6 +47,7 @@ class PermissionController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request) {
         $this->validate($request, [
             'name'=>'required|max:40',

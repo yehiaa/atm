@@ -34,7 +34,8 @@ class UserController extends Controller
     public function create()
     {
         $roles=Role::get();
-        return view('users.create',['roles'=>'$roles']);
+        //dd($roles);['roles'=>'$roles']
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -43,6 +44,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -87,7 +89,7 @@ class UserController extends Controller
     {
         $roles = Role::get(); //Get all roles
 
-        return view('users.edit', compact('user'.'roles'));
+        return view('users.edit', compact('user','roles'));
     }
 
     /**
