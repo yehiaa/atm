@@ -20,12 +20,12 @@
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" placeholder="name" class="form-control here" type="text">
+            <input id="name" name="name" value="{{old('name')}}" placeholder="name" class="form-control here" type="text" required="required">
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" class="form-control here" type="text">
+            <input id="email" name="email" value="{{old('email')}}" class="form-control here" type="text" required="required">
         </div>
 
         {{--<div class="form-group">--}}
@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" name="password" class="form-control here" type="password">
+            <input id="password" name="password" class="form-control here" type="password" required="required">
         </div>
 
         <div class="form-group">

@@ -120,6 +120,7 @@ class UserController extends Controller
         // 2// password is not empty
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $roles = $request->input('roles');
         $user->save();
         if (isset($roles)) {
             $user->roles()->sync($roles);  //If one or more role is selected associate user to roles

@@ -31,8 +31,11 @@
         <h5><b>Give Role</b></h5>
         <div class='form-group'>
             @foreach ($roles as $role)
-                {{ Form::checkbox('roles[]',  $role->id, $user->roles ) }}
-                {{ Form::label($role->name, ucfirst($role->name)) }}<br>
+                <label>
+                {{ Form::checkbox('roles[]',  $role->id, $user->hasRole($role->name) ) }}
+                    {{ ucfirst($role->name) }}
+                </label>
+                <br/>
             @endforeach
         </div>
 
