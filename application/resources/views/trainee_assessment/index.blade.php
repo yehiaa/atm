@@ -30,7 +30,9 @@
 
     <div class="row">
         <div class="col-md-12">
-                <table class="table">
+            <div class="card">
+                <div class="card-body">
+                    <table id="example" class="display" style="width:100%">
                     <thead>
                     <tr>
                         <th scope="col">Course</th>
@@ -68,8 +70,10 @@
                     @endforeach
                     </tbody>
                </table>
+            </div>
         </div>
     </div>
+</div>
 
 @endsection
 

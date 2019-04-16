@@ -27,7 +27,10 @@
             </nav>
         </div>
     </div>
-    <table id="example" class="display" style="width:100%">
+
+    <div class="card">
+        <div class="card-body">
+            <table id="example" class="display" style="width:100%">
         <thead>
         <tr>
             <th>Course</th>
@@ -58,6 +61,8 @@
         @endforeach
         </tbody>
     </table>
+        </div>
+    </div>
 @endsection
 
 @section('js')

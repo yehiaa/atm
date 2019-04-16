@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-<!--@section('title', '| Permissions')-->
-
+@extends('layouts.master')
 @section('content')
 
     <div class="col-lg-10 col-lg-offset-1">

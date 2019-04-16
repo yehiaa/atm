@@ -30,10 +30,11 @@
             </nav>
         </div>
     </div>
-
+    <div class="card">
+        <div class="card-body">
     <div class="row">
         <div class="col-md-12">
-                <table class="table">
+            <table id="example" class="display" style="width:100%">
                     <thead>
                     <tr>
                         <th scope="col">trainee</th>
@@ -71,10 +72,22 @@
                     </tr>
                     @endforeach
                     </tbody>
+                <tfoot>
+                <tr>
+                    <th scope="col">trainee</th>
+                    <th scope="col">Organization</th>
+                    <th scope="col">Educational tools</th>
+                    <th scope="col">Coffee break</th>
+                    <th scope="col">Overall evaluation</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Attachment</th>
+                </tr>
+                </tfoot>
                 </table>
         </div>
     </div>
-
+        </div>
+    </div>
 @endsection
 
 @section('js')
