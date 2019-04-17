@@ -16,15 +16,36 @@
         <div class="col-md-12">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">courses</a>
-                    <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>
-                    <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>
-                    <a class="nav-link active"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
-                    <a class="nav-link" href="{{ route('course_evaluation.index',$course->id) }}">Course Evaluation</a>
-                    <a class="nav-link"  href="{{ route('trainer_evaluation.index',$course->id) }}">Trainer Evaluation</a>
-                    <a class="nav-link"  href="{{ route('trainee_assessment.index',$course->id) }}">Trainee Assessment</a>
+                    @can('course show')
+                        <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">courses</a>
+                        <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>
+                        <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>
+                    @endcan
+                    @can('courseRegistration list')
+                        <a class="nav-link"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
+                    @endcan
+                    @can('courseEvaluation list')
+                        <a class="nav-link active "  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>
+                    @endcan
+                    @can('trainerEvaluation list')
+                        <a class="nav-link"  href="{{ route('trainer_evaluation.index',[$course->id]) }}">Trainer Evaluation</a>
+                    @endcan
+                    @can('traineeAssessment list')
+                        <a class="nav-link"  href="{{ route('trainee_assessment.index',[$course->id]) }}">Trainee Assessment</a>
+                    @endcan
                 </div>
             </nav>
+            {{--<nav>--}}
+                {{--<div class="nav nav-tabs" id="nav-tab" role="tablist">--}}
+                    {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">courses</a>--}}
+                    {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>--}}
+                    {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>--}}
+                    {{--<a class="nav-link active"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>--}}
+                    {{--<a class="nav-link" href="{{ route('course_evaluation.index',$course->id) }}">Course Evaluation</a>--}}
+                    {{--<a class="nav-link"  href="{{ route('trainer_evaluation.index',$course->id) }}">Trainer Evaluation</a>--}}
+                    {{--<a class="nav-link"  href="{{ route('trainee_assessment.index',$course->id) }}">Trainee Assessment</a>--}}
+                {{--</div>--}}
+            {{--</nav>--}}
         </div>
     </div>
 

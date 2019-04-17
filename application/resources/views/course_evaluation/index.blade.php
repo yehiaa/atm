@@ -5,10 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/home') }}">Home</a>
         </li>
+        @can('courseEvaluation list')
         <li class="breadcrumb-item">
             <a href= "{{ route('course_evaluation.index', [$course->id]) }}"> Course Evaluation</a>
-
         </li>
+        @endcan
         <li class="breadcrumb-item active">Course evaluation</li>
     </ol>
     <!-- Page Content -->
@@ -18,14 +19,23 @@
         <div class="col-md-12">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    @can('course show')
                     <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">courses</a>
                     <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>
                     <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>
+                    @endcan
+                    @can('courseRegistration list')
                     <a class="nav-link"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
+                    @endcan
+                    @can('courseEvaluation list')
                     <a class="nav-link active "  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>
+                    @endcan
+                    @can('trainerEvaluation list')
                     <a class="nav-link"  href="{{ route('trainer_evaluation.index',[$course->id]) }}">Trainer Evaluation</a>
+                    @endcan
+                    @can('traineeAssessment list')
                     <a class="nav-link"  href="{{ route('trainee_assessment.index',[$course->id]) }}">Trainee Assessment</a>
-
+                    @endcan
                 </div>
             </nav>
         </div>

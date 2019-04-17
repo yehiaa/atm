@@ -5,18 +5,23 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        <li class="breadcrumb-item">
+        <a href="{{ route('roles.index') }}">Roles</a>
+        </li>
+        <li class="breadcrumb-item">
+        <a href="{{ route('permissions.index') }}">Permissions</a>
+        </li>
         <li class="breadcrumb-item active">Users</li>
     </ol>
 
-    <h1><i class="fa fa-users"></i>
-        User Administration
-        <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
-        <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a>
-    </h1>
+    {{--<h1><i class="fa fa-users"></i>--}}
+        {{--User Administration--}}
+    {{--</h1>--}}
     <hr>
 
     <!-- Page Content -->
     <h1>Users <a href="{{ route('users.create') }}">Add new</a></h1>
+
     <hr>
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
@@ -26,9 +31,9 @@
             <th>Name</th>
             <th>Email</th>
             <th>User Roles</th>
-            <th>Operations</th>
-            <th>Active</th>
             <th>Actions</th>
+            {{--<th>Operations</th>--}}
+            {{--<th>Active</th>--}}
         </tr>
         </thead>
         <tbody>
@@ -37,7 +42,6 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
                 <td>{{  $item->roles()->pluck('name')->implode(' ') }}</td>{{-- Retrieve array of roles associated to a user and convert to string --}}
-
                 <td>
                     <form action="{{ route('users.destroy',$item->id) }}" method="POST">
                         <a class="btn btn-primary" href="{{route('users.edit',$item->id) }}" role="button">Edit</a>
@@ -55,7 +59,8 @@
         <tfoot>
         <tr>
             <th>Name</th>
-            <th>Active</th>
+            <th>Email</th>
+            <th>User Roles</th>
             <th>Actions</th>
         </tr>
         </tfoot>
