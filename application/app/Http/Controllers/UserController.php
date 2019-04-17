@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -20,8 +21,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+//        if (! auth()->user()->hasPermissionTo(""))
+//        {
+//
+//        }
+//        print_r( $request->route()->getAction());
+//       echo class_basename(Route::current()->controller);
         $items = User::all();
         return view('users.index', compact('items'));
     }

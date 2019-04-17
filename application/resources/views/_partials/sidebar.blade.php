@@ -50,7 +50,9 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
       <h6 class="dropdown-header">Persona:</h6>
-      <a class="dropdown-item" href="{{ url('/users') }}">Users</a>
+        @can('user list')
+        <a class="dropdown-item" href="{{ url('/users') }}">Users</a>
+        @endcan
       <a class="dropdown-item" href="{{ url('/trainers') }}">Trainers</a>
       <a class="dropdown-item" href="{{ url('/trainees') }}">Trainees</a>
       <div class="dropdown-divider"></div>
