@@ -55,14 +55,14 @@ class RolesAndPermissionsSeeder extends Seeder
 
         Permission::create(['name' => 'courseEvaluation add']);
         Permission::create(['name' => 'courseEvaluation list']);
-        Permission::create(['name' => 'courseEvaluation show']);
-        Permission::create(['name' => 'courseEvaluation edit']);
+        //Permission::create(['name' => 'courseEvaluation show']);
+        //Permission::create(['name' => 'courseEvaluation edit']);
         Permission::create(['name' => 'courseEvaluation remove']);
 
         Permission::create(['name' => 'courseRegistration add']);
         Permission::create(['name' => 'courseRegistration list']);
-        Permission::create(['name' => 'courseRegistration show']);
-        Permission::create(['name' => 'courseRegistration edit']);
+        //Permission::create(['name' => 'courseRegistration show']);
+        //Permission::create(['name' => 'courseRegistration edit']);
         Permission::create(['name' => 'courseRegistration remove']);
 
         Permission::create(['name' => 'hall add']);

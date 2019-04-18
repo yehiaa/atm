@@ -23,7 +23,7 @@
         @method('patch')
         <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" placeholder="name" class="form-control here" value="{{ $affiliation->name }}" type="text">
+            <input id="name" name="name" placeholder="name" class="form-control here" value="{{ $affiliation->name }}" type="text" required ='required'>
         </div>
         <div class="form-group">
             @can('affiliation edit')

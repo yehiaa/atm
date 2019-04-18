@@ -36,7 +36,7 @@ class AffiliationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name'=>'required']);
+        $request->validate(['name'=>'required|max:255']);
 
         Affiliation::create($request->all());
 
@@ -74,7 +74,7 @@ class AffiliationController extends Controller
      */
     public function update(Request $request, Affiliation $affiliation)
     {
-        $request->validate(['name'=>'required']);
+        $request->validate(['name'=>'required|max:255']);
         $affiliation->update( \request()->all());
         $affiliation->save();
         return redirect(route('affiliations.index'))->withSuccess('updated successfully');

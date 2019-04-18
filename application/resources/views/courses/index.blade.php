@@ -9,7 +9,9 @@
     </ol>
 
     <!-- Page Content -->
+    @can('course add')
     <h1>Courses <a href="{{ route('courses.create') }}">Add new</a></h1>
+    @endcan
     <hr>
     {{--<p> the training halls</p>--}}
     @include('_partials.flash-messages')
@@ -31,9 +33,7 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->alternative_name }}</td>
             <td scope="col">
-
                 @if($item->logo)
-
                     <a target="_blank" href="{{asset("/storage/$item->logo")}}">
                         <img src="{{ asset("storage/$item->logo") }}"
                              alt="course logo" class="img-thumbnail" style="max-width:30px">
@@ -53,14 +53,24 @@
                         Actions
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @can('course show')
                         <a class="dropdown-item" href="{{ route('courses.show', ['id'=> $item->id]) }}">Show</a>
+                        @endcan
+                        @can('lecture add')
                         <a class="dropdown-item" href="{{ route('courses.lectures.create', ['course_id'=>$item->id]) }}">Add lecture</a>
+                        @endcan
+                        @can('trainer add')
                         <a class="dropdown-item" href="{{ route('courses.trainers.create', ['course_id'=>$item->id]) }}">Add trainer</a>
+                        @endcan
+                        @can('course edit')
                         <a class="dropdown-item" href="{{ route('courses.edit', ['course_id'=>$item->id]) }}">Edit Course</a>
+                        @endcan
                         <form action="{{ route('courses.destroy', ['id'=> $item->id]) }}" method="POST">
                             @method('delete')
                             @csrf
+                        @can('course remove')
                         <button class="dropdown-item" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
+                        @endcan
                         </form>
                     </div>
                 </div>

@@ -22,10 +22,10 @@
                         <a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>
                     @endcan
                     @can('courseRegistration list')
-                        <a class="nav-link"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
+                        <a class="nav-link active "  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>
                     @endcan
                     @can('courseEvaluation list')
-                        <a class="nav-link active "  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>
+                        <a class="nav-link"  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>
                     @endcan
                     @can('trainerEvaluation list')
                         <a class="nav-link"  href="{{ route('trainer_evaluation.index',[$course->id]) }}">Trainer Evaluation</a>
@@ -73,9 +73,11 @@
                 <form method="post" action="{{ route('course_registration.destroy',[$course->id,$item->id]) }}" >
                     @csrf
                     @method('DELETE')
+                    @can('courseRegistration remove')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete')" >
                         Delete
                     </button>
+                    @endcan
                 </form>
             </td>
         </tr>

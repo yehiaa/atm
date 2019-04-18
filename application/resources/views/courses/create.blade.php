@@ -6,7 +6,9 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
+            @can('course list')
             <a href="{{ route('courses.index') }}">Courses</a>
+            @endcan
         </li>
         <li class="breadcrumb-item active">Create new</li>
     </ol>
@@ -81,7 +83,9 @@
             {{--</div>--}}
         {{--</div>--}}
         <div class="form-group">
+            @can('course add')
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
+            @endcan
         </div>
     </form>
 
