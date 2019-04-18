@@ -6,7 +6,9 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
+            @can('hall list')
             <a href="{{ route('halls.index') }}">Hall</a>
+            @endcan
         </li>
         <li class="breadcrumb-item active">Edit Hall{{ $hall->name }}</li>
     </ol>
@@ -41,7 +43,9 @@
             </div>
         </div>
         <div class="form-group">
+            @can('hall edit')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @endcan
         </div>
     </form>
 

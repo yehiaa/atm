@@ -6,13 +6,15 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
+            @can('hall list')
             <a href="{{ route('halls.index') }}">Halls</a>
+            @endcan
         </li>
         <li class="breadcrumb-item active">Create new</li>
     </ol>
 
     <!-- Page Content -->
-    <h1>Halls <a href="{{ route('halls.create') }}">Add new</a></h1>
+    <h1>New Hall</h1>
     <hr>
     @include('_partials.flash-messages')
 
@@ -42,7 +44,9 @@
             </div>
         </div>
         <div class="form-group">
+            @can('hall add')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @endcan
         </div>
     </form>
 

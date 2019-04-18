@@ -21,13 +21,7 @@
 
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    {{----}}
-                        {{--<a class="nav-link active"  href="{{ route('courses.show', [$course->id]) }}">courses</a>--}}
-                    {{--@endcan--}}
-                    {{--@can('')--}}
-                        {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>--}}
-                        {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>--}}
-                    {{--@endcan--}}
+
                     @can('course show')
                          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Course</a>
                     @endcan
@@ -74,8 +68,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-
                         <div class="card-body">
+
                             <h4 class="card-title">Info</h4>
                             <dl class="row">
                                 <dt class="col-sm-3">Alternative name</dt>
@@ -162,21 +156,21 @@
                                 </tr>
                                 </tfoot>
                             </table>
-
+                            @can('lecture add')
                             <a href="{{ route('courses.lectures.create', ['course_id'=>$course->id]) }}" class="card-link">Add lecture</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-
                         <div class="card-body">
+
                             <h4 class="card-title">Trainers</h4>
                             <table  class="display" style="width:100%">
                                 <thead>
@@ -205,9 +199,11 @@
                                             <form action="{{ route('courses.trainers.destroy', [$course->id, $courseTrainer->trainer->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
+                                                @can('trainer remove')
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">
                                                     Remove
                                                 </button>
+                                                @endcan
                                             </form>
                                         </td>
                                     </tr>
@@ -217,18 +213,15 @@
                                 <tfoot>
                                 </tfoot>
                             </table>
+                            @can('trainer add')
                             <a href="{{ route('courses.trainers.create', ['course_id'=>$course->id]) }}" class="card-link">Add new</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
 
 
 @endsection

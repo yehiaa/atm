@@ -5,17 +5,18 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('lecture add')
         <li class="breadcrumb-item">
             <a href="{{ route('courses.show', ['course_id' => $course->id]) }}">{{ $course->name }}</a>
         </li>
         <li class="breadcrumb-item active">Create new lecture</li>
+        @endcan
     </ol>
 
     <!-- Page Content -->
     <h1>Lecture ({{ $course->name }})</h1>
     <hr>
     @include('_partials.flash-messages')
-
 
     <form method="post" action="{{ route('courses.lectures.store', ['course_id' => $course->id]) }}">
         @csrf
@@ -57,12 +58,12 @@
                 <span id="selectHelpBlock" class="form-text text-muted">Hall / Auditorium</span>
             </div>
         </div>
-
+        @can('lecture add')
         <div class="form-group">
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
         </div>
+        @endcan
     </form>
-
 
 @endsection
 

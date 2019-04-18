@@ -9,8 +9,10 @@
     </ol>
 
     <!-- Page Content -->
+    @can('hall add')
     <h1>Halls <a href="{{ route('halls.create') }}">Add new</a></h1>
     <hr>
+    @endcan
     @include('_partials.flash-messages')
     <p> the training halls</p>
     <table id="example" class="display" style="width:100%">
@@ -28,19 +30,22 @@
             <td>{{ $item->is_active ? 'Yes': 'No' }}</td>
             <td>
                 <form action="{{ route('halls.destroy',$item->id) }}" method="POST">
+                    @can('hall edit')
                     <a class="btn btn-primary" href="{{ route('halls.edit', $item->id) }}" role="button">Edit</a>
+                    @endcan
                     @csrf
                     @method('DELETE')
+                    @can('hall remove')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
                         Delete
                     </button>
+                    @endcan
                 </form>
             </td>
             <td>
             </td>
         </tr>
         @endforeach
-
         </tbody>
         <tfoot>
         <tr>
