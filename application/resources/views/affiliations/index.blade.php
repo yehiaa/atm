@@ -9,7 +9,9 @@
     </ol>
 
     <!-- Page Content -->
+    @can('affiliation add')
     <h1>Affiliations <a href="{{ route('affiliations.create') }}">Add new</a></h1>
+    @endcan
     <hr>
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
@@ -26,12 +28,16 @@
             <td>{{ $item->name }}</td>
             <td>
                 <form method="post" action="{{ route('affiliations.destroy',$item->id) }}" >
+                    @can('affiliation edit')
                     <a class="btn btn-primary" href="{{ route('affiliations.edit', $item->id) }}" >Edit</a>
+                    @endcan
                     @csrf
                     @method('DELETE')
+                    @can('affiliation remove')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')" >
                         Delete
                     </button>
+                    @endcan
                 </form>
             </td>
         </tr>

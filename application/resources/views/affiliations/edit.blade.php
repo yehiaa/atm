@@ -6,7 +6,9 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
+            @can('affiliation list')
             <a href="{{ route('affiliations.index') }}">Affiliation</a>
+            @endcan
         </li>
         <li class="breadcrumb-item active">Edit Affiliation{{ $affiliation->name }}</li>
     </ol>
@@ -24,7 +26,9 @@
             <input id="name" name="name" placeholder="name" class="form-control here" value="{{ $affiliation->name }}" type="text">
         </div>
         <div class="form-group">
+            @can('affiliation edit')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @endcan
         </div>
     </form>
 

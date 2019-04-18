@@ -6,7 +6,9 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
+            @can('affiliation list')
             <a href="{{ route('affiliations.index') }}">Affiliations</a>
+            @endcan
         </li>
         <li class="breadcrumb-item active">Create new</li>
     </ol>
@@ -37,7 +39,9 @@
             {{--</div>--}}
         {{--</div>--}}
         <div class="form-group">
+            @can('affiliation add')
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
+            @endcan
         </div>
     </form>
 

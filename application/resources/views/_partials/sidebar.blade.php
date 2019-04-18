@@ -39,10 +39,10 @@
         @can('hall list')
       <a class="dropdown-item" href="{{ url('/halls') }}">Halls</a>
         @endcan
-        @can('specialities list')
+        @can('specialitie list')
       <a class="dropdown-item" href="{{ url('/specialities') }}">Specialties</a>
         @endcan
-        @can('affiliations list')
+        @can('affiliation list')
       <a class="dropdown-item" href="{{ url('affiliations') }}">Affiliations</a>
         @endcan
         @can('universityAffiliation list')

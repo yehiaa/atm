@@ -6,14 +6,13 @@
             <a href="{{ url('/home') }}">Home</a>
         </li>
         @can('courseEvaluation list')
-        <li class="breadcrumb-item">
-            <a href= "{{ route('course_evaluation.index', [$course->id]) }}"> Course Evaluation</a>
-        </li>
+            <li class="breadcrumb-item">
+                <a href= "{{ route('course_evaluation.index', [$course->id]) }}"> Course Evaluation</a>
+            </li>
         @endcan
-        <li class="breadcrumb-item active">Course evaluation</li>
     </ol>
     <!-- Page Content -->
-    <h1>{{$course->name}} <a href="{{ route('course_evaluation.create', [$course->id]) }}">Add new</a></h1>
+    <h1>{{$course->name}} @can('courseEvaluation add')<a href="{{ route('course_evaluation.create', [$course->id]) }}">Add new</a> @endcan</h1>
     @include('_partials.flash-messages')
     <div class="row">
         <div class="col-md-12">
@@ -76,7 +75,9 @@
                         <form action="{{ route('course_evaluation.destroy',[$item->course_id, $item->id]) }}" method="POST">
                             @method('delete')
                             @csrf
+                            @can('courseEvaluation remove')
                             <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">Delete</button>
+                            @endcan
                         </form>
                     </td>
                     </tr>
