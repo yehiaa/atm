@@ -47,6 +47,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'trainerAttendance edit']);
         Permission::create(['name' => 'trainerAttendance remove']);
 
+
         Permission::create(['name' => 'affiliation add']);
         Permission::create(['name' => 'affiliation list']);
         Permission::create(['name' => 'affiliation show']);
@@ -103,8 +104,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         Permission::create(['name' => 'traineeAssessment add']);
         Permission::create(['name' => 'traineeAssessment list']);
-        Permission::create(['name' => 'traineeAssessment show']);
-        Permission::create(['name' => 'traineeAssessment edit']);
+        //Permission::create(['name' => 'traineeAssessment show']);
+        //Permission::create(['name' => 'traineeAssessment edit']);
         Permission::create(['name' => 'traineeAssessment remove']);
 
         Permission::create(['name' => 'trainerEvaluation add']);
@@ -125,5 +126,10 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'user edit']);
         Permission::create(['name' => 'user remove']);
 
+        Permission::create(['name' => 'courseTrainer add']);
+        Permission::create(['name' => 'courseTrainer list']);
+        Permission::create(['name' => 'courseTrainer show']);
+        Permission::create(['name' => 'courseTrainer edit']);
+        Permission::create(['name' => 'courseTrainer remove']);
     }
 }

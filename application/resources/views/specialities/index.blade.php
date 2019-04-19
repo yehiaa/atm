@@ -9,8 +9,10 @@
     </ol>
 
     <!-- Page Content -->
+    @can('speciality add')
     <h1>Specialities <a href="{{ route('specialities.create') }}">Add new</a></h1>
     <hr>
+    @endcan
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
     <table id="example" class="display" style="width:100%">
@@ -29,12 +31,16 @@
             <td>
 
                 <form action="{{ route('specialities.destroy',$item->id) }}" method="POST">
+                    @can('speciality edit')
                     <a class="btn btn-primary" href="{{ route('specialities.edit', $item->id) }}" role="button">Edit</a>
+                    @endcan
                     @csrf
                     @method('DELETE')
+                    @can('speciality remove')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
                         Delete
                     </button>
+                    @endcan
                 </form>
             </td>
         </tr>

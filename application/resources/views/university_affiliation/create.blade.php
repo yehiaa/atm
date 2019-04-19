@@ -5,9 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('universityAffiliation list')
         <li class="breadcrumb-item">
             <a href="{{ route('university_affiliations.index') }}">University affiliations</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Create new</li>
     </ol>
 
@@ -24,7 +26,9 @@
             <span id="nameHelpBlock" class="form-text text-muted">Name</span>
         </div>
         <div class="form-group">
+            @can('universityAffiliation add')
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
+            @endcan
         </div>
     </form>
 

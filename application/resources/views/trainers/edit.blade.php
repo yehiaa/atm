@@ -5,9 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('trainer list')
         <li class="breadcrumb-item">
             <a href="{{ route('trainers.index') }}">Trainers</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Edit Trainer</li>
     </ol>
 
@@ -140,7 +142,9 @@
         </div>
 
         <div class="form-group">
+            @can('tainer add')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @endcan
         </div>
     </form>
 

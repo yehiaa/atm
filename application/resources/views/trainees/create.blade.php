@@ -5,9 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('trainee list')
         <li class="breadcrumb-item">
             <a href="{{ route('trainees.index') }}">Trainees</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Create new</li>
     </ol>
 
@@ -18,12 +20,10 @@
 
     <form method="post" action="{{ route('trainees.store') }}" enctype="multipart/form-data">
         @csrf
-
         <div class="form-group">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="name" class="form-control here" value="{{ old('name') }}" type="text">
         </div>
-
         <div class="form-group">
             <label>Gender</label>
             <div>
@@ -41,7 +41,6 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control here" value="{{ old('email') }}" type="text">
@@ -103,7 +102,7 @@
 
         <div class="form-group">
             <label for="attachment">Attachment</label>
-            <input id="attachment" name="attachment"  class="form-control-file"  type="file">
+            <input type="file" id="attachment" name="attachment"  class="form-control-file">
             <span id="nameHelpBlock" class="form-text text-muted">Upload a single file</span>
         </div>
 
@@ -130,7 +129,9 @@
         </div>
 
         <div class="form-group">
+            @can('trainee add')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @endcan
         </div>
     </form>
 

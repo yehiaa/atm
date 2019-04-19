@@ -5,9 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('speciality list')
         <li class="breadcrumb-item">
             <a href="{{ route('specialities.index') }}">Specialities</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Edit Speciality{{ $speciality->name }}</li>
     </ol>
 
@@ -40,9 +42,11 @@
                 </div>
             </div>
         </div>
+        @can('speciality add')
         <div class="form-group">
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
         </div>
+        @endcan
     </form>
 
 @endsection

@@ -33,7 +33,7 @@
                     @endcan
                     @csrf
                     @method('DELETE')
-                    @can('professionalData delete')
+                    @can('professionalData remove')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
                         Delete
                     </button>

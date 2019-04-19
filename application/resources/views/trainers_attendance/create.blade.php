@@ -5,9 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('course show')
         <li class="breadcrumb-item">
             <a href="{{ route('courses.show', ['course_id' => $lecture->course_id]) }}">{{ $lecture->name }}</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Trainers attendance</li>
     </ol>
 
@@ -34,7 +36,9 @@
         </div>
 
         <div class="form-group">
+            @can('trainerAttendance add')
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
+            @endcan
         </div>
     </form>
 

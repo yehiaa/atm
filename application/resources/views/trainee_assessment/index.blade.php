@@ -35,17 +35,6 @@
                     @endcan
                 </div>
             </nav>
-            {{--<nav>--}}
-                {{--<div class="nav nav-tabs" id="nav-tab" role="tablist">--}}
-                    {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">courses</a>--}}
-                    {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Lectures</a>--}}
-                    {{--<a class="nav-link"  href="{{ route('courses.show', [$course->id]) }}">Trainers</a>--}}
-                    {{--<a class="nav-link"  href="{{ route('course_registration.index',[$course->id]) }}" >Registrants</a>--}}
-                    {{--<a class="nav-link"  href="{{ route('course_evaluation.index',[$course->id]) }}">Course Evaluation</a>--}}
-                    {{--<a class="nav-link"  href="{{ route('trainer_evaluation.index',[$course->id]) }}">Trainer Evaluation</a>--}}
-                    {{--<a class="nav-link active"  href="{{ route('trainee_assessment.index',[$course->id]) }}">Trainee Assessment</a>--}}
-                {{--</div>--}}
-            {{--</nav>--}}
         </div>
     </div>
 
@@ -63,7 +52,6 @@
                         <th scope="col">Improvement Percentage</th>
                         <th scope="col">Average Trainee Satisfaction</th>
                         <th scope="col">Attachment</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -84,7 +72,9 @@
                                 <form action="{{ route('trainee_assessment.destroy',[$item->course_id, $item->id]) }}" method="POST">
                                     @method('delete')
                                     @csrf
+                                    @can('traineeAssessment remove')
                                     <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                    @endcan
                                 </form>
                             </td>
                         </tr>

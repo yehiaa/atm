@@ -35,7 +35,9 @@
         </div>
 
         <div class="form-group">
+            @can('courseTrainer add')
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
+            @endcan
         </div>
     </form>
 

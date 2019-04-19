@@ -5,9 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
+        @can('universityAffiliation list')
         <li class="breadcrumb-item">
             <a href="{{ route('university_affiliations.index') }}">University Affiliation</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Edit University Affiliation{{ $universityAffiliation->name }}</li>
     </ol>
 
@@ -24,7 +26,9 @@
             <input id="name" name="name" placeholder="name" class="form-control here" value="{{ $universityAffiliation->name }}" type="text">
         </div>
         <div class="form-group">
-            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @can('universityAffiliation edit')
+            <button name="submit" type="submit" class="btn btn-primary">Update</button>
+            @endcan
         </div>
     </form>
 

@@ -5,10 +5,11 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/home') }}">Home</a>
         </li>
+        @can('course show')
         <li class="breadcrumb-item">
-
             <a href= "{{ route('courses.show', [$course->id]) }}">Course {{ $course->name }}</a>
         </li>
+        @endcan
         <li class="breadcrumb-item active">Trainee Assessment</li>
     </ol>
 
@@ -98,7 +99,9 @@
                 <label for="comment">Additional comments</label>
                 <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" value="{{old('comment')}}"></textarea>
                 <div class="form-group">
+                    @can('traineeAssessment add')
                     <button name="submit" type="submit" class="btn btn-primary">Save</button>
+                    @endcan
                 </div>
             </form>
         </div>
