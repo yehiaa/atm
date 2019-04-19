@@ -9,8 +9,10 @@
     </ol>
 
     <!-- Page Content -->
+    @can('lecture add')
     <h1>Lectures <a href="{{ route('lectures.create') }}">Add new</a></h1>
     <hr>
+    @endcan
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
     <table id="example" class="display" style="width:100%">

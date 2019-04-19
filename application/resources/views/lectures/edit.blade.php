@@ -6,7 +6,9 @@
             <a href="{{ url('/') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
+            @can('course show')
             <a href="{{ route('courses.show', ['course_id' => $course->id]) }}">{{ $course->name }}</a>
+            @endcan
         </li>
         <li class="breadcrumb-item active">Update lecture</li>
     </ol>
@@ -15,7 +17,6 @@
     <h1>Lecture ({{ $course->name }})</h1>
     <hr>
     @include('_partials.flash-messages')
-
 
     <form method="post" action="{{ route('courses.lectures.update', [ $course->id,$lecture->id]) }}">
         @csrf
@@ -60,7 +61,9 @@
         </div>
 
         <div class="form-group">
+            @can('lecture add')
             <button name="submit" type="submit" class="btn btn-primary">Save</button>
+            @endcan
         </div>
     </form>
 

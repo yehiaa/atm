@@ -9,8 +9,10 @@
     </ol>
 
     <!-- Page Content -->
+    @can('professionalData add')
     <h1>Professional Data <a href="{{ route('professional_data.create') }}">Add new</a></h1>
     <hr>
+    @endcan
     @include('_partials.flash-messages')
     {{--<p> the training halls</p>--}}
     <table id="example" class="display" style="width:100%">
@@ -26,12 +28,16 @@
             <td>{{ $item->name }}</td>
             <td>
                 <form action="{{ route('professional_data.destroy',$item->id) }}" method="POST">
+                    @can('professionalData edit')
                     <a class="btn btn-primary" href="{{ route('professional_data.edit', $item->id) }}" role="button">Edit</a>
+                    @endcan
                     @csrf
                     @method('DELETE')
+                    @can('professionalData delete')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{$item->name}}?')">
                         Delete
                     </button>
+                    @endcan
                 </form>
             </td>
         </tr>

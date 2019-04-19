@@ -48,7 +48,7 @@
         @can('universityAffiliation list')
       <a class="dropdown-item" href="{{ url('university_affiliations') }}">University Affiliations</a>
         @endcan
-        @can('professionalData')
+        @can('professionalData list')
       <a class="dropdown-item" href="{{ url('professional_data') }}">Professional Data</a>
         @endcan
       <div class="dropdown-divider"></div>
@@ -75,26 +75,6 @@
       <div class="dropdown-divider"></div>
     </div>
   </li>
-    {{--
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Evaluation </span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                <h6 class="dropdown-header">Evaluation:</h6>
-                <a class="dropdown-item" href= "{{ url('/course-evaluation') }}">Course Evaluation</a>
-                <a class="dropdown-item" href="{{ url('/trainer_evaluation') }}">Trainer Evaluation</a>
-                <a class="dropdown-item" href="{{ url('/trainee_assessment') }}">Trainees Assessment</a>
-                <div class="dropdownider"></div>
-            </div>
-        </li>
-
-     {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ url('/evaluation') }}">
-          <i class="fas fa-fw fa-check"></i>
-          <span>Evaluation</span></a>
-      </li>--}}
 
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
