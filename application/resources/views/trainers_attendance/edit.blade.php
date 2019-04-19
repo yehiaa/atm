@@ -23,9 +23,7 @@
         <div class="form-group">
             <label for="trainer_id">Trainer</label>
             <div>
-                <select id="trainer_id" name="trainer_id"
-                        class="form-control"
-                        aria-describedby="selectHelpBlock" >
+                <select id="trainer_id" name="trainer_id" class="form-control" aria-describedby="selectHelpBlock" >
                     @foreach($trainers as $trainer)
                         <option value="{{ $trainer->id }}">
                             {{ $trainer->name }}
@@ -51,6 +49,10 @@
         <div class="form-group">
             <label for="start_datetime">Attended datetime</label>
             <input id="attended_at" name="attended_at" autocomplete="off" class="form-control datetime" aria-describedby="nameHelpBlock" value="{{ $trainer_attendance->attended_at }}" required="required" type="text">
+        </div>
+
+        <div class="form-group">
+            <button type="submit"  name="submit" class="btn btn-primary" >Update</button>
         </div>
     </form>
 

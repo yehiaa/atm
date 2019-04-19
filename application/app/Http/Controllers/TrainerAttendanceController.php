@@ -7,6 +7,7 @@ use App\Trainer;
 use App\TrainerAttendance;
 use App\CourseTrainer;
 use Illuminate\Http\Request;
+use mysql_xdevapi\Exception;
 
 class TrainerAttendanceController extends Controller
 {
@@ -84,7 +85,6 @@ class TrainerAttendanceController extends Controller
         $trainers = Trainer::whereIn('id', $courseTrainersIds)->get();
         //$trainer_attendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
         return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainer_attendance'));
-       // return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainerAttendance'));
     }
 
     /**
@@ -93,19 +93,21 @@ class TrainerAttendanceController extends Controller
      * @param  \App\TrainerAttendance  $trainers_attendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TrainerAttendance $trainers_attendance)
+    public function update( Lecture $lecture, TrainerAttendance $trainers_attendance, Request $request)
     {
         //this won't work
         $request->vaildate([
             'lecture_id' =>'require',
             'created_by'=>'require',
-            'attended_at' =>'require', // needs to be formatted
+            'attended_at' =>(new \DateTime())->format('Y-m-d H:i:s'), // needs to be formatted
             'trainer_id' =>'require'
         ]);
 
         //@todo add timing validation
 
         $trainers_attendance->update( $request->all());
+        return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withSuccess('updated successfully');
+
     }
 
     /**
@@ -117,7 +119,14 @@ class TrainerAttendanceController extends Controller
      */
     public function destroy(Lecture $lecture, TrainerAttendance $trainers_attendance)
     {
-        $trainers_attendance->delete();
-        return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withSuccess('deleted successfully');
+        try{
+            $trainers_attendance->delete();
+            return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withSuccess('deleted successfully');
+        }catch (Exception $ex)
+        {
+            return redirect(route('lectures.trainers-attendance.index', [$lecture->id]))->withError('can not delete related record');
+
+        }
+
     }
 }
