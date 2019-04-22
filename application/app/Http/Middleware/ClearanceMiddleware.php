@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ClearanceMiddleware {
     /**
@@ -16,6 +17,9 @@ class ClearanceMiddleware {
     public function handle($request, Closure $next)
     {
         $classActionName = class_basename($request->route()->getActionName());
+
+        Session::flash('warning', 'For DEMO ONLY Don\'t use in production..');
+
         $sections = explode('@', $classActionName);
 
         //based on controller name
