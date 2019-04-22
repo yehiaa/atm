@@ -11,7 +11,6 @@
         <li class="breadcrumb-item active">Add Course evaluation</li>
     </ol>
 
-    <p>This is for demo purposes</p>
     <!-- Page Content -->
     <h1>Courses Evaluation</h1>
     {{--<hr>--}}

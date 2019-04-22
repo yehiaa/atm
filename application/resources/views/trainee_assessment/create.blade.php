@@ -13,7 +13,6 @@
         <li class="breadcrumb-item active">Trainee Assessment</li>
     </ol>
 
-    <p>This is for demo purposes</p>
     <!-- Page Content -->
     <h1>Trainee Assessment</h1>
     <hr>

@@ -11,7 +11,6 @@
         {{--<li class="breadcrumb-item active">Course registration</li>--}}
     </ol>
 
-    <p>This is for demo purposes</p>
     <!-- Page Content -->
     <h1>Courses Registration</h1>
     <hr>

@@ -7,10 +7,9 @@
         </li>
         <li class="breadcrumb-item active">Calendar</li>
     </ol>
-    <p>Lectures calendar Demo (Example data )</p>
     <!-- Page Content -->
     <hr>
-
+    @include('_partials.flash-messages')
     <div id="calendar"></div>
 @endsection
 
