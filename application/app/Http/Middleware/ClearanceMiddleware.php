@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 class ClearanceMiddleware {
     /**
@@ -22,7 +21,7 @@ class ClearanceMiddleware {
         //based on controller name
         $modelName = lcfirst(substr($sections[0] ?? '', 0, -10));
         $actionName = $sections[1] ?? '';
-        print_r([$modelName, $actionName]);
+//        print_r([$modelName, $actionName]);
 
         //@todo continue working on it
         $permission = $modelName . ' ' . $actionName;
