@@ -63,7 +63,6 @@ class AffiliationController extends Controller
     public function edit(Affiliation $affiliation)
     {
         return view('affiliations.edit', compact('affiliation'));
-
     }
 
     /**
@@ -77,6 +76,7 @@ class AffiliationController extends Controller
         $request->validate(['name'=>'required|max:255']);
         $affiliation->update( \request()->all());
         $affiliation->save();
+
         return redirect(route('affiliations.index'))->withSuccess('updated successfully');
     }
 
@@ -89,8 +89,8 @@ class AffiliationController extends Controller
     public function destroy(Affiliation $affiliation)
     {
         try{
-        $affiliation->delete();
-        return redirect(route('affiliations.index'))->withSuccess('deleted successfully ');
+            $affiliation->delete();
+            return redirect(route('affiliations.index'))->withSuccess('deleted successfully ');
         }
         catch (\Exception $e){
             return redirect(route('affiliations.index')->with("error",$e->getMessage()));

@@ -22,12 +22,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if (! auth()->user()->can("user list"))
-        {
-            abort(401);
-        }
-//       print_r( $request->route()->getAction());
-//       echo class_basename(Route::current()->controller);
+//        if (! auth()->user()->can("user list"))
+//        {
+//            abort(401);
+//        }
+
         $items = User::all();
         return view('users.index', compact('items'));
     }
