@@ -12,8 +12,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        //isAdmin middleware lets only users with a //specific permission permission to access these resources
-//        $this->middleware(['auth', 'isAdmin']);
+        $this->middleware(['isAdmin']);
     }
 
     /**
@@ -23,11 +22,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-//        if (! auth()->user()->hasPermissionTo(""))
-//        {
-//
-//        }
-//        print_r( $request->route()->getAction());
+        if (! auth()->user()->can("user list"))
+        {
+            abort(401);
+        }
+//       print_r( $request->route()->getAction());
 //       echo class_basename(Route::current()->controller);
         $items = User::all();
         return view('users.index', compact('items'));
@@ -40,8 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles=Role::get();
-        //dd($roles);['roles'=>'$roles']
+        $roles = Role::all();
         return view('users.create',compact('roles'));
     }
 
@@ -58,13 +56,13 @@ class UserController extends Controller
             'name'=>'required|min:5',
             'email'=> 'email',
             'password'=>'required|min:6']);
-        //$user = ['name' => $request->get('name'), 'email'=>$request->get('email'),
-            //'password'=> Hash::make($request->get('password'))];
-        $user = User::create(['name' => $request->get('name'), 'email'=>$request->get('email'),
-            'password'=> Hash::make($request->get('password'))]);
-        //($request->only('email', 'name', 'password')); //Retrieving only the email and password data
 
-       // User::create($data);
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email'=>$request->get('email'),
+            'password'=> Hash::make($request->get('password'))
+        ]);
+
         $roles = $request['roles'];
         if (isset($roles)) {
             foreach ($roles as $role) {
@@ -94,7 +92,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::get(); //Get all roles
+        $roles = Role::all(); //Get all roles
 
         return view('users.edit', compact('user','roles'));
     }
@@ -122,9 +120,7 @@ class UserController extends Controller
             unset($validationRules['password']);
             $request->validate($validationRules);
         }
-        // 1//password is empty
 
-        // 2// password is not empty
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $roles = $request->input('roles');

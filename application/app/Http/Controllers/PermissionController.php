@@ -14,8 +14,9 @@ use Session;
 
 class PermissionController extends Controller {
 
-    public function __construct() {
-        //$this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+    public function __construct()
+    {
+        $this->middleware(['isAdmin']);
     }
 
     /**
@@ -36,7 +37,7 @@ class PermissionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $roles = Role::get(); //Get all roles
+        $roles = Role::all(); //Get all roles
 
         return view('permissions.create')->with('roles', $roles);
     }
