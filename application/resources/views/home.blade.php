@@ -3,7 +3,7 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ url('/home') }}">Home</a>
+            <a href="{{ route('home') }}">Home</a>
         </li>
         {{--<li class="breadcrumb-item active">Courses</li>--}}
     </ol>

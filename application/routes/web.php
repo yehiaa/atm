@@ -14,13 +14,11 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function()
 {
+    Route::get('/', 'HomeController@index')->name('home');
     Route::resource('roles','RoleController');
     Route::resource('permissions','PermissionController');
 
@@ -43,7 +41,6 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('/logout', 'Auth\LoginController@logout');
 
-    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
 
     //Route::get('/course-registration', 'CourseRegistrationController@create')->name('course_registration.create');

@@ -21,18 +21,22 @@ class ClearanceMiddleware {
         Session::flash('warning', 'For DEMO ONLY Don\'t use in production..');
 
         $sections = explode('@', $classActionName);
-
         //based on controller name
         $modelName = lcfirst(substr($sections[0] ?? '', 0, -10));
         $actionName = $sections[1] ?? '';
-//        print_r([$modelName, $actionName]);
 
-        //@todo continue working on it
-        $permission = $modelName . ' ' . $actionName;
-//        if (!Auth::user()->can($permission))
-//        {
-//            abort('401');
-//        }
+        $permissionActionMap = [
+            'update'=> 'edit', 'edit'=> 'edit',
+            'create'=> 'add', 'store'=> 'add',
+            'destroy'=> 'remove', 'index'=> 'list'
+        ];
+
+        $ignoredControllers = ['home'];
+        $permission = $modelName . ' ' . ($permissionActionMap[$actionName] ?? '');
+        if (Auth::user() && !Auth::user()->can($permission) && ! in_array($modelName, $ignoredControllers))
+        {
+            abort('401');
+        }
         return $next($request);
     }
 }
