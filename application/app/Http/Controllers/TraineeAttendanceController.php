@@ -7,6 +7,7 @@ use App\Lecture;
 use App\TraineeAttendance;
 use App\CourseRegistration;
 use Illuminate\Http\Request;
+use mysql_xdevapi\Exception;
 
 class TraineeAttendanceController extends Controller
 {
@@ -100,7 +101,12 @@ class TraineeAttendanceController extends Controller
      */
     public function destroy(Lecture $lecture, TraineeAttendance $trainees_attendance)
     {
-        $trainees_attendance->delete();
-        return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withSuccess('deleted successfully');
+        try{
+            $trainees_attendance->delete();
+            return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withSuccess('deleted successfully');
+
+        }catch (Exception $ex){
+            return redirect(route('lectures.trainees-attendance.index', [$lecture->id]))->withError('can not delete related record');
+        }
     }
 }

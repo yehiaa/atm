@@ -8,11 +8,9 @@
         <li class="breadcrumb-item active">Role</li>
     </ol>
     <div class="col-lg-10 col-lg-offset-1">
-        {{--<i class="fa fa-key"></i>--}}
-        <h1>Roles
+        <h1><i class="fa fa-key"></i> Roles
             <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Users</a>
-            <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a>
-        </h1>
+            <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
             <table id="example" class="display" style="width:100%">
                 <thead>
                 <tr>

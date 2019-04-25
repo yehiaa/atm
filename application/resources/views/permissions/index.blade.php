@@ -5,16 +5,14 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
-        <li class="breadcrumb-item active"><a href="{{ route('users.index') }}" >Users</a></li>
-       <li class="breadcrumb-item active"> <a href="{{ route('roles.index') }}" >Roles</a></li>
         <li class="breadcrumb-item active">Permission</li>
     </ol>
     <div class="col-lg-10 col-lg-offset-1">
-        {{--<i class="fa fa-key"></i>--}}
-        <h1> Available Permissions
+        <h1><i class="fa fa-key"></i>Available Permissions
 
-        </h1>
-
+            <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Users</a>
+            <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a></h1>
+        <hr>
         <div class="table-responsive">
             <table  class="display" style="width:100%">
                 <thead>

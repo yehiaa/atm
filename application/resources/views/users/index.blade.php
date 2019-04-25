@@ -5,18 +5,10 @@
         <li class="breadcrumb-item">
             <a href="{{ url('/') }}">Home</a>
         </li>
-        <li class="breadcrumb-item">
-        <a href="{{ route('roles.index') }}">Roles</a>
-        </li>
-        <li class="breadcrumb-item">
-        <a href="{{ route('permissions.index') }}">Permissions</a>
-        </li>
         <li class="breadcrumb-item active">Users</li>
     </ol>
-
-    {{--<h1><i class="fa fa-users"></i>--}}
-        {{--User Administration--}}
-    {{--</h1>--}}
+    <h1><i class="fa fa-users"></i> User Administration <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
+        <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
     <hr>
 
     <!-- Page Content -->

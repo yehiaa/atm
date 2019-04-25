@@ -68,8 +68,7 @@ class RoleController extends Controller {
         }
 
         return redirect()->route('roles.index')
-            ->with('flash_message',
-                'Role'. $role->name.' added!');
+            ->withSuccess('Role'. $role->name.' added!');
     }
 
     /**
@@ -127,8 +126,7 @@ class RoleController extends Controller {
         }
 
         return redirect()->route('roles.index')
-            ->with('flash_message',
-                'Role'. $role->name.' updated!');
+            ->withSuccess('Role'. $role->name.' updated!');
     }
 
     /**
@@ -143,8 +141,7 @@ class RoleController extends Controller {
         $role->delete();
 
         return redirect()->route('roles.index')
-            ->with('flash_message',
-                'Role deleted!');
+            ->withSuccess('Role deleted!');
 
     }
 }
