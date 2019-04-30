@@ -79,13 +79,13 @@ class TrainerAttendanceController extends Controller
      * @param  \App\TrainerAttendance $trainer_attendance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lecture $lecture, TrainerAttendance $trainer_attendance)
+    public function edit(Lecture $lecture)
     {
-        //dd($trainer_attendance);
         $courseTrainersIds = CourseTrainer::where('course_id', $lecture->course_id)->pluck('trainer_id')->toArray();
         $trainers = Trainer::whereIn('id', $courseTrainersIds)->get();
-        //$trainer_attendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
-        return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainer_attendance'));
+        $trainerAttendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
+        //dd($lecture,$trainers,$courseTrainersIds,$trainer_attendance);
+        return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainerAttendance'));
     }
 
     /**
@@ -94,8 +94,10 @@ class TrainerAttendanceController extends Controller
      * @param  \App\TrainerAttendance  $trainers_attendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TrainerAttendance $trainers_attendance )
+//[$trainerAttendance->lecture_id, $trainerAttendance->id]
+    public function update(Request $request, TrainerAttendance $trainerAttendance )
     {
+        //dd($trainerAttendance);
         //this won't work
         $request->vaildate([
             'lecture_id' =>'require',
@@ -106,9 +108,8 @@ class TrainerAttendanceController extends Controller
 
         //@todo add timing validation
 
-        $trainers_attendance->update( $request->all());
-        return redirect(route('lectures.trainers-attendance.index', [$trainers_attendance->lecture->id]))->withSuccess('updated successfully');
-
+        $trainerAttendance->update( $request->all());
+        return redirect(route('lectures.trainers-attendance.index', [$trainerAttendance->lecture->id]))->withSuccess('updated successfully');
     }
 
     /**

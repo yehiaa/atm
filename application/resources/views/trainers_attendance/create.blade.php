@@ -61,7 +61,6 @@
                             <th>Country</th>
                             <th>City</th>
                             <th>Attendance</th>
-                            {{--<th>Actions</th>--}}
                         </tr>
                         </thead>
                         <tbody>

@@ -75,9 +75,11 @@ class TraineeAttendanceController extends Controller
      * @param  \App\TraineeAttendance  $traineeAttendance
      * @return \Illuminate\Http\Response
      */
-    public function edit(TraineeAttendance $traineeAttendance)
+    public function edit(Lecture $lecture,TraineeAttendance $trainee_attendance)
     {
-        //
+        $courseTraineesIds = CourseRegistration::where('course_id', $lecture->course_id)->pluck('trainee_id')->toArray();
+        $trainees = Trainee::whereIn('id', $courseTraineesIds)->get();
+        return view('trainees_attendance.edit', compact('trainees', 'lecture', 'trainee_attendance'));
     }
 
     /**
@@ -89,7 +91,16 @@ class TraineeAttendanceController extends Controller
      */
     public function update(Request $request, TraineeAttendance $traineeAttendance)
     {
-        //
+        dd($traineeAttendance, $request);
+        $request->vaildate([
+            'lecture_id' =>'require',
+            'created_by'=>'require',
+            'attended_at' =>(new \DateTime())->format('Y-m-d H:i:s'), // needs to be formatted
+            'trainee_id' =>'require'
+        ]);
+
+        $traineeAttendance->update( $request->all());
+        return redirect(route('lectures.trainees-attendance.index', [$traineeAttendance->lecture->id]))->withSuccess('updated successfully');
     }
 
     /**
