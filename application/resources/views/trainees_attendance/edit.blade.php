@@ -17,7 +17,7 @@
     @include('_partials.flash-messages')
     <hr>
 
-    <form method="post" action="{{ route('lectures.trainees-attendance.update',[$lecture->id, $trainee_attendance->id]) }}">
+    <form method="post" action="{{ route('lectures.trainees-attendance.update',[$trainee_attendance->lecture_id, $trainee_attendance->id]) }}">
         @csrf
         @method('PATCH')
         <div class="form-group">

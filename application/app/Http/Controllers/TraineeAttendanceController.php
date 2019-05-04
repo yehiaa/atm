@@ -79,6 +79,8 @@ class TraineeAttendanceController extends Controller
     {
         $courseTraineesIds = CourseRegistration::where('course_id', $lecture->course_id)->pluck('trainee_id')->toArray();
         $trainees = Trainee::whereIn('id', $courseTraineesIds)->get();
+        $trainee_attendance = TraineeAttendance::where('lecture_id', $lecture->id)->get();
+        //dd($courseTraineesIds,$trainees,$trainee_attendance);
         return view('trainees_attendance.edit', compact('trainees', 'lecture', 'trainee_attendance'));
     }
 
