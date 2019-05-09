@@ -28,6 +28,7 @@
         <div class="form-group">
             @can('professionalData edit')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+            @endcan
         </div>
     </form>
 

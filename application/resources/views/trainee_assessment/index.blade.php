@@ -80,6 +80,17 @@
                         </tr>
                     @endforeach
                     </tbody>
+                        <tfoot>
+                        <tr>
+                            <th scope="col">Course</th>
+                            <th scope="col">Trainee</th>
+                            <th scope="col">Pretest Average</th>
+                            <th scope="col">Post Test Average</th>
+                            <th scope="col">Improvement Percentage</th>
+                            <th scope="col">Average Trainee Satisfaction</th>
+                            <th scope="col">Attachment</th>
+                        </tr>
+                        </tfoot>
                </table>
             </div>
         </div>

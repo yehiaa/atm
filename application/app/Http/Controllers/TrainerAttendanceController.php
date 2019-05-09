@@ -79,11 +79,13 @@ class TrainerAttendanceController extends Controller
      * @param  \App\TrainerAttendance $trainer_attendance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lecture $lecture)
+    public function edit(Lecture $lecture, $id )
     {
         $courseTrainersIds = CourseTrainer::where('course_id', $lecture->course_id)->pluck('trainer_id')->toArray();
         $trainers = Trainer::whereIn('id', $courseTrainersIds)->get();
-        $trainerAttendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
+        //$trainerAttendance = TrainerAttendance::where('lecture_id', $lecture->id)->get();
+        $trainerAttendance = TrainerAttendance::where('id', $id)->get();
+        dd($trainerAttendance);
         //dd($lecture,$trainers,$courseTrainersIds,$trainer_attendance);
         return view('trainers_attendance.edit', compact('trainers', 'lecture', 'trainerAttendance'));
     }
@@ -95,9 +97,10 @@ class TrainerAttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
 //[$trainerAttendance->lecture_id, $trainerAttendance->id]
-    public function update(Request $request, TrainerAttendance $trainerAttendance )
+    public function update(Request $request, TrainerAttendance $trainer_attendance )
     {
-        //dd($trainerAttendance);
+        //dd($trainer_attendance);
+        
         //this won't work
         $request->vaildate([
             'lecture_id' =>'require',
@@ -108,8 +111,8 @@ class TrainerAttendanceController extends Controller
 
         //@todo add timing validation
 
-        $trainerAttendance->update( $request->all());
-        return redirect(route('lectures.trainers-attendance.index', [$trainerAttendance->lecture->id]))->withSuccess('updated successfully');
+        $trainer_attendance->update( $request->all());
+        return redirect(route('lectures.trainers-attendance.index', [$trainer_attendance->lecture->id]))->withSuccess('updated successfully');
     }
 
     /**

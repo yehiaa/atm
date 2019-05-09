@@ -86,6 +86,15 @@
                             </tr>
                         @endforeach
                         </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th scope="col">Trainee</th>
+                                    <th scope="col">Details</th>
+                                    <th scope="col">Attachment</th>
+                                    <th scope="col">Comment</th>
+                                    <th scope="col">Recommendation</th>
+                                </tr>
+                                </tfoot>
                     </table>
                 </div>
             </div>
