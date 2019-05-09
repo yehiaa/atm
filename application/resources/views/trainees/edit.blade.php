@@ -127,7 +127,7 @@
         </div>
 
         <div class="form-group">
-            @can('trainee add')
+            @can('trainee edit')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
             @endcan
         </div>

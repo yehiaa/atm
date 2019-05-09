@@ -67,12 +67,13 @@
 
         <div class="form-group">
             <label for="country">Country</label>
-            <select id="country" name="country" class="form-control" ></select>
+            <select id="country" name="country" class="form-control"></select>
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <select id="city" name="city" class="form-control here" ></select>
+            <select id="city" name="city" class="form-control" ></select>
         </div>
+
         <div class="form-group">
             <label for="bank_name">Bank name</label>
             <input id="bank_name" name="bank_name" class="form-control here" type="text" value="{{ $trainer->bank_name }}">
@@ -142,7 +143,7 @@
         </div>
 
         <div class="form-group">
-            @can('tainer add')
+            @can('trainer edit')
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
             @endcan
         </div>
